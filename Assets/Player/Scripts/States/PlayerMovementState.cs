@@ -2,9 +2,10 @@ using FSM;
 using UnityEngine;
 
 namespace Player.Scripts.States {
-    public class PlayerMovementState : State {
+    public abstract class PlayerMovementState : State {
         public readonly PlayerController Controller;
-
+        
+        // static variables so that they're shared by each object
         protected static float HorizontalInput;
         protected static bool VerticalInput;
         protected static Vector2 NewVelocity;
