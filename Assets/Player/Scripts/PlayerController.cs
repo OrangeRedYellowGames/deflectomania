@@ -1,5 +1,6 @@
 ﻿using System;
 using FSM;
+using Player.Scripts.States.Air;
 using Player.Scripts.States.Ground;
 using UnityEngine;
 
@@ -10,15 +11,14 @@ namespace Player.Scripts {
     }
 
     public class PlayerController : MovementMotor2D {
-        public float gravity = -9.81f;
-
         // State Machines
         // ReSharper disable once InconsistentNaming
         private StateMachine _movementSM;
 
         public IdleState IdleState;
         public RunningState RunningState;
-
+        public JumpState JumpState;
+        public FallState FallState;
 
         // MonoBehaviour
         private void Start() {
@@ -26,6 +26,8 @@ namespace Player.Scripts {
 
             IdleState = new IdleState(this, _movementSM);
             RunningState = new RunningState(this, _movementSM);
+            JumpState = new JumpState(this, _movementSM);
+            FallState = new FallState(this, _movementSM);
 
             _movementSM.Initialize(IdleState);
         }

@@ -248,8 +248,8 @@ namespace Player.Scripts {
             Transform.Translate(deltaMovement, Space.World);
 
             // only calculate velocity if we have a non-zero deltaTime
-            if (Time.deltaTime > 0f)
-                velocity = deltaMovement / Time.deltaTime;
+            if (Time.fixedDeltaTime > 0f)
+                velocity = deltaMovement / Time.fixedDeltaTime;
 
             // set our becameGrounded state based on the previous and current collision state
             if (!collisionState.WasGroundedLastFrame && collisionState.Below)

@@ -10,7 +10,7 @@ namespace FSM {
             StateMachine = stateMachine;
         }
 
-        protected string StateName => GetType().Name;
+        public string StateName => GetType().Name;
 
         public virtual void Enter() {
         }
