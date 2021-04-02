@@ -8,3 +8,6 @@ https://unityatscale.com/
 
 https://github.com/cjddmut/Unity-2D-Platformer-Controller
 https://github.com/prime31/CharacterController2D/blob/master/Assets/CharacterController2D/CharacterController2D.cs
+
+#### Figure out how to import nuget packages into unity
+https://github.com/microsoft/MSBuildForUnity

@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace Player.Scripts.States {
     public abstract class PlayerMovementState : State {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public readonly PlayerController Controller;
-        
+
         // static variables so that they're shared by each object
         protected static float HorizontalInput;
         protected static bool VerticalInput;
@@ -16,9 +18,7 @@ namespace Player.Scripts.States {
 
         public override void Enter() {
             base.Enter();
-            Debug.Log($"Inside {StateName}");
-            // HorizontalInput = 0.0f;
-            // _verticalInput = false;
+            Logger.Info($"Inside {StateName}");
         }
 
 
