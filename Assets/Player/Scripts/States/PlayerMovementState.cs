@@ -11,6 +11,7 @@ namespace Player.Scripts.States {
         protected static float HorizontalInput;
         protected static bool VerticalInput;
         protected static Vector2 NewVelocity;
+        protected static Vector2 MouseScreenPosition;
 
         public PlayerMovementState(PlayerController controller, StateMachine stateMachine) : base(stateMachine) {
             Controller = controller;
@@ -26,14 +27,18 @@ namespace Player.Scripts.States {
             base.HandleInput();
             HorizontalInput = Input.GetAxis("Horizontal");
             VerticalInput = Input.GetButton("Jump");
+            MouseScreenPosition = Input.mousePosition;
         }
 
         public override void LogicUpdate() {
-            if (HorizontalInput > 0) {
-                Controller.ChangeObjectDirection(PlayerDirection.Right);
-            }
-            else if (HorizontalInput < 0) {
+            var mouseWorldPosition = PlayerController.MainCamera.ScreenToWorldPoint(MouseScreenPosition);
+
+            // Default will be right
+            if (mouseWorldPosition.x < Controller.transform.position.x) {
                 Controller.ChangeObjectDirection(PlayerDirection.Left);
+            }
+            else {
+                Controller.ChangeObjectDirection(PlayerDirection.Right);
             }
         }
 
