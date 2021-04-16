@@ -20,6 +20,10 @@ namespace Player.Scripts {
         public JumpState JumpState;
         public FallState FallState;
 
+        // Vector Directions, used to change direction in ChangeObjectDirection
+        private static readonly Vector3 RightRotationVector = new Vector3(0f, 0f, 0f);
+        private static readonly Vector3 LeftRotationVector = new Vector3(0f, 180f, 0f);
+
         // Caches Camera.main to optimize calls to it in FSM
         // Adapted from https://forum.unity.com/threads/how-to-cache-the-main-camera-as-a-global-variable.853774/
         private static Camera _mainCamera;
@@ -59,16 +63,12 @@ namespace Player.Scripts {
 
         // Methods
         public void ChangeObjectDirection(PlayerDirection playerDirection) {
-            var localScale = transform.localScale;
-
             switch (playerDirection) {
                 case PlayerDirection.Right:
-                    localScale = new Vector3(1, localScale.y, localScale.z);
-                    transform.localScale = localScale;
+                    transform.rotation = Quaternion.Euler(RightRotationVector);
                     break;
                 case PlayerDirection.Left:
-                    localScale = new Vector3(-1, localScale.y, localScale.z);
-                    transform.localScale = localScale;
+                    transform.rotation = Quaternion.Euler(LeftRotationVector);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(playerDirection), playerDirection, null);
