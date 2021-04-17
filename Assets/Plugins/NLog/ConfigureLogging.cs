@@ -15,7 +15,7 @@ namespace Plugins.NLog {
             };
 
             // Rules for mapping loggers to targets            
-            config.AddRule(LogLevel.Info, LogLevel.Fatal, unityConsole);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, unityConsole);
 
             // Apply config           
             LogManager.Configuration = config;

@@ -24,20 +24,6 @@ namespace Player.Scripts {
         private static readonly Vector3 RightRotationVector = new Vector3(0f, 0f, 0f);
         private static readonly Vector3 LeftRotationVector = new Vector3(0f, 180f, 0f);
 
-        // Caches Camera.main to optimize calls to it in FSM
-        // Adapted from https://forum.unity.com/threads/how-to-cache-the-main-camera-as-a-global-variable.853774/
-        private static Camera _mainCamera;
-
-        public static Camera MainCamera {
-            get {
-                if (!_mainCamera) {
-                    _mainCamera = Camera.main;
-                }
-
-                return _mainCamera;
-            }
-        }
-
         // MonoBehaviour
         private void Start() {
             _movementSM = new StateMachine();

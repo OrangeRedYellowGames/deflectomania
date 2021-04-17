@@ -1,5 +1,6 @@
 using FSM;
 using UnityEngine;
+using Utils;
 
 namespace Player.Scripts.States {
     public abstract class PlayerMovementState : State {
@@ -19,7 +20,7 @@ namespace Player.Scripts.States {
 
         public override void Enter() {
             base.Enter();
-            Logger.Info($"Inside {StateName}");
+            Logger.Trace($"Inside {StateName}");
         }
 
 
@@ -31,7 +32,7 @@ namespace Player.Scripts.States {
         }
 
         public override void LogicUpdate() {
-            var mouseWorldPosition = PlayerController.MainCamera.ScreenToWorldPoint(MouseScreenPosition);
+            var mouseWorldPosition = CameraUtils.MainCamera.ScreenToWorldPoint(MouseScreenPosition);
 
             // Default will be right
             if (mouseWorldPosition.x < Controller.transform.position.x) {
