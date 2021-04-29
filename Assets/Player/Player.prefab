@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463344075}
+  - component: {fileID: 1686736161}
   m_Layer: 0
   m_Name: Gun Pivot
   m_TagString: Untagged
@@ -26,11 +27,22 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.384, y: 0.009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5347282608996364130}
+  m_Children: []
   m_Father: {fileID: 5347282608371549160}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686736161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463344074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa9d11a869366304a505224d46cc589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1814688170
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +132,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 433540841
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9109057984762357227, guid: b8968e831d57f05ec880ddd4a12dfcd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -275,65 +287,3 @@ MonoBehaviour:
     m_RotationOrder: 4
   totalHorizontalRays: 8
   totalVerticalRays: 4
---- !u!1001 &8526744492534712660
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 463344075}
-    m_Modifications:
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.037
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.999962
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.008726558
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975095, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_Name
-      value: Laser Gun
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
---- !u!4 &5347282608996364130 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-  m_PrefabInstance: {fileID: 8526744492534712660}
-  m_PrefabAsset: {fileID: 0}
