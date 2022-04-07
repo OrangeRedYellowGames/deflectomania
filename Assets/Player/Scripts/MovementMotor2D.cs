@@ -417,7 +417,7 @@ namespace Player.Scripts {
 
                     if (raycastHit) {
                         // we crossed an edge when using Pythagoras calculation, so we set the actual delta movement to the ray hit location
-                        deltaMovement = (Vector3) raycastHit.point - ray;
+                        deltaMovement = (Vector3)raycastHit.point - ray;
                         if (isGoingRight)
                             deltaMovement.x -= skinWidth;
                         else
