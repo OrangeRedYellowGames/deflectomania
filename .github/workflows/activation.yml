@@ -1,0 +1,28 @@
+# Look at https://game.ci/docs/github/activation for more details
+# Will need to redo this job if the unity version is changed
+# Adapted from https://github.community/t/cant-trigger-workflow-manually/121740
+name: Acquire activation file
+on:
+  workflow_dispatch:
+    inputs:
+      newUnityVersion:
+        description: 'The new version number string to generate the license activation file for.'
+        required: true
+
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: game-ci/unity-request-activation-file@v2
+        with:
+          unityVersion: ${{ github.event.inputs.newUnityVersion }}
+      # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unity license activation file for ${{ github.event.inputs.newUnityVersion }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}

@@ -68,10 +68,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -81,8 +83,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -103,11 +105,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -494,9 +499,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tileset-done_11: 8931390132908698225
+      tileset-done_25: 3393028813359841945
+      tileset-done_17: 3017231674354209414
+      tileset-done_0: -4702139865074241213
+      tileset-done_9: -8968169325232290869
+      tileset-done_8: -6717193916421428272
+      tileset-done_3: 9026068345281074877
+      tileset-done_18: 6167874292659280141
+      tileset-done_24: -3894065417538852073
+      tileset-done_16: -8833021766386147142
+      tileset-done_26: 716638289608057871
+      tileset-done_1: -6966719592310064464
+      tileset-done_19: 5044522058919194192
+      tileset-done_27: -3275874769042874023
+      tileset-done_2: -8904872917650810351
+      tileset-done_10: -1209618855368476243
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
