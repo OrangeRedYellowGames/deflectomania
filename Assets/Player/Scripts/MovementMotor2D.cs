@@ -59,7 +59,9 @@ namespace Player.Scripts {
         /// </summary>
         public bool ignoreOneWayPlatformsThisFrame;
 
-        [FormerlySerializedAs("_skinWidth")] [SerializeField] [Range(0.001f, 0.3f)]
+        [FormerlySerializedAs("_skinWidth")]
+        [SerializeField]
+        [Range(0.001f, 0.3f)]
         private float skinWidth = 0.02f;
 
         /// <summary>
@@ -89,13 +91,15 @@ namespace Player.Scripts {
         /// mask with all layers that should act as one-way platforms. Note that one-way platforms should always be EdgeCollider2Ds. This is because it does not support being
         /// updated anytime outside of the inspector for now.
         /// </summary>
-        [SerializeField] private LayerMask oneWayPlatformMask = 0;
+        [SerializeField]
+        private LayerMask oneWayPlatformMask = 0;
 
         /// <summary>
         /// the max slope angle that the CC2D can climb
         /// </summary>
         /// <value>The slope limit.</value>
-        [Range(0f, 90f)] public float slopeLimit = 30f;
+        [Range(0f, 90f)]
+        public float slopeLimit = 30f;
 
         /// <summary>
         /// the threshold in the change in vertical movement between frames that constitutes jumping
@@ -111,6 +115,7 @@ namespace Player.Scripts {
             new AnimationCurve(new Keyframe(-90f, 1.5f), new Keyframe(0f, 1f), new Keyframe(90f, 0f));
 
         [Range(2, 20)] public int totalHorizontalRays = 8;
+
         [Range(2, 20)] public int totalVerticalRays = 4;
 
 
@@ -122,10 +127,13 @@ namespace Player.Scripts {
 
 
         [HideInInspector] [NonSerialized] public Transform Transform;
+
         [HideInInspector] [NonSerialized] public BoxCollider2D BoxCollider;
+
         [HideInInspector] [NonSerialized] public Rigidbody2D RigidBody2D;
 
-        [HideInInspector] [NonSerialized]
+        [HideInInspector]
+        [NonSerialized]
         public readonly CharacterCollisionState2D collisionState = new CharacterCollisionState2D();
 
         [HideInInspector] [NonSerialized] public Vector3 velocity;

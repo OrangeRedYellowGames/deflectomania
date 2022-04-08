@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FSM;
 using Player.Scripts.States.Air;
 using Player.Scripts.States.Ground;

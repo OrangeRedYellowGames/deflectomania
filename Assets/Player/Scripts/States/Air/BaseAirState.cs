@@ -10,7 +10,7 @@ namespace Player.Scripts.States.Air {
 
         public BaseAirState(PlayerController controller, StateMachine stateMachine) : base(controller, stateMachine) {
         }
-        
+
         public override void PhysicsUpdate() {
             base.PhysicsUpdate();
             // Add gravity to new velocity
