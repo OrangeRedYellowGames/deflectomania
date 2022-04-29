@@ -3,6 +3,7 @@ using FSM;
 using Player.Scripts.States.Air;
 using Player.Scripts.States.Ground;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.Scripts {
     public enum PlayerDirection {
@@ -15,7 +16,7 @@ namespace Player.Scripts {
         // ReSharper disable once InconsistentNaming
         private StateMachine _movementSM;
 
-        public IdleState IdleState;
+        [FormerlySerializedAs("IdleState")] public IdleState idleState;
         public RunningState RunningState;
         public JumpState JumpState;
         public FallState FallState;
@@ -28,12 +29,12 @@ namespace Player.Scripts {
         private void Start() {
             _movementSM = new StateMachine();
 
-            IdleState = new IdleState(this, _movementSM);
+            idleState = new IdleState(this, _movementSM);
             RunningState = new RunningState(this, _movementSM);
             JumpState = new JumpState(this, _movementSM);
             FallState = new FallState(this, _movementSM);
 
-            _movementSM.Initialize(IdleState);
+            _movementSM.Initialize(idleState);
         }
 
         // Update is called once per frame

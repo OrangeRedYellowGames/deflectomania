@@ -1,10 +1,14 @@
 using FSM;
+using NLog;
+using NLog.Fluent;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utils;
+using Logger = NLog.Logger;
 
 namespace Player.Scripts.States {
     public abstract class PlayerMovementState : State {
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public readonly PlayerController Controller;
 
@@ -18,17 +22,20 @@ namespace Player.Scripts.States {
             Controller = controller;
         }
 
+        void OnMove(InputValue value) {
+            Logger.Debug("HERE");
+        }
+
         public override void Enter() {
             base.Enter();
             Logger.Trace($"Inside {StateName}");
         }
 
-
         public override void HandleInput() {
             base.HandleInput();
-            HorizontalInput = Input.GetAxis("Horizontal");
-            VerticalInput = Input.GetButton("Jump");
-            MouseScreenPosition = Input.mousePosition;
+            // HorizontalInput = Input.GetAxis("Horizontal");
+            // VerticalInput = Input.GetButton("Jump");
+            MouseScreenPosition = Mouse.current.position.ReadValue();
         }
 
         public override void LogicUpdate() {

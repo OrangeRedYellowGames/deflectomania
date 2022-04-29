@@ -1,14 +1,17 @@
 using System;
+using NLog;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using Utils;
+using Logger = NLog.Logger;
 
 // https://www.youtube.com/watch?v=6hp9-mslbzI
 namespace Player.Scripts {
     public class GunPivot : MonoBehaviour {
         private GameObject _player;
         private float _rotOffset;
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private void Awake() {
             Transform objTransform = transform;
@@ -50,7 +53,8 @@ namespace Player.Scripts {
         // Read this https://docs.unity3d.com/ScriptReference/Quaternion-eulerAngles.html
         void FixedUpdate() {
             // Get the difference between the current mouse position and the pivot's transform
-            Vector3 difference = CameraUtils.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            Vector3 difference = CameraUtils.MainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) -
+                                 transform.position;
             difference.Normalize();
 
             // Calculate the rotation / angle from the +ve x axis and scale it to 0 - 360

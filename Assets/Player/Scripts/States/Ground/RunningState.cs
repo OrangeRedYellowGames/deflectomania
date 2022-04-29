@@ -17,7 +17,7 @@ namespace Player.Scripts.States.Ground {
         public override void LogicUpdate() {
             base.LogicUpdate();
             if (HorizontalInput == 0 && Mathf.Abs(Controller.velocity.x) < 0.1) {
-                StateMachine.ChangeState(Controller.IdleState);
+                StateMachine.ChangeState(Controller.idleState);
             }
         }
 

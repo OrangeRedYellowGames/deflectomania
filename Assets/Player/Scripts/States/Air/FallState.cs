@@ -15,7 +15,7 @@ namespace Player.Scripts.States.Air {
             base.LogicUpdate();
             if (Controller.IsGrounded) {
                 if (HorizontalInput == 0) {
-                    StateMachine.ChangeState(Controller.IdleState);
+                    StateMachine.ChangeState(Controller.idleState);
                 }
                 else {
                     StateMachine.ChangeState(Controller.RunningState);
