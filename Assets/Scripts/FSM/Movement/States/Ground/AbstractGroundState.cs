@@ -1,11 +1,5 @@
-using FSM;
-
-namespace Player.Scripts.States.Ground {
-    public abstract class BaseGroundState : PlayerMovementState {
-        public BaseGroundState(PlayerController controller, StateMachine stateMachine) :
-            base(controller, stateMachine) {
-        }
-
+namespace FSM.Movement.States.Ground {
+    public abstract class AbstractGroundState : AbstractMovementState {
         public override void Enter() {
             base.Enter();
             // To fix controller freaking out trying to figure out if player is grounded.
@@ -17,13 +11,13 @@ namespace Player.Scripts.States.Ground {
             base.LogicUpdate();
 
             // If jump is pressed and we're on the ground
-            if (VerticalInput && Controller.IsGrounded) {
-                StateMachine.ChangeState(Controller.JumpState);
+            if (VerticalInput && Motor.IsGrounded) {
+                MovementFSM.ChangeState(MovementFSM.jumpState);
             }
 
             // If we're suddenly not grounded, we're falling
-            else if (!Controller.IsGrounded) {
-                StateMachine.ChangeState(Controller.FallState);
+            else if (!Motor.IsGrounded) {
+                MovementFSM.ChangeState(MovementFSM.fallState);
             }
         }
     }

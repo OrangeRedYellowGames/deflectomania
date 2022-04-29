@@ -1,9 +1,5 @@
 using System;
-using FSM;
-using Player.Scripts.States.Air;
-using Player.Scripts.States.Ground;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.Scripts {
     public enum PlayerDirection {
@@ -12,41 +8,9 @@ namespace Player.Scripts {
     }
 
     public class PlayerController : MovementMotor2D {
-        // State Machines
-        // ReSharper disable once InconsistentNaming
-        private StateMachine _movementSM;
-
-        [FormerlySerializedAs("IdleState")] public IdleState idleState;
-        public RunningState RunningState;
-        public JumpState JumpState;
-        public FallState FallState;
-
         // Vector Directions, used to change direction in ChangeObjectDirection
         private static readonly Vector3 RightRotationVector = new Vector3(0f, 0f, 0f);
         private static readonly Vector3 LeftRotationVector = new Vector3(0f, 180f, 0f);
-
-        // MonoBehaviour
-        private void Start() {
-            _movementSM = new StateMachine();
-
-            idleState = new IdleState(this, _movementSM);
-            RunningState = new RunningState(this, _movementSM);
-            JumpState = new JumpState(this, _movementSM);
-            FallState = new FallState(this, _movementSM);
-
-            _movementSM.Initialize(idleState);
-        }
-
-        // Update is called once per frame
-        private void Update() {
-            _movementSM.CurrentState.HandleInput();
-
-            _movementSM.CurrentState.LogicUpdate();
-        }
-
-        private void FixedUpdate() {
-            _movementSM.CurrentState.PhysicsUpdate();
-        }
 
         // Methods
         public void ChangeObjectDirection(PlayerDirection playerDirection) {
