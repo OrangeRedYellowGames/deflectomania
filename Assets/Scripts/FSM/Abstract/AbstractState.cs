@@ -1,9 +1,9 @@
-using UnityEngine;
 using NLog;
+using UnityEngine;
 using Logger = NLog.Logger;
 
 // https://stackoverflow.com/questions/30471439/allways-call-base-method-in-override-without-mentioning-it-for-simple-scripts
-namespace FSM {
+namespace FSM.Abstract {
     public abstract class AbstractState : ScriptableObject {
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -11,9 +11,6 @@ namespace FSM {
 
         public virtual void Enter() {
             Logger.Debug($"Inside {StateName}");
-        }
-
-        public virtual void HandleInput() {
         }
 
         public virtual void LogicUpdate() {

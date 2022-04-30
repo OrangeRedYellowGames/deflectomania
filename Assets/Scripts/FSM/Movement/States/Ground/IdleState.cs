@@ -9,7 +9,7 @@ namespace FSM.Movement.States.Ground {
 
         public override void LogicUpdate() {
             base.LogicUpdate();
-            if (HorizontalInput != 0) {
+            if (HorizontalInput.Value != 0) {
                 MovementFSM.ChangeState(MovementFSM.runningState);
             }
         }

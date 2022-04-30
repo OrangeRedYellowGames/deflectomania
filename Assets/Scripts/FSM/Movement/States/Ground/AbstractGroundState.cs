@@ -1,3 +1,5 @@
+using FSM.Abstract;
+
 namespace FSM.Movement.States.Ground {
     public abstract class AbstractGroundState : AbstractMovementState {
         public override void Enter() {
@@ -11,7 +13,7 @@ namespace FSM.Movement.States.Ground {
             base.LogicUpdate();
 
             // If jump is pressed and we're on the ground
-            if (VerticalInput && Motor.IsGrounded) {
+            if (VerticalInput.Value && Motor.IsGrounded) {
                 MovementFSM.ChangeState(MovementFSM.jumpState);
             }
 

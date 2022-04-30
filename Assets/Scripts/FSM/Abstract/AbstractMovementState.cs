@@ -1,9 +1,10 @@
+using FSM.Movement;
 using Player.Scripts;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Utils;
 
-namespace FSM.Movement.States {
+namespace FSM.Abstract {
     /// <summary>
     /// AbstractMovementAbstractState requires a "Movement Motor" to control movement. Needs to be passed both the setMotor
     /// and setFSM functions.
@@ -16,18 +17,10 @@ namespace FSM.Movement.States {
 
         // Player Inputs
         // static variables so that they're shared by each object
-        protected static float HorizontalInput;
-        protected static bool VerticalInput;
+        [SerializeField] protected FloatVariable HorizontalInput;
+        [SerializeField] protected BoolVariable VerticalInput;
         protected static Vector2 NewVelocity;
-        protected static Vector2 MouseScreenPosition;
-
-        void OnJump() {
-            Debug.Log("HEREREEE");
-        }
-
-        void OnMove() {
-            Debug.Log("HEREREEE");
-        }
+        [SerializeField] protected Vector2Variable MouseScreenPosition;
 
         public void SetFSM(MovementStateMachine movementStateMachine) {
             MovementFSM = movementStateMachine;
@@ -50,23 +43,16 @@ namespace FSM.Movement.States {
         }
 
 
-        public override void HandleInput() {
-            base.HandleInput();
-            // HorizontalInput = Input.GetAxis("Horizontal");
-            // VerticalInput = Input.GetButton("Jump");
-            MouseScreenPosition = Mouse.current.position.ReadValue();
-        }
-
         public override void LogicUpdate() {
-            var mouseWorldPosition = CameraUtils.MainCamera.ScreenToWorldPoint(MouseScreenPosition);
+            var mouseWorldPosition = CameraUtils.MainCamera.ScreenToWorldPoint(MouseScreenPosition.Value);
 
             // Default will be right
-            // if (mouseWorldPosition.x < Controller.transform.position.x) {
-            //     Controller.ChangeObjectDirection(PlayerDirection.Left);
-            // }
-            // else {
-            //     Controller.ChangeObjectDirection(PlayerDirection.Right);
-            // }
+            if (mouseWorldPosition.x < MovementFSM.transform.position.x) {
+                MovementFSM.ChangeObjectDirection(PlayerDirection.Left);
+            }
+            else {
+                MovementFSM.ChangeObjectDirection(PlayerDirection.Right);
+            }
         }
 
         public override void PhysicsUpdate() {

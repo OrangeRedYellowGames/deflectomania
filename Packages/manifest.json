@@ -1,4 +1,21 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "NPM Registry",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.unity-atoms.unity-atoms-core",
+        "com.unity-atoms.unity-atoms-base-atoms",
+        "com.unity-atoms.unity-atoms-fsm",
+        "com.unity-atoms.unity-atoms-mobile",
+        "com.unity-atoms.unity-atoms-mono-hooks",
+        "com.unity-atoms.unity-atoms-tags",
+        "com.unity-atoms.unity-atoms-scene-mgmt",
+        "com.unity-atoms.unity-atoms-ui",
+        "com.unity-atoms.unity-atoms-input-system"
+      ]
+    }
+  ],
   "dependencies": {
     "com.unity.collab-proxy": "1.15.16",
     "com.unity.feature.2d": "1.0.0",
@@ -41,6 +58,15 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.unity-atoms.unity-atoms-core": "4.4.4",
+    "com.unity-atoms.unity-atoms-base-atoms": "4.4.4",
+    "com.unity-atoms.unity-atoms-fsm": "4.4.4",
+    "com.unity-atoms.unity-atoms-mobile": "4.4.4",
+    "com.unity-atoms.unity-atoms-mono-hooks": "4.4.4",
+    "com.unity-atoms.unity-atoms-tags": "4.4.4",
+    "com.unity-atoms.unity-atoms-scene-mgmt": "4.4.4",
+    "com.unity-atoms.unity-atoms-ui": "4.4.4",
+    "com.unity-atoms.unity-atoms-input-system": "4.4.4"
   }
 }

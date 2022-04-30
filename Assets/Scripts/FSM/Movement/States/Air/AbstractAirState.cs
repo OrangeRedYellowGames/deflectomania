@@ -1,3 +1,4 @@
+using FSM.Abstract;
 using UnityEngine;
 
 namespace FSM.Movement.States.Air {
@@ -11,7 +12,7 @@ namespace FSM.Movement.States.Air {
         public override void PhysicsUpdate() {
             base.PhysicsUpdate();
             // Add gravity to new velocity
-            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, HorizontalInput * MaxAirSpeed,
+            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, HorizontalInput.Value * MaxAirSpeed,
                 Time.fixedDeltaTime * airFriction);
 
             // TODO: Calculate max velocity due to free fall and use drag to limit gravity affect

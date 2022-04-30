@@ -10,17 +10,18 @@ namespace FSM.Movement.States.Ground {
 
         public override void LogicUpdate() {
             base.LogicUpdate();
-            if (HorizontalInput == 0 && Mathf.Abs(Motor.velocity.x) < 0.1) {
+            if (HorizontalInput.Value == 0 && Mathf.Abs(Motor.velocity.x) < 0.1) {
                 MovementFSM.ChangeState(MovementFSM.idleState);
             }
         }
 
         public override void PhysicsUpdate() {
             base.PhysicsUpdate();
-            var factor = HorizontalInput == 0 ? frictionFactor : accelerationFactor;
+            var factor = HorizontalInput.Value == 0 ? frictionFactor : accelerationFactor;
 
             // Replace with smoothDamp
-            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, HorizontalInput * maxSpeed, Time.fixedDeltaTime * factor);
+            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, HorizontalInput.Value * maxSpeed,
+                Time.fixedDeltaTime * factor);
         }
     }
 }

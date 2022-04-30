@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa9d11a869366304a505224d46cc589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LookPosition: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
+  DeviceChangeEvent: {fileID: 11400000, guid: ab6472f93ce9e654aa454e391014eb4f, type: 2}
 --- !u!1 &1814688170
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +165,7 @@ GameObject:
   - component: {fileID: 861227256}
   - component: {fileID: 6624432513073703498}
   - component: {fileID: 3811751413067517601}
-  - component: {fileID: 1320162588}
+  - component: {fileID: 444393263}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -311,7 +313,7 @@ MonoBehaviour:
   runningState: {fileID: 11400000, guid: d5f811a440bf24f4688e7bc295786ebe, type: 2}
   jumpState: {fileID: 11400000, guid: 432b6f716d944a94a8198127a39f40c2, type: 2}
   fallState: {fileID: 11400000, guid: 2a739d9b052ff2941b825e408c9c9bc8, type: 2}
---- !u!114 &1320162588
+--- !u!114 &444393263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: a1c4ca2601e52a14997c48021f279d3e, type: 3}
-  m_NotificationBehavior: 1
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -334,8 +336,116 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ab6472f93ce9e654aa454e391014eb4f, type: 2}
+        m_TargetAssemblyTypeName: UnityAtoms.AtomEvent`1[[UnityEngine.InputSystem.PlayerInput,
+          Unity.InputSystem
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 0188b3f5545cd5a469aefcc1c67d2bc0, type: 2}
+        m_TargetAssemblyTypeName: UnityAtoms.InputSystem.CallbackContextInterpreter`8[[System.Single,
+          mscorlib
+        m_MethodName: UpdateValues
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 06b9734c-4a94-4443-b154-d84c97c85eab
+    m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 80cd9af6cb810ac44ae85b473ac99711, type: 2}
+        m_TargetAssemblyTypeName: UnityAtoms.InputSystem.CallbackContextInterpreter`8[[UnityEngine.Vector2,
+          UnityEngine
+        m_MethodName: UpdateValues
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e18cb886-69f0-4fa0-ad33-c21666a4eff2
+    m_ActionName: Player/Look[/Mouse/position]
+  - m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+    m_ActionId: 8b6a6d87-0384-461e-b767-a7c9e0ab1d09
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 5a5dadbb1942a984885b74dc7c4f8b95, type: 2}
+        m_TargetAssemblyTypeName: UnityAtoms.InputSystem.CallbackContextInterpreter`8[[System.Int32,
+          mscorlib
+        m_MethodName: UpdateValues
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: aab8808d-b2b4-489f-a83b-55d9536688eb
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 17e0dcf6-7dff-47b7-ba78-d62ea231f2c0
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2cbcb9b-e16e-4486-a98e-148c9ef0cde7
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3009859f-2489-49cc-bf95-83c427caa16f
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7fd48218-6607-4584-8b3a-16b2839a9b33
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c4c7db41-d806-4e4f-b45e-b19822d84830
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79a23782-042d-4e33-8a80-5aee2ac85cb2
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0eed943f-59ee-4719-8670-0f0293f576ae
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 035f808e-2bb4-4bf5-b22f-cbf3a7b0d943
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 094dc0f7-04c2-4054-92c9-60c9fef658bf
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 48d69ab4-f455-4196-9916-452a64a6a22d
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

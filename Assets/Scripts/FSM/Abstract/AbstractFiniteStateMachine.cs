@@ -1,13 +1,12 @@
 using UnityEngine;
 
-namespace FSM {
+namespace FSM.Abstract {
     public abstract class AbstractFiniteStateMachine : MonoBehaviour {
         // TODO: State History using stacks (limited size)
         [SerializeField] public AbstractState CurrentState { get; protected set; }
 
 
         public void Update() {
-            CurrentState.HandleInput();
             CurrentState.LogicUpdate();
         }
 

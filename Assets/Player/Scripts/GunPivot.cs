@@ -1,5 +1,7 @@
 using System;
 using NLog;
+using UnityAtoms.BaseAtoms;
+using UnityAtoms.InputSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
@@ -9,11 +11,25 @@ using Logger = NLog.Logger;
 // https://www.youtube.com/watch?v=6hp9-mslbzI
 namespace Player.Scripts {
     public class GunPivot : MonoBehaviour {
+        [SerializeField] private Vector2Variable LookPosition;
+        [SerializeField] private PlayerInputEvent DeviceChangeEvent;
         private GameObject _player;
         private float _rotOffset;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private bool usingMouse = true;
+
+        private void DeviceChanged(PlayerInput input) {
+            if (input.currentControlScheme == "Keyboard&Mouse") {
+                usingMouse = true;
+            }
+            else {
+                usingMouse = false;
+            }
+        }
 
         private void Awake() {
+            DeviceChangeEvent.Register(DeviceChanged);
+
             Transform objTransform = transform;
 
             // Get the player's transform, needed to figure out which direction the player is facing
@@ -52,10 +68,16 @@ namespace Player.Scripts {
 
         // Read this https://docs.unity3d.com/ScriptReference/Quaternion-eulerAngles.html
         void FixedUpdate() {
-            // Get the difference between the current mouse position and the pivot's transform
-            Vector3 difference = CameraUtils.MainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) -
-                                 transform.position;
-            difference.Normalize();
+            Vector3 difference;
+            if (usingMouse) {
+                // Get the difference between the current mouse position and the pivot's transform
+                difference = CameraUtils.MainCamera.ScreenToWorldPoint(LookPosition.Value) -
+                             transform.position;
+                difference.Normalize();
+            }
+            else {
+                difference = LookPosition.Value;
+            }
 
             // Calculate the rotation / angle from the +ve x axis and scale it to 0 - 360
             // https://stackoverflow.com/questions/30324015/mathf-atan2-return-incorrect-result/30325326

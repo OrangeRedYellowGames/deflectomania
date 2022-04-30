@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0a6fef117c403e80c4b2c5c831d3b8, type: 3}
   m_Name: IdleState
   m_EditorClassIdentifier: 
+  HorizontalInput: {fileID: 11400000, guid: 5fb0499a74d01e64dbb83b315cccc375, type: 2}
+  VerticalInput: {fileID: 11400000, guid: d750efe38f9538f43a173a504c568aed, type: 2}
+  MouseScreenPosition: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}

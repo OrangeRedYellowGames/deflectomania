@@ -12,7 +12,7 @@ namespace FSM.Movement.States.Air {
         public override void LogicUpdate() {
             base.LogicUpdate();
             if (Motor.IsGrounded) {
-                if (HorizontalInput == 0) {
+                if (HorizontalInput.Value == 0.0f) {
                     MovementFSM.ChangeState(MovementFSM.idleState);
                 }
                 else {
