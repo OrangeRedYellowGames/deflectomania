@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using FSM.Abstract;
 using FSM.Movement.States.Air;
 using FSM.Movement.States.Ground;
