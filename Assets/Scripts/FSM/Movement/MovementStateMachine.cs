@@ -23,7 +23,7 @@ namespace FSM.Movement {
                 idleState, runningState, jumpState, fallState
             };
 
-
+            // Set the FSM and Motor variables for each movement state
             foreach (var state in stateList) {
                 state.SetFSM(this);
                 state.SetMotor(_motor);
