@@ -19,7 +19,7 @@ namespace FSM.Abstract {
         // static variables so that they're shared by each object
         [SerializeField] protected FloatVariable horizontalInput;
         [SerializeField] protected BoolVariable verticalInput;
-        protected static Vector2 NewVelocity;
+        [SerializeField] protected Vector2Variable NewVelocity;
 
         public void SetFSM(MovementStateMachine movementStateMachine) {
             MovementFSM = movementStateMachine;
@@ -43,7 +43,7 @@ namespace FSM.Abstract {
 
         public override void PhysicsUpdate() {
             base.PhysicsUpdate();
-            Motor.Move(NewVelocity * Time.fixedDeltaTime);
+            Motor.Move(NewVelocity.Value * Time.fixedDeltaTime);
         }
     }
 }

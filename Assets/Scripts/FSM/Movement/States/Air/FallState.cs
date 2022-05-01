@@ -6,7 +6,7 @@ namespace FSM.Movement.States.Air {
         public override void Enter() {
             base.Enter();
             // To handle cases where the player hits a platform above him
-            NewVelocity.y = 0;
+            NewVelocity.Value = new Vector2(NewVelocity.Value.x, 0);
         }
 
         public override void LogicUpdate() {

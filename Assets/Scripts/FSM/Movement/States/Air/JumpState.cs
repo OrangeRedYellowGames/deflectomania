@@ -12,7 +12,7 @@ namespace FSM.Movement.States.Air {
 
         public override void Enter() {
             base.Enter();
-            NewVelocity.y = Mathf.Sqrt(2f * minJumpHeight.Value * -gravity.Value);
+            NewVelocity.Value = new Vector2(NewVelocity.Value.x, Mathf.Sqrt(2f * minJumpHeight.Value * -gravity.Value));
         }
 
         public override void LogicUpdate() {

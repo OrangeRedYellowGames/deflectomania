@@ -21,8 +21,10 @@ namespace FSM.Movement.States.Ground {
             var factor = horizontalInput.Value == 0 ? frictionFactor.Value : accelerationFactor.Value;
 
             // Replace with smoothDamp
-            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, horizontalInput.Value * maxSpeed.Value,
+            var horizontalValue = Mathf.Lerp(Motor.velocity.x, horizontalInput.Value * maxSpeed.Value,
                 Time.fixedDeltaTime * factor);
+
+            NewVelocity.Value = new Vector2(horizontalValue, NewVelocity.Value.y);
         }
     }
 }

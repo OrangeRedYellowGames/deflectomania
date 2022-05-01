@@ -1,4 +1,5 @@
 using FSM.Abstract;
+using UnityEngine;
 
 namespace FSM.Movement.States.Ground {
     public abstract class AbstractGroundState : AbstractMovementState {
@@ -6,7 +7,7 @@ namespace FSM.Movement.States.Ground {
             base.Enter();
             // To fix controller freaking out trying to figure out if player is grounded.
             // https://github.com/prime31/CharacterController2D/issues/106
-            NewVelocity.y = -0.01f;
+            NewVelocity.Value = new Vector2(NewVelocity.Value.x, -0.01f);
         }
 
         public override void LogicUpdate() {
