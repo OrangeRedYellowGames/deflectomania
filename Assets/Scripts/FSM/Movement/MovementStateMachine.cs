@@ -10,6 +10,7 @@ namespace FSM.Movement {
     public class MovementStateMachine : AbstractFiniteStateMachine {
         private MovementMotor2D _motor;
 
+        // Movement States
         public IdleState idleState;
         public RunningState runningState;
         public JumpState jumpState;
