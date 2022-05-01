@@ -9,30 +9,41 @@ namespace Utils {
     /// </summary>
     public class DirectionSwitcher : MonoBehaviour {
         /// <summary>
-        /// Reference Vector2. Should be relative to the attached GameObject.
-        /// Currently, this is assumed to be a mouse position which will be transformed into a world point via
-        /// the ScreenToWorldPoint function.
+        /// Reference Vector2. Can either be a look position from a mouse (absolute) or a look direction from a gamepad.
         /// </summary>
         [SerializeField]
-        public Vector2Variable reference;
+        public Vector2Variable lookDirection;
+
+        [SerializeField] public BoolVariable isUsingMouse;
 
         private static readonly Vector3 RightRotationVector = new(0f, 0f, 0f);
         private static readonly Vector3 LeftRotationVector = new(0f, 180f, 0f);
 
+        private Vector3 _newRotationVector;
+
         void Awake() {
-            Assert.IsNotNull(reference);
+            Assert.IsNotNull(lookDirection);
+            Assert.IsNotNull(isUsingMouse);
         }
 
         void Update() {
-            var mouseWorldPosition = CameraUtils.MainCamera.ScreenToWorldPoint(reference.Value);
+            if (isUsingMouse.Value) {
+                // Need to translate mouse coordinates into a world point
+                var mouseWorldPosition = CameraUtils.MainCamera.ScreenToWorldPoint(lookDirection.Value);
 
-            // Default will be right
-            if (mouseWorldPosition.x < transform.position.x) {
-                transform.rotation = Quaternion.Euler(LeftRotationVector);
+                // Default will be right
+                _newRotationVector = mouseWorldPosition.x < transform.position.x
+                    ? LeftRotationVector
+                    : RightRotationVector;
             }
             else {
-                transform.rotation = Quaternion.Euler(RightRotationVector);
+                // Don't change direction if stick is in the middle
+                if (lookDirection.Value.x != 0.0f) {
+                    _newRotationVector = lookDirection.Value.x < 0 ? LeftRotationVector : RightRotationVector;
+                }
             }
+
+            transform.rotation = Quaternion.Euler(_newRotationVector);
         }
     }
 }

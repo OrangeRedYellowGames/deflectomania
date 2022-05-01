@@ -8,7 +8,6 @@ namespace FSM.Movement.States.Ground {
         [SerializeField] public IntConstant accelerationFactor;
         [SerializeField] public IntConstant frictionFactor;
 
-
         public override void LogicUpdate() {
             base.LogicUpdate();
             if (horizontalInput.Value == 0 && Mathf.Abs(Motor.velocity.x) < 0.1) {

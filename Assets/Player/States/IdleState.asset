@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: {fileID: 11400000, guid: 5fb0499a74d01e64dbb83b315cccc375, type: 2}
   verticalInput: {fileID: 11400000, guid: d750efe38f9538f43a173a504c568aed, type: 2}
+  NewVelocity: {fileID: 11400000, guid: 1a325533133480b46b5259c57627574e, type: 2}

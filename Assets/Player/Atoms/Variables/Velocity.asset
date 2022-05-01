@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76a04b727336433cb49bbba3dbe9175, type: 3}
   m_Name: Velocity
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: Vector2 that defines the (new) velocity of the player
   _id: 
-  _value: {x: 0, y: 0}
+  _value: {x: 0, y: -0.01}
   _changed: {fileID: 0}
   _changedWithHistory: {fileID: 0}
   _triggerChangedOnOnEnable: 0
   _triggerChangedWithHistoryOnOnEnable: 0
-  _oldValue: {x: 0, y: 0}
+  _oldValue: {x: 0, y: -17.6}
   _initialValue: {x: 0, y: 0}
   _preChangeTransformers: []
