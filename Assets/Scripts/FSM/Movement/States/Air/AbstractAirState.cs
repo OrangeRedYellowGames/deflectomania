@@ -13,7 +13,7 @@ namespace FSM.Movement.States.Air {
         public override void PhysicsUpdate() {
             base.PhysicsUpdate();
             // Add gravity to new velocity
-            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, HorizontalInput.Value * maxAirSpeed.Value,
+            NewVelocity.x = Mathf.Lerp(Motor.velocity.x, horizontalInput.Value * maxAirSpeed.Value,
                 Time.fixedDeltaTime * airFriction.Value);
 
             // TODO: Calculate max velocity due to free fall and use drag to limit gravity affect

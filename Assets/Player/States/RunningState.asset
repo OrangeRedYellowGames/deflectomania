@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3707afdb0f4e1cae7d93cd6eb217a8, type: 3}
   m_Name: RunningState
   m_EditorClassIdentifier: 
-  HorizontalInput: {fileID: 11400000, guid: 5fb0499a74d01e64dbb83b315cccc375, type: 2}
-  VerticalInput: {fileID: 11400000, guid: d750efe38f9538f43a173a504c568aed, type: 2}
-  MouseScreenPosition: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
-  maxSpeed: 10
-  accelerationFactor: 20
-  frictionFactor: 50
+  horizontalInput: {fileID: 11400000, guid: 5fb0499a74d01e64dbb83b315cccc375, type: 2}
+  verticalInput: {fileID: 11400000, guid: d750efe38f9538f43a173a504c568aed, type: 2}
+  maxSpeed: {fileID: 11400000, guid: 44da98a585629bb4693b7b6e623bda69, type: 2}
+  accelerationFactor: {fileID: 11400000, guid: a9511bfbe2a8d994e8ebb4df2a7a9af7, type: 2}
+  frictionFactor: {fileID: 11400000, guid: c5176f7662797f94094184bb666fe548, type: 2}

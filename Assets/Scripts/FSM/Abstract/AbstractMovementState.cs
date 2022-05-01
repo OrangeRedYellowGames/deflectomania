@@ -2,6 +2,7 @@ using FSM.Movement;
 using Player.Scripts;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FSM.Abstract {
     /// <summary>
@@ -16,8 +17,8 @@ namespace FSM.Abstract {
 
         // Player Inputs
         // static variables so that they're shared by each object
-        [SerializeField] protected FloatVariable HorizontalInput;
-        [SerializeField] protected BoolVariable VerticalInput;
+        [SerializeField] protected FloatVariable horizontalInput;
+        [SerializeField] protected BoolVariable verticalInput;
         protected static Vector2 NewVelocity;
 
         public void SetFSM(MovementStateMachine movementStateMachine) {

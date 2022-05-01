@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97564b00347f49948e57c6d5c04c18f2, type: 3}
   m_Name: JumpState
   m_EditorClassIdentifier: 
-  HorizontalInput: {fileID: 11400000, guid: 5fb0499a74d01e64dbb83b315cccc375, type: 2}
-  VerticalInput: {fileID: 11400000, guid: d750efe38f9538f43a173a504c568aed, type: 2}
-  MouseScreenPosition: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
-  minJumpHeight: 3.5
+  horizontalInput: {fileID: 11400000, guid: 5fb0499a74d01e64dbb83b315cccc375, type: 2}
+  verticalInput: {fileID: 11400000, guid: d750efe38f9538f43a173a504c568aed, type: 2}
+  gravity: {fileID: 11400000, guid: 2ca0418523eff5d479e7573df8954f65, type: 2}
+  maxAirSpeed: {fileID: 11400000, guid: 6ac336fbe11757c44ae10c7359342fb7, type: 2}
+  airFriction: {fileID: 11400000, guid: 5076010a4eb1ed543b3a8a9ba40c4cc1, type: 2}
+  minJumpHeight: {fileID: 11400000, guid: 800677f210d2d1640bfdeb78b22a632b, type: 2}
   maxJumpHeight: 4.5

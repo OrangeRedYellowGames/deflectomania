@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad76d497767c34ecf88c7aa597da29c0, type: 3}
   m_Name: AccelerationFactor
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: Int that determines the acceleration factor of the player
   _id: 
-  _value: 0
+  _value: 20
