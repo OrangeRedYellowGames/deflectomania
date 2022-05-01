@@ -2,7 +2,6 @@ using FSM.Movement;
 using Player.Scripts;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
-using Utils;
 
 namespace FSM.Abstract {
     /// <summary>
@@ -20,7 +19,6 @@ namespace FSM.Abstract {
         [SerializeField] protected FloatVariable HorizontalInput;
         [SerializeField] protected BoolVariable VerticalInput;
         protected static Vector2 NewVelocity;
-        [SerializeField] protected Vector2Variable MouseScreenPosition;
 
         public void SetFSM(MovementStateMachine movementStateMachine) {
             MovementFSM = movementStateMachine;
@@ -39,19 +37,6 @@ namespace FSM.Abstract {
 
             if (Motor == null) {
                 Logger.Error($"A valid movement motor was not set on {StateName}");
-            }
-        }
-
-
-        public override void LogicUpdate() {
-            var mouseWorldPosition = CameraUtils.MainCamera.ScreenToWorldPoint(MouseScreenPosition.Value);
-
-            // Default will be right
-            if (mouseWorldPosition.x < MovementFSM.transform.position.x) {
-                MovementFSM.ChangeObjectDirection(PlayerDirection.Left);
-            }
-            else {
-                MovementFSM.ChangeObjectDirection(PlayerDirection.Right);
             }
         }
 
