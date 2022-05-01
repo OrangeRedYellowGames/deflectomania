@@ -1,3 +1,4 @@
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 namespace FSM.Movement.States.Air {
@@ -5,13 +6,13 @@ namespace FSM.Movement.States.Air {
     public class JumpState : AbstractAirState {
         // Jump height in unity units / cells, how many blocks
         // TODO: Code higher jump if space bar is held
-        public float minJumpHeight = 3.5f;
+        [SerializeField] public FloatConstant minJumpHeight;
         public float maxJumpHeight = 4.5f;
 
 
         public override void Enter() {
             base.Enter();
-            NewVelocity.y = Mathf.Sqrt(2f * minJumpHeight * -Gravity);
+            NewVelocity.y = Mathf.Sqrt(2f * minJumpHeight.Value * -gravity.Value);
         }
 
         public override void LogicUpdate() {

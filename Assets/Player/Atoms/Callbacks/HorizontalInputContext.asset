@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8db79be4274a0145b4f5c655df19225, type: 3}
-  m_Name: HorizontalMovementInputContext
+  m_Name: HorizontalInputContext
   m_EditorClassIdentifier: 
   _developerDescription: 
   _started: {fileID: 0}

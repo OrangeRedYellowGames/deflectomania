@@ -16,14 +16,14 @@ namespace Player.Scripts {
         private GameObject _player;
         private float _rotOffset;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private bool usingMouse = true;
+        private bool _usingMouse = true;
 
         private void DeviceChanged(PlayerInput input) {
             if (input.currentControlScheme == "Keyboard&Mouse") {
-                usingMouse = true;
+                _usingMouse = true;
             }
             else {
-                usingMouse = false;
+                _usingMouse = false;
             }
         }
 
@@ -69,7 +69,7 @@ namespace Player.Scripts {
         // Read this https://docs.unity3d.com/ScriptReference/Quaternion-eulerAngles.html
         void FixedUpdate() {
             Vector3 difference;
-            if (usingMouse) {
+            if (_usingMouse) {
                 // Get the difference between the current mouse position and the pivot's transform
                 difference = CameraUtils.MainCamera.ScreenToWorldPoint(LookPosition.Value) -
                              transform.position;

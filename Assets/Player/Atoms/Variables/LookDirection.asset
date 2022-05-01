@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76a04b727336433cb49bbba3dbe9175, type: 3}
-  m_Name: MousePosition
+  m_Name: LookDirection
   m_EditorClassIdentifier: 
   _developerDescription: 
   _id: 
