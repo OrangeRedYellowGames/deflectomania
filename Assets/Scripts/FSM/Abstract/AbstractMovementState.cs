@@ -2,7 +2,6 @@ using FSM.Movement;
 using Player.Scripts;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace FSM.Abstract {
     /// <summary>

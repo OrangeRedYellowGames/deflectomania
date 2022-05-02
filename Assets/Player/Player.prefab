@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463344075}
   - component: {fileID: 1686736161}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Pivot
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa9d11a869366304a505224d46cc589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookPosition: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
-  DeviceChangeEvent: {fileID: 11400000, guid: ab6472f93ce9e654aa454e391014eb4f, type: 2}
+  lookDirection: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
+  isUsingMouse: {fileID: 11400000, guid: 5dfebbdccc87e8d408a5933a7982e800, type: 2}
 --- !u!1 &1814688170
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 1814688171}
   - component: {fileID: 1814688173}
   - component: {fileID: 1814688172}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1933500287
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9109057984762357227, guid: b8968e831d57f05ec880ddd4a12dfcd2, type: 3}
@@ -167,7 +167,8 @@ GameObject:
   - component: {fileID: 3811751413067517601}
   - component: {fileID: 444393263}
   - component: {fileID: 631922926}
-  m_Layer: 0
+  - component: {fileID: 1272766539}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -464,7 +465,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3a95163fb7bb341912251d5dc1b042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reference: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
+  lookDirection: {fileID: 11400000, guid: 64e82a820f9e5a54fb1e4d8999ee6505, type: 2}
+  isUsingMouse: {fileID: 11400000, guid: 5dfebbdccc87e8d408a5933a7982e800, type: 2}
+--- !u!114 &1272766539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347282608371549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b7ceb063af2074eaab931a614e0818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsChangedEvent: {fileID: 11400000, guid: ab6472f93ce9e654aa454e391014eb4f, type: 2}
+  target: {fileID: 11400000, guid: 5dfebbdccc87e8d408a5933a7982e800, type: 2}
+  controlName: KeyboardAndMouse
 --- !u!1001 &5347282608851696148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -472,6 +489,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463344075}
     m_Modifications:
+    - target: {fileID: 4350558344774825472, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -519,6 +540,14 @@ PrefabInstance:
     - target: {fileID: 4350558345645975095, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
       propertyPath: m_Name
       value: Laser Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350558345645975095, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622556045390686733, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
