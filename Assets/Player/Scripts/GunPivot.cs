@@ -24,6 +24,10 @@ namespace Player.Scripts {
 
         private Vector3 _difference;
 
+        private void OnDrawGizmos() {
+            Gizmos.DrawLine(transform.position, transform.right * 5 + transform.position);
+        }
+
         private void Awake() {
             Transform objTransform = transform;
 
