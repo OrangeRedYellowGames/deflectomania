@@ -10,7 +10,7 @@ namespace FSM.Abstract {
         protected string StateName => GetType().Name;
 
         public virtual void Enter() {
-            Logger.Debug($"Inside {StateName}");
+            // Logger.Debug($"Inside {StateName}");
         }
 
         public virtual void LogicUpdate() {

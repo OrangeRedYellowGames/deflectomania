@@ -1,39 +1,75 @@
 using System;
 using NLog;
 using UnityAtoms.BaseAtoms;
-using UnityAtoms.InputSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
 using Utils;
 using Logger = NLog.Logger;
 
 // https://www.youtube.com/watch?v=6hp9-mslbzI
 namespace Player.Scripts {
     public class GunPivot : MonoBehaviour {
-        [SerializeField] private Vector2Variable lookDirection;
-        private GameObject _player;
-        private float _rotOffset;
+        #region Properties
+
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Boolean variable that indicates whether gunpivot should treat LookDirection as a mouse input or a normalized relative vector (sticks on a gamepad) ranging from ([-1, 1], [-1,1])
+        /// Raw input of where the player is looking.
+        /// Can be a Mouse Position or a normalized direction vector from a gamepad's left / right sticks.
+        /// How is variable is interpreted depended on whether the isUsingMouse bool is true or not.
+        /// </summary>
+        [SerializeField]
+        public Vector2Variable lookDirection;
+
+        /// <summary>
+        /// Whether lookDirection should be treated as a raw mouse position or a normalized direction vector.
         /// </summary>
         [SerializeField]
         public BoolVariable isUsingMouse;
 
-        private Vector3 _difference;
+        /// <summary>
+        /// Contains the player gameobject. Used to figure out which direction the player is facing
+        /// TODO: Replace with a unity atom event or variable
+        /// </summary>
+        private GameObject _player;
 
-        private void OnDrawGizmos() {
-            Gizmos.DrawLine(transform.position, transform.right * 5 + transform.position);
-        }
+        /// <summary>
+        /// Transform of the location where bullets are fired.
+        /// </summary>
+        private Transform _firePoint;
+
+
+        /// <summary>
+        /// The target vector relative to the gunpivot.
+        /// </summary>
+        private Vector3 _target;
+
+        /// <summary>
+        /// The angle between the gun pivot (or the firepoint) and the mouse cursor
+        /// </summary>
+        private float _angle;
+
+        /// <summary>
+        /// Same as _angle but with values clamped to prevent the gun from going inside the player.
+        /// </summary>
+        private float _clamped;
+
+        /// <summary>
+        /// Distance between the pivot and the attached gun's firepoint.
+        /// </summary>
+        private float _distanceFromPivotToFirepoint;
+
+        /// <summary>
+        /// Distance between the pivot and the mouse. Calculated on each frame.
+        /// </summary>
+        private float _distanceFromPivotToMouse;
+
+        #endregion
 
         private void Awake() {
-            Transform objTransform = transform;
-
             // Get the player's transform, needed to figure out which direction the player is facing
             try {
-                _player = objTransform.parent.gameObject;
+                _player = transform.parent.gameObject;
             }
             catch (Exception) {
                 Logger.Error("An error occured when trying to find the parenting Player object of the GunPivot");
@@ -46,32 +82,59 @@ namespace Player.Scripts {
             // Get the FirePoint's transform, needed to calculate the rotation offset of the GunPivot
             Transform gunTransform;
             try {
-                gunTransform = objTransform.GetChild(0);
+                gunTransform = transform.GetChild(0);
             }
             catch (Exception) {
                 Logger.Error("GunPivot couldn't find the gun attached to it");
                 throw;
             }
 
-            var firePoint = gunTransform.Find("FirePoint");
-            if (!firePoint) {
+            _firePoint = gunTransform.Find("FirePoint");
+            if (!_firePoint) {
                 throw new NullReferenceException(
                     "GunPivot couldn't find the \"FirePoint\" Transform of its attached gun");
             }
 
-            // Find the angle between the fire point and the gun pivot and use that as an offset
-            Vector3 dif = (firePoint.position - objTransform.position);
-            dif.Normalize();
-            _rotOffset = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
+            // Assign the distance between the pivot and the attached gun's firepoint.
+            // Explanation is below in the Update function.
+            _distanceFromPivotToFirepoint = Vector3.Distance(transform.position, _firePoint.position);
         }
 
         // Read this https://docs.unity3d.com/ScriptReference/Quaternion-eulerAngles.html
-        void FixedUpdate() {
+        void Update() {
             if (isUsingMouse.Value) {
-                // Get the difference between the current mouse position and the pivot's transform
-                _difference = CameraUtils.MainCamera.ScreenToWorldPoint(lookDirection.Value) -
-                              transform.position;
-                _difference.Normalize();
+                var pivotPosition = transform.position;
+
+                // Transform the mouse position into world coordinates
+                // Note: the Z index will have the same value as that of the camera. To get everything working as inteded,
+                // we're going to reset the mouse position Z axis to that of the pivot
+                var mousePosition = CameraUtils.MainCamera.ScreenToWorldPoint(lookDirection.Value);
+                mousePosition.z = pivotPosition.z;
+
+                // Calculate the vector between the mouse cursor and the pivot.
+                // Note that this will result in the gun pivot pointing at the mouse, not the actual gun's firepoint.
+                // This will result in bullets being offset when firing. 
+                _target = mousePosition - pivotPosition;
+
+                // To solve the bullets being offset issue, we need to take into account the firepoint's position.
+                // This is easily solved by rotating the target vector we calculated above by the angle between
+                // the mouse and the firepoint. Or, we add to the target vector above the vector between the mouse and the firepoint
+                // and calculate the overall angle later. This can be done by the following equation:
+                // target = (mousePosition - pivotPosition) + (mousePosition - _firepoint.position);
+                // However, there's a small caveat. There's a "grey area" between the gunpivot and the firepoint where everything goes nuts
+                // if the mouse is located there which causes the weapon to oscillate between two rotation values. To solve this issue,
+                // we create a "circle" around the gunpivot with the distance between it and the firepoint being the radius.
+                // If the mouse is located OUTSIDE of this circle, we TAKE into account the vector between the mouse and the firepoint.
+                // If the mouse is located INSIDE of this circle, we IGNORE the vector between the mouse and the firerpoint.
+                _distanceFromPivotToMouse = Vector3.Distance(gameObject.transform.position, mousePosition);
+
+                // If mouse is located outside the circle
+                if (_distanceFromPivotToMouse > _distanceFromPivotToFirepoint) {
+                    _target += mousePosition - _firePoint.position;
+                }
+
+                // Normalize the vector so that the atan2 call below doesn't give incorrect results
+                _target.Normalize();
             }
             else {
                 // Don't do anything if the stick is in the middle. Keeps the last direction the player pointed at.
@@ -79,45 +142,26 @@ namespace Player.Scripts {
                     return;
                 }
 
-                _difference = lookDirection.Value;
+                // Should already be normalized from -1 to 1
+                // NOTE: This does not take into account the firepoint. What this means is using analog sticks, we're actually moving
+                // the gunpivot not the firepoint resulting in bullets being offset a bit. From testing, this is not that noticeable.
+                _target = lookDirection.Value;
             }
 
-            // Calculate the rotation / angle from the +ve x axis and scale it to 0 - 360
-            // https://stackoverflow.com/questions/30324015/mathf-atan2-return-incorrect-result/30325326
-            float rotationZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
-            rotationZ = (rotationZ + 360) % 360;
-
+            _angle = Mathf.Atan2(_target.y, _target.x) * Mathf.Rad2Deg;
             // If the player is facing right
             if (_player.transform.eulerAngles.y == 0f) {
-                rotationZ -= _rotOffset;
-                // Clamp weapon at top, check if mouse in Q2
-                if (rotationZ > 90f && rotationZ < 180f) {
-                    transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
-                }
-                // Clamp weapon at bottom, check if mouse is in Q3
-                else if (rotationZ > 180f && rotationZ < 270) {
-                    transform.localRotation = Quaternion.Euler(0f, 0f, 270f);
-                }
-                // If mouse is in Q1 or Q4
-                else {
-                    transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-                }
+                _clamped = Helpers.ClampAngle(_angle, -90, 90);
+
+                transform.rotation = Quaternion.Euler(0f, 0f, _clamped);
             }
-            // if player is facing left
-            else if (Mathf.Abs(_player.transform.eulerAngles.y) == 180f) {
-                rotationZ += _rotOffset;
-                // Clamp weapon at top, check if mouse is in Q1
-                if (rotationZ < 90f && rotationZ > 0f) {
-                    transform.localRotation = Quaternion.Euler(180f, 180f, -90f);
-                }
-                // Clamp weapon at bottom, check if mouse is in Q4
-                else if (rotationZ > 270f && rotationZ < 360f) {
-                    transform.localRotation = Quaternion.Euler(180f, 180f, -270f);
-                }
-                // If mouse is in Q2 or Q3
-                else {
-                    transform.localRotation = Quaternion.Euler(180f, 180f, -rotationZ);
-                }
+            else {
+                // Clamp around the 180 angle, which is to the far left
+                _clamped = Helpers.ClampAngle(_angle, -90, 90, 180);
+
+                // 180 Degrees rotation in the X axis + using negative values in the Z axis
+                // are needed due to player rotation being done by rotating the player object around the Y axis by 180 degrees.
+                transform.rotation = Quaternion.Euler(180, 0, -_clamped);
             }
         }
     }
