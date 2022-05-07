@@ -1311,42 +1311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: fb49306934de82f46b22da1af4f9382c, type: 2}
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateValues
-      objectReference: {fileID: 0}
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityAtoms.InputSystem.CallbackContextInterpreter`8[[System.Int32, mscorlib
-      objectReference: {fileID: 0}
-    - target: {fileID: 444393263, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 463344075, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 463344075, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5347282608371549160, guid: 452f330313c30f937830bbab250f5d38, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1365,7 +1329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5347282608371549160, guid: 452f330313c30f937830bbab250f5d38, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00000004371139
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5347282608371549160, guid: 452f330313c30f937830bbab250f5d38, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1373,7 +1337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5347282608371549160, guid: 452f330313c30f937830bbab250f5d38, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5347282608371549160, guid: 452f330313c30f937830bbab250f5d38, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1395,29 +1359,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8526744491609840674, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8526744491609840674, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8526744491609840674, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8526744491609840674, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619817045828546305, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 2504410146903112106, guid: 28d31c8dee5cfe940a9b7958f21ffe1b, type: 3}
-    - target: {fileID: 8619817045828546305, guid: 452f330313c30f937830bbab250f5d38, type: 3}
-      propertyPath: fireInput
-      value: 
-      objectReference: {fileID: 11400000, guid: 52571b6dc053bbd4dbc68bfb64414f91, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452f330313c30f937830bbab250f5d38, type: 3}
