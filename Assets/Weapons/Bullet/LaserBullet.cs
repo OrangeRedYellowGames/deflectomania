@@ -15,23 +15,37 @@ namespace Weapons.Bullet {
             var normalizedVelocityVector = _rb.velocity.normalized;
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position,
-                new Vector3(normalizedVelocityVector.x, normalizedVelocityVector.y, 0) * 2 + transform.position);
+                new Vector3(normalizedVelocityVector.x, normalizedVelocityVector.y, 0) * 1 + transform.position);
         }
 
-        void Awake() {
+        private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        void Start() {
+        private void Start() {
             _rb.velocity = transform.right * speed;
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
+            ReflectBullet(collision);
+        }
+
+        /// <summary>
+        /// Needed in addition to OnCollisionEnter2D in order to detect cases where the bullet collides with a wall,
+        /// is reflected but is still colliding with the same wall. This happens when the bullets hits a corner, for example.
+        /// </summary>
+        /// <param name="collision"></param>
+        private void OnCollisionStay2D(Collision2D collision) {
+            ReflectBullet(collision);
+        }
+
+        private void ReflectBullet(Collision2D collision) {
             // Destroy the bullet if the reflection count reached 0
             if (numOfReflections == 0) {
                 Destroy(gameObject);
             }
 
+            // TODO: Handle case where bullets hit the corner of the wall. Should reflect bullet back in the same direction
             if (collision.contactCount > 1) {
                 Logger.Warn(
                     $"Bullet collided with {collision.contactCount.ToString()} contact points. Using contact point at index 0 to calculate the reflection angle.");
@@ -43,10 +57,12 @@ namespace Weapons.Bullet {
             // Cannot use _rb.velocity here since it will be zero. This is because OnCollisionEnter2D gets called after FixedUpdate gets called
             // where the _rb.velocity will be zero because a collision occured. See https://forum.unity.com/threads/vector3-reflection-not-working-as-it-should.517743/
             // for more details
-            var newDirection = Vector3.Reflect(-collision.relativeVelocity, contact.normal);
+            var transformRight = transform.right;
+            var newDirection = Vector3.Reflect(transformRight, contact.normal);
 
-            transform.right = newDirection;
-            _rb.velocity = transform.right * speed;
+            transformRight = newDirection;
+            transform.right = transformRight;
+            _rb.velocity = transformRight * speed;
 
             // Decrement the number of reflections variable
             numOfReflections--;
