@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 444393263}
   - component: {fileID: 631922926}
   - component: {fileID: 1272766539}
+  - component: {fileID: 3614719338973273165}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -256,9 +257,6 @@ MonoBehaviour:
   platformMask:
     serializedVersion: 2
     m_Bits: 256
-  triggerMask:
-    serializedVersion: 2
-    m_Bits: 0
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 0
@@ -495,6 +493,21 @@ MonoBehaviour:
   controlsChangedEvent: {fileID: 11400000, guid: ab6472f93ce9e654aa454e391014eb4f, type: 2}
   target: {fileID: 11400000, guid: 5dfebbdccc87e8d408a5933a7982e800, type: 2}
   controlName: KeyboardAndMouse
+--- !u!114 &3614719338973273165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347282608371549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a1de77898226a4f85cc49a9f31298b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: {fileID: 0}
+  DamageEvent: {fileID: 0}
+  DeathEvent: {fileID: 0}
 --- !u!1001 &5347282608851696148
 PrefabInstance:
   m_ObjectHideFlags: 0

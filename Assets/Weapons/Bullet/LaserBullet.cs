@@ -41,7 +41,7 @@ namespace Weapons.Bullet {
 
         private void ReflectBullet(Collision2D collision) {
             // Destroy the bullet if the reflection count reached 0
-            if (numOfReflections == 0) {
+            if (numOfReflections == 0 || collision.gameObject.CompareTag("Player")) {
                 Destroy(gameObject);
             }
 
