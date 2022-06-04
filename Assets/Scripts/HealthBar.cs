@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
 public class HealthBar : MonoBehaviour {
-    public FloatConstant MaxHP;
+    public FloatConstant maxHp;
 
     private Slider _hpSlider;
 
@@ -15,14 +15,14 @@ public class HealthBar : MonoBehaviour {
         Assert.IsNotNull(_hpSlider, "HP Slider component missing in HealthBar");
 
         // Assert unity atom variables are set
-        Assert.IsNotNull(MaxHP, "MaxHP Variable cannot be null in HealthBar");
+        Assert.IsNotNull(maxHp, "MaxHP Variable cannot be null in HealthBar");
 
         // Set sliders max value to MaxHP
-        _hpSlider.maxValue = MaxHP.Value;
-        _hpSlider.value = MaxHP.Value;
+        _hpSlider.maxValue = maxHp.Value;
+        _hpSlider.value = maxHp.Value;
     }
 
-    private void Update() {
+    private void LateUpdate() {
         // Figure out a better way to do this
         // https://www.reddit.com/r/Unity2D/comments/7kj23o/ui_flipping_child_of_the_player/
         transform.eulerAngles = new Vector3(0, 0, 0);
