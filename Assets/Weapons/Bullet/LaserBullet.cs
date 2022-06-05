@@ -12,6 +12,7 @@ namespace Weapons.Bullet {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private void OnDrawGizmos() {
+            // TODO: Figure out why this throws errors when LaserBullet is viewed in prefab mode.
             var normalizedVelocityVector = _rb.velocity.normalized;
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position,

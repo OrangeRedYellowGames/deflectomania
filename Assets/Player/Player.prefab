@@ -187,8 +187,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0.000045776003, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1434725347355044979
 CanvasRenderer:
@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 3191342253548412951}
   - component: {fileID: 7757580994186301615}
   - component: {fileID: 8180763700226133250}
-  - component: {fileID: 5716609204120684069}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -266,7 +265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000025629997, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 22, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7757580994186301615
@@ -333,44 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: {fileID: 11400000, guid: 8a8e820147dcf2b4e9f2688c97de2c8e, type: 2}
---- !u!114 &5716609204120684069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5247833543661808059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7a13c337fc59432a95a17e5465b0c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _developerDescription: 
-  _unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8180763700226133250}
-        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: ChangeFillAmount
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _actionResponses: []
-  _conditions: []
-  _operator: 0
-  _replayEventBufferOnRegister: 1
-  _eventReference:
-    _usage: 0
-    _event: {fileID: 11400000, guid: 11bf092156d35d4478509644a5340ab4, type: 2}
-    _eventInstancer: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
+  healthChangedEvent: {fileID: 11400000, guid: 11bf092156d35d4478509644a5340ab4, type: 2}
 --- !u!1 &5347282608371549164
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,9 +687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a1de77898226a4f85cc49a9f31298b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: {fileID: 11400000, guid: 60e6a02105c176b4e87343fd9dc27824, type: 2}
-  DamageEvent: {fileID: 0}
-  DeathEvent: {fileID: 0}
+  hp: {fileID: 11400000, guid: 60e6a02105c176b4e87343fd9dc27824, type: 2}
+  deathEvent: {fileID: 0}
 --- !u!1 &5609050212277933654
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.04, y: 1.26}
+  m_AnchoredPosition: {x: 0, y: 1.25}
   m_SizeDelta: {x: 30, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7174152687404109418
