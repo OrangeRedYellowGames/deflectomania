@@ -13,7 +13,7 @@ public class HealthBar : MonoBehaviour {
     /// <summary>
     /// Float Event to listen to.
     /// </summary>
-    public FloatEvent healthChangedEvent;
+    public FloatEventReference healthChangedEvent;
 
     private Slider _hpSlider;
 
@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour {
 
         // Asserts HealthChangedEvent is set
         Assert.IsNotNull(healthChangedEvent, "HealthChangedEvent is missing in HealthBar");
-        healthChangedEvent.Register(ChangeFillAmount);
+        healthChangedEvent.Event.Register(ChangeFillAmount);
 
         // Assert unity atom variables are set
         Assert.IsNotNull(maxHp, "MaxHP Variable cannot be null in HealthBar");
@@ -35,7 +35,7 @@ public class HealthBar : MonoBehaviour {
     }
 
     void OnDestroy() {
-        healthChangedEvent.Unregister(ChangeFillAmount);
+        healthChangedEvent.Event.Unregister(ChangeFillAmount);
     }
 
     private void LateUpdate() {

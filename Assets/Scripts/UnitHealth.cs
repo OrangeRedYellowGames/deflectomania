@@ -11,7 +11,7 @@ public class UnitHealth : MonoBehaviour {
     /// <summary>
     /// Variable that holds the HP of the object.
     /// </summary>
-    public FloatVariable hp;
+    public FloatReference hp;
 
     /// <summary>
     /// VoidEvent to be triggered when HP reaches 0.
@@ -29,7 +29,7 @@ public class UnitHealth : MonoBehaviour {
     /// </summary>
     /// <param name="damage">Amount of damage to take</param>
     public void TakeDamage(float damage) {
-        hp.Subtract(damage);
+        hp.Value -= damage;
         if (hp.Value <= 0 && deathEvent) {
             deathEvent.Raise();
         }
