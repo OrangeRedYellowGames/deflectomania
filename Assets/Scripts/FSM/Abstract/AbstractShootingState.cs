@@ -4,7 +4,6 @@ namespace FSM.Abstract {
     public abstract class AbstractShootingState : AbstractState {
         protected ShootingStateMachine ShootingFSM;
 
-
         public void SetFSM(ShootingStateMachine shootingStateMachine) {
             ShootingFSM = shootingStateMachine;
         }

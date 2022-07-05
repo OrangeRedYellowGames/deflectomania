@@ -1,23 +1,17 @@
-﻿using System.Collections;
-using FSM.Abstract;
-using UnityAtoms.BaseAtoms;
+﻿using FSM.Abstract;
 using UnityEngine;
 
 namespace FSM.Shooting.States {
-    [CreateAssetMenu(fileName = "CooldownState", menuName = "FSM/Shooting/States/Cooldown", order = 2)]
     public class CooldownState : AbstractShootingState {
-        public float remainingCooldownSeconds;
-        public float cooldownSeconds;
-
         public override void Enter() {
             base.Enter();
-            remainingCooldownSeconds = cooldownSeconds;
+            ShootingFSM.remainingCooldownSeconds = ShootingFSM.cooldownSeconds;
         }
 
         public override void LogicUpdate() {
-            remainingCooldownSeconds -= Time.deltaTime;
-            if (remainingCooldownSeconds <= 0) {
-                ShootingFSM.ChangeState(ShootingFSM.shootingState);
+            ShootingFSM.remainingCooldownSeconds -= Time.deltaTime;
+            if (ShootingFSM.remainingCooldownSeconds <= 0) {
+                ShootingFSM.ChangeState(ShootingFSM.ShootingState);
             }
         }
     }

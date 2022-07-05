@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 namespace Weapons {
     public class LaserGun : MonoBehaviour {
-        [SerializeField] public VoidEvent shootEvent;
+        [SerializeField] public VoidBaseEventReference shootEvent;
 
         public GameObject bullet;
         private Transform _firePoint;
@@ -16,7 +16,7 @@ namespace Weapons {
             Assert.IsNotNull(bullet);
 
             // Register shootEvent's callback
-            shootEvent.Register(Shoot);
+            shootEvent.Event.Register(Shoot);
 
             _firePoint = transform.Find("FirePoint");
             if (!_firePoint) {
@@ -26,7 +26,7 @@ namespace Weapons {
         }
 
         void OnDestroy() {
-            shootEvent.Unregister(Shoot);
+            shootEvent.Event.Unregister(Shoot);
         }
 
         /// <summary>

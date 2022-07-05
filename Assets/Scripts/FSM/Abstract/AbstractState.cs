@@ -1,10 +1,8 @@
 using NLog;
-using UnityEngine;
-using Logger = NLog.Logger;
 
 // https://stackoverflow.com/questions/30471439/allways-call-base-method-in-override-without-mentioning-it-for-simple-scripts
 namespace FSM.Abstract {
-    public abstract class AbstractState : ScriptableObject {
+    public abstract class AbstractState {
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         protected string StateName => GetType().Name;

@@ -12,9 +12,9 @@ namespace Utils {
         /// Reference Vector2. Can either be a look position from a mouse (absolute) or a look direction from a gamepad.
         /// </summary>
         [SerializeField]
-        public Vector2Variable lookDirection;
+        public Vector2Reference lookDirection;
 
-        [SerializeField] public BoolVariable isUsingMouse;
+        [SerializeField] public BoolReference isUsingMouse;
 
         private static readonly Vector3 RightRotationVector = new(0f, 0f, 0f);
         private static readonly Vector3 LeftRotationVector = new(0f, 180f, 0f);

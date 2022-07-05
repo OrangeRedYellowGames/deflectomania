@@ -19,13 +19,13 @@ namespace Player.Scripts {
         /// How is variable is interpreted depended on whether the isUsingMouse bool is true or not.
         /// </summary>
         [SerializeField]
-        public Vector2Variable lookDirection;
+        public Vector2Reference lookDirection;
 
         /// <summary>
         /// Whether lookDirection should be treated as a raw mouse position or a normalized direction vector.
         /// </summary>
         [SerializeField]
-        public BoolVariable isUsingMouse;
+        public BoolReference isUsingMouse;
 
         /// <summary>
         /// Contains the player gameobject. Used to figure out which direction the player is facing

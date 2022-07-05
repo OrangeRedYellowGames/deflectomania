@@ -1,17 +1,28 @@
 ﻿using System.Collections.Generic;
 using FSM.Abstract;
 using FSM.Shooting.States;
+using UnityAtoms.BaseAtoms;
+using UnityEngine;
 
 namespace FSM.Shooting {
     public class ShootingStateMachine : AbstractFiniteStateMachine {
+        [SerializeField] public BoolReference fireInput;
+        [SerializeField] public VoidBaseEventReference shootingEvent;
+
+        public float remainingCooldownSeconds;
+        public float cooldownSeconds;
+
         // Shooting states
-        public ShootingState shootingState;
-        public CooldownState cooldownState;
+        public ShootingState ShootingState;
+        public CooldownState CooldownState;
 
         public void Awake() {
+            ShootingState = new ShootingState();
+            CooldownState = new CooldownState();
+
             // Loop over each state and set the FSM, needed so that states are able to do transitions
             var stateList = new List<AbstractShootingState> {
-                shootingState, cooldownState
+                ShootingState, CooldownState
             };
 
             // Set the FSM and Motor variables for each movement state
@@ -20,7 +31,7 @@ namespace FSM.Shooting {
             }
 
             // Set starting state to idle
-            CurrentState = shootingState;
+            CurrentState = ShootingState;
 
             CurrentState.Enter();
         }

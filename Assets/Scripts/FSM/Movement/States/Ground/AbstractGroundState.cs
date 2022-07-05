@@ -7,20 +7,20 @@ namespace FSM.Movement.States.Ground {
             base.Enter();
             // To fix controller freaking out trying to figure out if player is grounded.
             // https://github.com/prime31/CharacterController2D/issues/106
-            NewVelocity.Value = new Vector2(NewVelocity.Value.x, -0.01f);
+            MovementFSM.newVelocity.Value = new Vector2(MovementFSM.newVelocity.Value.x, -0.01f);
         }
 
         public override void LogicUpdate() {
             base.LogicUpdate();
 
             // If jump is pressed and we're on the ground
-            if (verticalInput.Value && Motor.IsGrounded) {
-                MovementFSM.ChangeState(MovementFSM.jumpState);
+            if (MovementFSM.verticalInput.Value && Motor.IsGrounded) {
+                MovementFSM.ChangeState(MovementFSM.JumpState);
             }
 
             // If we're suddenly not grounded, we're falling
             else if (!Motor.IsGrounded) {
-                MovementFSM.ChangeState(MovementFSM.fallState);
+                MovementFSM.ChangeState(MovementFSM.FallState);
             }
         }
     }

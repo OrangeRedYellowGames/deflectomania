@@ -1,16 +1,9 @@
-using UnityEngine;
-
 namespace FSM.Movement.States.Ground {
-    [CreateAssetMenu(fileName = "IdleState", menuName = "FSM/States/Idle", order = 1)]
     public class IdleState : AbstractGroundState {
-        void OnJump() {
-            Debug.Log("INSIDE IDLE");
-        }
-
         public override void LogicUpdate() {
             base.LogicUpdate();
-            if (horizontalInput.Value != 0) {
-                MovementFSM.ChangeState(MovementFSM.runningState);
+            if (MovementFSM.horizontalInput.Value != 0) {
+                MovementFSM.ChangeState(MovementFSM.RunningState);
             }
         }
     }
