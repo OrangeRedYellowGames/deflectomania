@@ -1,3 +1,4 @@
+using Mirror;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,7 +8,7 @@ namespace Player.Scripts {
     /// <summary>
     /// // Adapted from https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Components.html
     /// </summary>
-    public class InputActionToUnityAtomMapper : MonoBehaviour {
+    public class InputActionToUnityAtomMapper : NetworkBehaviour {
         public FloatReference horizontalInput;
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
@@ -29,23 +30,43 @@ namespace Player.Scripts {
         }
 
         void OnMove(InputValue value) {
+            if (!isLocalPlayer) {
+                return;
+            }
+
             horizontalInput.Value = value.Get<float>();
         }
 
         // Make sure the Jump action is set to trigger whenever it is pressed or released.
         void OnJump(InputValue value) {
+            if (!isLocalPlayer) {
+                return;
+            }
+
             verticalInput.Value = value.isPressed;
         }
 
         void OnLook(InputValue value) {
+            if (!isLocalPlayer) {
+                return;
+            }
+
             lookDirection.Value = value.Get<Vector2>();
         }
 
         void OnFire(InputValue value) {
+            if (!isLocalPlayer) {
+                return;
+            }
+
             fireInput.Value = value.isPressed;
         }
 
         void OnControlsChanged(PlayerInput input) {
+            if (!isLocalPlayer) {
+                return;
+            }
+
             if (input.currentControlScheme == targetControlName) {
                 isUsingMouse.Value = true;
             }
