@@ -90,3 +90,6 @@ crashlytics-build.properties
 *.nuget.targets
 
 EditorFontResizer.cfg
+
+**/FishNet
+FishNet.*
