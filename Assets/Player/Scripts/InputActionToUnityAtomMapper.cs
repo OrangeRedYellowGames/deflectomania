@@ -1,3 +1,4 @@
+using FishNet.Object;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,7 +8,7 @@ namespace Player.Scripts {
     /// <summary>
     /// // Adapted from https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Components.html
     /// </summary>
-    public class InputActionToUnityAtomMapper : MonoBehaviour {
+    public class InputActionToUnityAtomMapper : NetworkBehaviour {
         public FloatReference horizontalInput;
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
@@ -28,24 +29,35 @@ namespace Player.Scripts {
                 $"Control Name cannot be empty. Has to be set a string from one of the control schemes of PlayerInput");
         }
 
+        void CheckIfNetworkOwner() {
+            if (!base.IsOwner) {
+                return;
+            }
+        }
+
         void OnMove(InputValue value) {
+            CheckIfNetworkOwner();
             horizontalInput.Value = value.Get<float>();
         }
 
         // Make sure the Jump action is set to trigger whenever it is pressed or released.
         void OnJump(InputValue value) {
+            CheckIfNetworkOwner();
             verticalInput.Value = value.isPressed;
         }
 
         void OnLook(InputValue value) {
+            CheckIfNetworkOwner();
             lookDirection.Value = value.Get<Vector2>();
         }
 
         void OnFire(InputValue value) {
+            CheckIfNetworkOwner();
             fireInput.Value = value.isPressed;
         }
 
         void OnControlsChanged(PlayerInput input) {
+            CheckIfNetworkOwner();
             if (input.currentControlScheme == targetControlName) {
                 isUsingMouse.Value = true;
             }

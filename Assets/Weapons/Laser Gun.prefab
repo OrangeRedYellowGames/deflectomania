@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4350558344774825475}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,9 @@ GameObject:
   - component: {fileID: 4350558345645975094}
   - component: {fileID: 4443611223947023637}
   - component: {fileID: 3897246132846219375}
-  m_Layer: 9
+  - component: {fileID: 517063543}
+  - component: {fileID: 517063544}
+  m_Layer: 6
   m_Name: Laser Gun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -78,7 +80,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a493e41f49ba510df9c2e25c3c77ba66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootEvent: {fileID: 11400000, guid: 2fe655ce37fd27341a5451d4e596cdbe, type: 2}
+  shootEvent:
+    _usage: 1
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 517063544}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
   bullet: {fileID: 2504410146903112106, guid: 28d31c8dee5cfe940a9b7958f21ffe1b, type: 3}
 --- !u!114 &3897246132846219375
 MonoBehaviour:
@@ -92,8 +101,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac844fcc92442a3969965feab730f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingState: {fileID: 11400000, guid: 73ad86f36a6950f45b4069b0eae7971a, type: 2}
-  cooldownState: {fileID: 11400000, guid: 2447e68b789e5914984ae609154ef324, type: 2}
+  fireInput:
+    _usage: 3
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 517063543}
+  shootingEvent:
+    _usage: 1
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 517063544}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
+  remainingCooldownSeconds: 0
+  cooldownSeconds: 0.2
+--- !u!114 &517063543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350558345645975095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b8675a4f46440369248598e656cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 52571b6dc053bbd4dbc68bfb64414f91, type: 2}
+--- !u!114 &517063544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350558345645975095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ddf86bc0bd24f30868f3a6a765342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 2fe655ce37fd27341a5451d4e596cdbe, type: 2}
 --- !u!1 &7622556045390686733
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4378066289942616872}
   - component: {fileID: 1212019053686054973}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
