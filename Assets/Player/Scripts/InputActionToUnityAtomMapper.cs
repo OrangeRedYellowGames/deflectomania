@@ -1,4 +1,4 @@
-using FishNet.Object;
+using Mirror;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -29,35 +29,44 @@ namespace Player.Scripts {
                 $"Control Name cannot be empty. Has to be set a string from one of the control schemes of PlayerInput");
         }
 
-        void CheckIfNetworkOwner() {
-            if (!base.IsOwner) {
+        void OnMove(InputValue value) {
+            if (!isLocalPlayer) {
                 return;
             }
-        }
 
-        void OnMove(InputValue value) {
-            CheckIfNetworkOwner();
             horizontalInput.Value = value.Get<float>();
         }
 
         // Make sure the Jump action is set to trigger whenever it is pressed or released.
         void OnJump(InputValue value) {
-            CheckIfNetworkOwner();
+            if (!isLocalPlayer) {
+                return;
+            }
+
             verticalInput.Value = value.isPressed;
         }
 
         void OnLook(InputValue value) {
-            CheckIfNetworkOwner();
+            if (!isLocalPlayer) {
+                return;
+            }
+
             lookDirection.Value = value.Get<Vector2>();
         }
 
         void OnFire(InputValue value) {
-            CheckIfNetworkOwner();
+            if (!isLocalPlayer) {
+                return;
+            }
+
             fireInput.Value = value.isPressed;
         }
 
         void OnControlsChanged(PlayerInput input) {
-            CheckIfNetworkOwner();
+            if (!isLocalPlayer) {
+                return;
+            }
+
             if (input.currentControlScheme == targetControlName) {
                 isUsingMouse.Value = true;
             }
