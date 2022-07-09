@@ -8,10 +8,11 @@ using UnityEngine.Assertions;
 ///
 /// Should be used in tandem with the DamageDealer component in order to inflict damage.
 /// </summary>
-public class UnitHealth : MonoBehaviour {
+public class UnitHealth : NetworkBehaviour {
     /// <summary>
     /// Variable that holds the HP of the object.
     /// </summary>
+    [SyncVar]
     public FloatReference hp;
 
     /// <summary>
@@ -34,5 +35,16 @@ public class UnitHealth : MonoBehaviour {
         if (hp.Value <= 0 && deathEvent) {
             deathEvent.Raise();
         }
+    }
+}
+
+public static class CustomReadWriteFunctions {
+    // Adapted from here
+    public static void WriteFloatReference(this NetworkWriter writer, FloatReference floatReference) {
+        writer.WriteFloat(floatReference.Value);
+    }
+
+    public static FloatReference ReadFloatReference(this NetworkReader reader) {
+        return new FloatReference(reader.ReadFloat());
     }
 }

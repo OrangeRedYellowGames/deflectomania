@@ -89,6 +89,7 @@ MonoBehaviour:
     _collectionInstancer: {fileID: 0}
     _listInstancer: {fileID: 0}
   bullet: {fileID: 2504410146903112106, guid: 28d31c8dee5cfe940a9b7958f21ffe1b, type: 3}
+  input: {fileID: 0}
 --- !u!114 &3897246132846219375
 MonoBehaviour:
   m_ObjectHideFlags: 0

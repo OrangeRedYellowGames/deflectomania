@@ -889,7 +889,7 @@ MonoBehaviour:
     _value: 0
     _constant: {fileID: 0}
     _variable: {fileID: 0}
-    _variableInstancer: {fileID: 517063543}
+    _variableInstancer: {fileID: 5347282608359962979}
   isUsingMouse:
     _usage: 3
     _value: 0
@@ -897,6 +897,8 @@ MonoBehaviour:
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 1499210766}
   targetControlName: KeyboardAndMouse
+  bullet: {fileID: 2504410146903112106, guid: 28d31c8dee5cfe940a9b7958f21ffe1b, type: 3}
+  firePoint: {fileID: 8526744491406691351}
 --- !u!114 &1483926395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,38 +1184,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463344075}
     m_Modifications:
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: fireInput
-      value: 
-      objectReference: {fileID: 11400000, guid: 52571b6dc053bbd4dbc68bfb64414f91, type: 2}
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: shootingEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 2fe655ce37fd27341a5451d4e596cdbe, type: 2}
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: cooldownSeconds
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: fireInput._usage
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: shootingEvent._usage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: fireInput._variableInstancer
-      value: 
-      objectReference: {fileID: 517063543}
-    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: shootingEvent._eventInstancer
-      value: 
-      objectReference: {fileID: 517063544}
-    - target: {fileID: 4350558344774825472, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1262,59 +1232,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 4350558345645975095, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4443611223947023637, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: shootEvent._usage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4443611223947023637, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: shootEvent._eventInstancer
+      propertyPath: input
       value: 
-      objectReference: {fileID: 517063544}
-    - target: {fileID: 7622556045390686733, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 497994482}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
---- !u!4 &8526744491609840674 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-  m_PrefabInstance: {fileID: 5347282608851696148}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8526744491609840675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4350558345645975095, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-  m_PrefabInstance: {fileID: 5347282608851696148}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &517063543
+--- !u!114 &5347282608359962979 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 517063543, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+  m_PrefabInstance: {fileID: 5347282608851696148}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8526744491609840675}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43b8675a4f46440369248598e656cfbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inMemoryCopy: {fileID: 0}
-  _base: {fileID: 11400000, guid: 52571b6dc053bbd4dbc68bfb64414f91, type: 2}
---- !u!114 &517063544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &8526744491406691351 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4350558344774825475, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+  m_PrefabInstance: {fileID: 5347282608851696148}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8526744491609840675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ddf86bc0bd24f30868f3a6a765342e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inMemoryCopy: {fileID: 0}
-  _base: {fileID: 11400000, guid: 2fe655ce37fd27341a5451d4e596cdbe, type: 2}
+--- !u!4 &8526744491609840674 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+  m_PrefabInstance: {fileID: 5347282608851696148}
+  m_PrefabAsset: {fileID: 0}

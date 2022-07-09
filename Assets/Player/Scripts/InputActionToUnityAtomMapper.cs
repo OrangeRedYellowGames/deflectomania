@@ -20,6 +20,9 @@ namespace Player.Scripts {
 
         private PlayerInput _playerInput;
 
+        public GameObject bullet;
+        public Transform firePoint;
+
         private void Awake() {
             Assert.IsNotNull(horizontalInput);
             Assert.IsNotNull(verticalInput);
@@ -72,6 +75,12 @@ namespace Player.Scripts {
             }
 
             fireInput.Value = value.isPressed;
+        }
+
+        [Command(requiresAuthority = false)]
+        public void CmdSpawnBullet() {
+            GameObject bulletClone = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            NetworkServer.Spawn(bulletClone);
         }
     }
 }

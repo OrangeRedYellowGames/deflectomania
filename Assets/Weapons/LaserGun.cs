@@ -1,4 +1,6 @@
 using System;
+using Mirror;
+using Player.Scripts;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -9,6 +11,8 @@ namespace Weapons {
 
         public GameObject bullet;
         private Transform _firePoint;
+
+        public InputActionToUnityAtomMapper input;
 
         // Start is called before the first frame update
         void Awake() {
@@ -33,7 +37,7 @@ namespace Weapons {
         /// Function responsible for spawning a new bullet from with firepoint as it's starting point
         /// </summary>
         private void Shoot() {
-            Instantiate(bullet, _firePoint.position, _firePoint.rotation);
+            input.CmdSpawnBullet();
         }
     }
 }
