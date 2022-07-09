@@ -9,14 +9,16 @@ namespace Player.Scripts {
     /// // Adapted from https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Components.html
     /// </summary>
     public class InputActionToUnityAtomMapper : NetworkBehaviour {
-        public FloatReference horizontalInput;
+        [Header("Inputs")] public FloatReference horizontalInput;
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
         public BoolReference fireInput;
 
         // Target control name used to infer if player is using mouse or not
-        public BoolReference isUsingMouse;
+        [Header("Controls")] public BoolReference isUsingMouse;
         public string targetControlName = "KeyboardAndMouse";
+
+        private PlayerInput _playerInput;
 
         private void Awake() {
             Assert.IsNotNull(horizontalInput);
@@ -24,9 +26,19 @@ namespace Player.Scripts {
             Assert.IsNotNull(lookDirection);
             Assert.IsNotNull(fireInput);
 
-            Assert.IsNotNull(isUsingMouse);
+            Assert.IsNotNull(isUsingMouse, "IsUsingMouse cannot be null");
             Assert.IsTrue(targetControlName.Length > 0,
                 $"Control Name cannot be empty. Has to be set a string from one of the control schemes of PlayerInput");
+
+            _playerInput = GetComponent<PlayerInput>();
+        }
+
+        private void Update() {
+            // Update controls scheme here because the event call caused issues. isLocalPlayer was being called while it was still null
+            if (!isLocalPlayer) return;
+            var isUsingTargetControlScheme = _playerInput.currentControlScheme == targetControlName;
+            if (isUsingMouse.Value != isUsingTargetControlScheme)
+                isUsingMouse.Value = isUsingTargetControlScheme;
         }
 
         void OnMove(InputValue value) {
@@ -60,19 +72,6 @@ namespace Player.Scripts {
             }
 
             fireInput.Value = value.isPressed;
-        }
-
-        void OnControlsChanged(PlayerInput input) {
-            if (!isLocalPlayer) {
-                return;
-            }
-
-            if (input.currentControlScheme == targetControlName) {
-                isUsingMouse.Value = true;
-            }
-            else {
-                isUsingMouse.Value = false;
-            }
         }
     }
 }

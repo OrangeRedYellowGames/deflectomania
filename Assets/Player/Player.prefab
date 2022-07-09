@@ -805,7 +805,7 @@ MonoBehaviour:
     m_ActionId: 48d69ab4-f455-4196-9916-452a64a6a22d
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: KeyboardAndMouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -845,8 +845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a1de77898226a4f85cc49a9f31298b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   hp:
     _usage: 3
     _value: 0
@@ -985,11 +983,11 @@ MonoBehaviour:
   syncRotation: 1
   syncScale: 0
   interpolatePosition: 0
-  interpolateRotation: 0
+  interpolateRotation: 1
   interpolateScale: 0
   bufferTimeMultiplier: 1
   bufferSizeLimit: 64
-  catchupThreshold: 4
+  catchupThreshold: 6
   catchupMultiplier: 0.1
   onlySyncOnChange: 1
   bufferResetMultiplier: 5

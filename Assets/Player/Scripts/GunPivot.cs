@@ -1,4 +1,5 @@
 using System;
+using Mirror;
 using NLog;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
@@ -64,6 +65,8 @@ namespace Player.Scripts {
         /// </summary>
         private float _distanceFromPivotToMouse;
 
+        private NetworkIdentity _networkIdentity;
+
         #endregion
 
         private void Awake() {
@@ -79,6 +82,8 @@ namespace Player.Scripts {
             Assert.IsTrue(_player.CompareTag("Player"),
                 "Gun Pivot object must be the direct child of an object with the tag \"Player\"");
 
+            // Get the player's network identity
+            _networkIdentity = _player.GetComponent<NetworkIdentity>();
             // Get the FirePoint's transform, needed to calculate the rotation offset of the GunPivot
             Transform gunTransform;
             try {
@@ -102,6 +107,10 @@ namespace Player.Scripts {
 
         // Read this https://docs.unity3d.com/ScriptReference/Quaternion-eulerAngles.html
         void Update() {
+            if (!_networkIdentity.isLocalPlayer) {
+                return;
+            }
+
             if (isUsingMouse.Value) {
                 var pivotPosition = transform.position;
 
