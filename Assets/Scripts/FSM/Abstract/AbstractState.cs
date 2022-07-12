@@ -5,7 +5,7 @@ namespace FSM.Abstract {
     public abstract class AbstractState {
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        protected string StateName => GetType().Name;
+        public string StateName => GetType().Name;
 
         public virtual void Enter() {
             // Logger.Debug($"Inside {StateName}");

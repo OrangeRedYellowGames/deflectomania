@@ -14,22 +14,31 @@ namespace FSM.Movement {
         // TODO: Refactor these states into their own class?
         // Player Inputs
         // static variables so that they're shared by each object
-        [SerializeField] public FloatReference horizontalInput;
+        [Header("Player Inputs")]
+        [SerializeField]
+        public FloatReference horizontalInput;
+
         [SerializeField] public BoolReference verticalInput;
         [SerializeField] public Vector2Reference newVelocity;
 
-        // Running Variables
-        [SerializeField] public IntConstant maxSpeed;
+        [Header("Running Variables")]
+        [SerializeField]
+        public IntConstant maxSpeed;
+
         [SerializeField] public IntConstant accelerationFactor;
         [SerializeField] public IntConstant frictionFactor;
 
-        // Air Variables
-        [SerializeField] public IntConstant gravity;
+        [Header("Air Variables")]
+        [SerializeField]
+        public IntConstant gravity;
+
         [SerializeField] public IntConstant maxAirSpeed;
         [SerializeField] public IntConstant airFriction;
 
-        // Jump Variables
-        [SerializeField] public FloatConstant minJumpHeight;
+        [Header("Jump Variables")]
+        [SerializeField]
+        public FloatConstant minJumpHeight;
+
         public float maxJumpHeight = 4.5f;
 
 
