@@ -12,7 +12,6 @@ public class UnitHealth : NetworkBehaviour {
     /// <summary>
     /// Variable that holds the HP of the object.
     /// </summary>
-    [SyncVar]
     public FloatReference hp;
 
     /// <summary>
@@ -30,6 +29,7 @@ public class UnitHealth : NetworkBehaviour {
     /// If HP reaches 0, deathEvent will be raised.
     /// </summary>
     /// <param name="damage">Amount of damage to take</param>
+    [ClientRpc]
     public void TakeDamage(float damage) {
         hp.Value -= damage;
         if (hp.Value <= 0 && deathEvent) {

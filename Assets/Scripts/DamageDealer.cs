@@ -1,3 +1,4 @@
+using Mirror;
 using UnityEngine;
 
 /// <summary>
@@ -7,7 +8,7 @@ using UnityEngine;
 /// This component should be used in tandem with UnitHealth for any game object that are required to TAKE damage.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-public class DamageDealer : MonoBehaviour {
+public class DamageDealer : NetworkBehaviour {
     /// <summary>
     /// Amount of damage that should be inflicted
     /// </summary>
@@ -21,7 +22,12 @@ public class DamageDealer : MonoBehaviour {
     /// attached to it, it will take damage according to the damageAmount.
     /// </summary>
     /// <param name="other">Collider of the "other" game object</param>
+    [Server]
     private void OnCollisionEnter2D(Collision2D other) {
+        if (!isServer) {
+            return;
+        }
+
         var health = other.gameObject.GetComponent<UnitHealth>();
         if (health) {
             health.TakeDamage(damageAmount);
