@@ -1,14 +1,17 @@
+using Mirror;
 using NLog;
 using UnityEngine;
 using Logger = NLog.Logger;
 
 namespace Weapons.Bullet {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class LaserBullet : MonoBehaviour {
+    public class LaserBullet : NetworkBehaviour {
         public int speed = 20;
         public int numOfReflections = 3;
-        private Rigidbody2D _rb;
 
+
+        private Rigidbody2D _rb;
+        private float _reflectionForce = 5f;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private void OnDrawGizmos() {
@@ -63,6 +66,12 @@ namespace Weapons.Bullet {
 
             transformRight = newDirection;
             transform.right = transformRight;
+
+            // Push the bullet outside a bit so it doesn't get stuck reflecting inside of the wall
+            // Seems to be working correctly because of Space.World
+            transform.Translate(transformRight * Time.deltaTime * _reflectionForce, Space.World);
+
+            // Set velocity on the RB.
             _rb.velocity = transformRight * speed;
 
             // Decrement the number of reflections variable

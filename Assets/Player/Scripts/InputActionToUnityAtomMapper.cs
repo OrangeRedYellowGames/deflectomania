@@ -9,6 +9,8 @@ namespace Player.Scripts {
     /// // Adapted from https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Components.html
     /// </summary>
     public class InputActionToUnityAtomMapper : NetworkBehaviour {
+        private PlayerInput _playerInput;
+
         [Header("Inputs")] public FloatReference horizontalInput;
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
@@ -18,9 +20,7 @@ namespace Player.Scripts {
         [Header("Controls")] public BoolReference isUsingMouse;
         public string targetControlName = "KeyboardAndMouse";
 
-        private PlayerInput _playerInput;
-
-        public GameObject bullet;
+        [Space] public GameObject bullet;
         public Transform firePoint;
 
         private void Awake() {
@@ -75,12 +75,6 @@ namespace Player.Scripts {
             }
 
             fireInput.Value = value.isPressed;
-        }
-
-        [Command(requiresAuthority = false)]
-        public void CmdSpawnBullet() {
-            GameObject bulletClone = Instantiate(bullet, firePoint.position, firePoint.rotation);
-            NetworkServer.Spawn(bulletClone);
         }
     }
 }

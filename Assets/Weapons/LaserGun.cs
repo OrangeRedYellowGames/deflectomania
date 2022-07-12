@@ -1,32 +1,22 @@
-using System;
 using Mirror;
-using Player.Scripts;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Weapons {
-    public class LaserGun : MonoBehaviour {
+    public class LaserGun : NetworkBehaviour {
         [SerializeField] public VoidBaseEventReference shootEvent;
-
         public GameObject bullet;
-        private Transform _firePoint;
-
-        public InputActionToUnityAtomMapper input;
+        public Transform firePoint;
 
         // Start is called before the first frame update
         void Awake() {
             Assert.IsNotNull(shootEvent);
             Assert.IsNotNull(bullet);
+            Assert.IsNotNull(firePoint);
 
             // Register shootEvent's callback
             shootEvent.Event.Register(Shoot);
-
-            _firePoint = transform.Find("FirePoint");
-            if (!_firePoint) {
-                throw new NullReferenceException(
-                    "LaserGun couldn't find the \"FirePoint\" Transform of its attached gun");
-            }
         }
 
         void OnDestroy() {
@@ -36,8 +26,10 @@ namespace Weapons {
         /// <summary>
         /// Function responsible for spawning a new bullet from with firepoint as it's starting point
         /// </summary>
+        [Command]
         private void Shoot() {
-            input.CmdSpawnBullet();
+            GameObject bulletClone = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            NetworkServer.Spawn(bulletClone);
         }
     }
 }

@@ -162,6 +162,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2977863564801312835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565397930093589729}
+  - component: {fileID: 505500249943477126}
+  - component: {fileID: 710245193780556148}
+  m_Layer: 0
+  m_Name: Shooting Variables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &565397930093589729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977863564801312835}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.17774564, y: -0.17149368, z: -0.0034153573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5347282608371549160}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &505500249943477126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977863564801312835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b8675a4f46440369248598e656cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 52571b6dc053bbd4dbc68bfb64414f91, type: 2}
+--- !u!114 &710245193780556148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977863564801312835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ddf86bc0bd24f30868f3a6a765342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 2fe655ce37fd27341a5451d4e596cdbe, type: 2}
 --- !u!1 &3057825764871241908
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +551,8 @@ GameObject:
   - component: {fileID: 7760750055090013076}
   - component: {fileID: 3714128767672241343}
   - component: {fileID: 266671376277591142}
+  - component: {fileID: 3823072941539442018}
+  - component: {fileID: 7506590961563341616}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -513,6 +576,7 @@ Transform:
   - {fileID: 463344075}
   - {fileID: 4850073740052765790}
   - {fileID: 4855424541017191039}
+  - {fileID: 565397930093589729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -632,6 +696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb12840c1d4329903aac637ab455b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousStates: []
+  currentStateName: 
   horizontalInput:
     _usage: 3
     _value: 0
@@ -845,6 +911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a1de77898226a4f85cc49a9f31298b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   hp:
     _usage: 3
     _value: 0
@@ -889,7 +957,7 @@ MonoBehaviour:
     _value: 0
     _constant: {fileID: 0}
     _variable: {fileID: 0}
-    _variableInstancer: {fileID: 5347282608359962979}
+    _variableInstancer: {fileID: 505500249943477126}
   isUsingMouse:
     _usage: 3
     _value: 0
@@ -1000,6 +1068,60 @@ MonoBehaviour:
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   target: {fileID: 463344075}
+--- !u!114 &3823072941539442018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347282608371549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a493e41f49ba510df9c2e25c3c77ba66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  shootEvent:
+    _usage: 1
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 710245193780556148}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
+  bullet: {fileID: 2504410146903112106, guid: 28d31c8dee5cfe940a9b7958f21ffe1b, type: 3}
+  firePoint: {fileID: 8526744491406691351}
+--- !u!114 &7506590961563341616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347282608371549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac844fcc92442a3969965feab730f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousStates: []
+  currentStateName: 
+  fireInput:
+    _usage: 3
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 505500249943477126}
+  shootingEvent:
+    _usage: 1
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 710245193780556148}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
+  remainingCooldownSeconds: 0
+  cooldownSeconds: 0.2
 --- !u!1 &5609050212277933654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1306,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463344075}
     m_Modifications:
+    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+      propertyPath: fireInput._variableInstancer
+      value: 
+      objectReference: {fileID: 505500249943477126}
+    - target: {fileID: 3897246132846219375, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
+      propertyPath: shootingEvent._eventInstancer
+      value: 
+      objectReference: {fileID: 710245193780556148}
     - target: {fileID: 4350558345645975094, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1232,23 +1362,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 4443611223947023637, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 497994482}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
---- !u!114 &5347282608359962979 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 517063543, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}
-  m_PrefabInstance: {fileID: 5347282608851696148}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b8675a4f46440369248598e656cfbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8526744491406691351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4350558344774825475, guid: 2c51ef364f89023a8adfd482905cb3c0, type: 3}

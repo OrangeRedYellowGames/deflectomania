@@ -7,10 +7,7 @@ namespace FSM.Abstract {
         // TODO: State History using stacks (limited size)
         public AbstractState CurrentState { get; protected set; }
 
-        [Header("Information")]
-        [ReadOnly]
-        [SerializeField]
-        public List<string> previousStates;
+        [Header("Information")] [ReadOnly] public List<string> previousStates;
 
         [ReadOnly] public string currentStateName = "";
 

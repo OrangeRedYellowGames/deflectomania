@@ -21,6 +21,7 @@ namespace FSM.Movement {
         [SerializeField] public BoolReference verticalInput;
         [SerializeField] public Vector2Reference newVelocity;
 
+        // Movement variables. Would be better if these were on the server and not have the ability for the client to change theses
         [Header("Running Variables")]
         [SerializeField]
         public IntConstant maxSpeed;
