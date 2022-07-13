@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  speed: 20
+  speed: 30
   numOfReflections: 5
 --- !u!114 &6021769260506702732
 MonoBehaviour:
