@@ -6,8 +6,8 @@ using Logger = NLog.Logger;
 namespace Weapons.Bullet {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class LaserBullet : NetworkBehaviour {
-        public int speed = 20;
-        public int numOfReflections = 3;
+        [SyncVar] public int speed = 20;
+        [SyncVar] public int numOfReflections = 3;
 
 
         private Rigidbody2D _rb;
@@ -44,9 +44,14 @@ namespace Weapons.Bullet {
         }
 
         private void ReflectBullet(Collision2D collision) {
+            if (!isServer) {
+                return;
+            }
+
             // Destroy the bullet if the reflection count reached 0
             if (numOfReflections == 0 || collision.gameObject.CompareTag("Player")) {
-                Destroy(gameObject);
+                // Destroy(gameObject);
+                NetworkServer.Destroy(gameObject);
             }
 
             // TODO: Handle case where bullets hit the corner of the wall. Should reflect bullet back in the same direction

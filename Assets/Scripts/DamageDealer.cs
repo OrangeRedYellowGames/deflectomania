@@ -22,7 +22,6 @@ public class DamageDealer : NetworkBehaviour {
     /// attached to it, it will take damage according to the damageAmount.
     /// </summary>
     /// <param name="other">Collider of the "other" game object</param>
-    [Server]
     private void OnCollisionEnter2D(Collision2D other) {
         if (!isServer) {
             return;
