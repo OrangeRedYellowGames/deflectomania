@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: dotnet tool install -g dotnet-format
-      - run: dotnet-format -f Assets --check -v d
+      - run: dotnet-format --exclude ThirdPartyAssets -f Assets --check -v d
 
   buildAndTestForSomePlatforms:
     name: Build for ${{ matrix.targetPlatform }}
