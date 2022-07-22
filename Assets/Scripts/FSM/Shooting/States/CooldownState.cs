@@ -1,4 +1,4 @@
-﻿using FSM.Abstract;
+using FSM.Abstract;
 using UnityEngine;
 
 namespace FSM.Shooting.States {

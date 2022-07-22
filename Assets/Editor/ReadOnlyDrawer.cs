@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
 using ReadOnlyAttribute = Utils.ReadOnlyAttribute;

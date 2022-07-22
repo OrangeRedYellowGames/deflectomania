@@ -1,4 +1,4 @@
-﻿using Mirror;
+using Mirror;
 
 namespace Player.Scripts {
     /// <summary>

@@ -1,4 +1,4 @@
-﻿using FSM.Shooting;
+using FSM.Shooting;
 
 namespace FSM.Abstract {
     public abstract class AbstractShootingState : AbstractState {

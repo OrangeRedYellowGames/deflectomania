@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using FSM.Abstract;
 using FSM.Shooting.States;
 using UnityAtoms.BaseAtoms;
