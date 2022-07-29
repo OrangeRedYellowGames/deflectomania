@@ -1,5 +1,11 @@
 ﻿name: Tests
-on: [ workflow_call ]  # allow this workflow to be called from other workflows
+on:
+  workflow_call:
+    secrets:
+      UNITY_LICENSE:
+        required: true
+      GITHUB_TOKEN:
+        required: true
 
 jobs:
   test:

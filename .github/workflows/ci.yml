@@ -7,6 +7,7 @@ jobs:
   
   test:
     uses: ./.github/workflows/tests.yml
+    secrets: inherit
   
   buildForWindows64:
     name: Build for Windows x64
