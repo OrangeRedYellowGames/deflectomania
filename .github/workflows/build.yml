@@ -32,7 +32,7 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: |
-            Library-${{ matrix.targetPlatform }}-
+            Library-${{ matrix.targetPlatform }}
             Library-
       
       # Run Play Mode and Edit Mode tests
