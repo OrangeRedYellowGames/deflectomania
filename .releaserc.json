@@ -56,8 +56,8 @@
         "assets": [
           {
             "path": "release-win64.zip",
-            "name": "LaserProject-${nextRelease.gitTag}-win64",
-            "label": "Laser Project ${nextRelease.gitTag} Windows x64"
+            "name": "LaserProject-${nextRelease.gitTag}-win64.zip",
+            "label": "LaserProject-${nextRelease.gitTag}-win64.zip"
           }
         ]
       }
