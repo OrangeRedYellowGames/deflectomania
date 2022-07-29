@@ -20,7 +20,7 @@ jobs:
       
       # Zip the Win 64 release
       - name: Zip build for the release
-        run: zip release-win64.zip /build/StandaloneWindows64 -r
+        run: zip -r release-win64.zip build/StandaloneWindows64
 
       - name: Semantic Release
         id: semantic
