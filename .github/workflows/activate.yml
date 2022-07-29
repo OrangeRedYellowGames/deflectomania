@@ -1,0 +1,11 @@
+﻿# https://github.com/marketplace/actions/unity-activate
+name: Activate Unity License
+on: [ workflow_dispatch ]
+
+jobs:
+  activate:
+    name: Activate Unity License
+    runs-on: ubuntu-latest
+    steps:
+      - name: Unity - Activate
+        uses: game-ci/unity-activate@v2.0.0
