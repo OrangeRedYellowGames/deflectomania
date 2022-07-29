@@ -4,8 +4,6 @@ on:
     secrets:
       UNITY_LICENSE:
         required: true
-      GITHUB_TOKEN:
-        required: true
 
 jobs:
   test:
