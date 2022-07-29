@@ -38,11 +38,11 @@ jobs:
       # Run Play Mode and Edit Mode tests
       - name: Run play mode and edit mode tests
         uses: game-ci/unity-test-runner@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           unityVersion: ${{ matrix.unityVersion }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       
       # Upload Test Results
       - name: Upload test results
