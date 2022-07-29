@@ -1,7 +1,9 @@
 {
   "branches": [
+    "main",
     {
-      "name": "main"
+      "name": "alpha",
+      "prerelease": true
     }
   ],
   "plugins": [
@@ -48,6 +50,17 @@
         ]
       }
     ],
-    "@semantic-release/github"
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "build/StandaloneWindows64",
+            "name": "LaserProject-${nextRelease.gitTag}-x64",
+            "label": "Laser Project ${nextRelease.gitTag} Windows 64-bit"
+          }
+        ]
+      }
+    ]
   ]
 }

@@ -1,0 +1,12 @@
+﻿name: Lint
+on: [ workflow_call ]  # allow this workflow to be called from other workflows
+
+jobs:
+  lint:
+    name: Lint codebase
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet tool install -g dotnet-format
+      - run: dotnet-format --exclude ThirdPartyAssets -f Assets --check -v d
