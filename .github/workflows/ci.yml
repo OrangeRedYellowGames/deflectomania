@@ -26,7 +26,7 @@ jobs:
       # - WebGL # WebGL.
       targetPlatform: StandaloneWindows64
       unityVersion: 2021.3.1f1
-        
+  
   release:
-    needs: [ buildAndTestForSomePlatforms ]
+    needs: [ buildForWindows64 ]
     uses: ./.github/workflows/release.yml
