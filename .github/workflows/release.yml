@@ -16,11 +16,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Build-StandaloneWindows64
-          path: build/StandaloneWindows64
+          path: build/LaserProject-Win64
       
       # Zip the Win 64 release
       - name: Zip build for the release
-        run: zip -r release-win64.zip build/StandaloneWindows64
+        run: cd build && zip -r ../LaserProject-Win64.zip LaserProject-Win64
 
       - name: Semantic Release
         id: semantic
