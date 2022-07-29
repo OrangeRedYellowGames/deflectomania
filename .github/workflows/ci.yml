@@ -1,7 +1,5 @@
 name: CI
 on: [ push ]
-env:
-  UNITY_VERSION: 2021.3.1f1
 
 jobs:
   lint:
@@ -16,6 +14,7 @@ jobs:
       - lint
       - test
     uses: ./.github/workflows/build.yml
+    secrets: inherit
     with:
       # Available target platforms. Dedicated servers require a special flag, look into it when needed
       # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
@@ -26,10 +25,8 @@ jobs:
       # - Android # Build an Android player.
       # - WebGL # WebGL.
       targetPlatform: StandaloneWindows64
-      unityVersion: ${{ env.UNITY_VERSION }}
-    secrets: inherit
-  
-  
+      unityVersion: 2021.3.1f1
+        
   release:
     needs: [ buildAndTestForSomePlatforms ]
     uses: ./.github/workflows/release.yml
