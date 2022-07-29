@@ -19,13 +19,15 @@ jobs:
           # - Android # Build an Android player.
           # - WebGL # WebGL.
     steps:
-      - uses: actions/checkout@v2
+      - name: Clone repo
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           lfs: true
       
       # Cache Library/ folder, should speed up build times by about 50%
-      - uses: actions/cache@v2
+      - name: Retrieve cached library folder
+        uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
@@ -34,8 +36,8 @@ jobs:
             Library-
       
       # Run Play Mode and Edit Mode tests
-      - uses: game-ci/unity-test-runner@v2
-        id: testRunner
+      - name: Run play mode and edit mode tests
+        uses: game-ci/unity-test-runner@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
@@ -43,14 +45,16 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       
       # Upload Test Results
-      - uses: actions/upload-artifact@v2
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: Test results (all modes)
           path: ${{ steps.testRunner.outputs.artifactsPath }}
       
       # Build the actual game
-      - uses: game-ci/unity-builder@v2
+      - name: Build the actual game
+        uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -64,7 +68,8 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
       
       # Upload the generated build
-      - uses: actions/upload-artifact@v2
+      - name: Upload generated build
+        uses: actions/upload-artifact@v3
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
