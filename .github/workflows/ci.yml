@@ -2,16 +2,36 @@ name: CI
 
 on: [ push ]
 
+env:
+  unityVersion: 2021.3.1f1
+
 jobs:
   lint:
     uses: ./.github/workflows/lint.yml
-
-  buildAndTestForSomePlatforms:
-    needs: [ lint ]
-    uses: ./.github/workflows/build.yml
   
-  release:
+  test:
+    uses: ./.github/workflows/tests.yml
+  
+  buildForWindows64:
+    name: Build for Windows x64
     needs:
       - lint
-      - buildAndTestForSomePlatforms
+      - test
+    uses: ./.github/workflows/build.yml
+    with:
+      # Available target platforms. Dedicated servers require a special flag, look into it when needed
+      # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+      # - StandaloneWindows # Build a Windows 32-bit standalone.
+      # - StandaloneWindows64 # Build a Windows 64-bit standalone.
+      # - StandaloneLinux64 # Build a Linux 64-bit standalone.
+      # - iOS # Build an iOS player.
+      # - Android # Build an Android player.
+      # - WebGL # WebGL.
+      targetPlatform: StandaloneWindows64
+      unityVersion: ${{ env.unityVersion }}
+    secrets: inherit
+  
+  
+  release:
+    needs: [ buildAndTestForSomePlatforms ]
     uses: ./.github/workflows/release.yml

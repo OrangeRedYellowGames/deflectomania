@@ -1,25 +1,29 @@
-﻿name: Build and Test Game
-on: [ workflow_call ]  # allow this workflow to be called from other workflows
+﻿name: Build
+
+on:
+  workflow_call:
+    inputs:
+      targetPlatform:
+        required: true
+        type: string
+      unityVersion:
+        required: true
+        type: string
+    secrets:
+      UNITY_LICENSE:
+        required: true
+      UNITY_EMAIL:
+        required: true
+      UNITY_PASSWORD:
+        required: true
+
 
 jobs:
-  buildAndTestForSomePlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
+  build:
+    name: Build for ${{ inputs.targetPlatform }}
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        unityVersion:
-          - 2021.3.1f1
-        targetPlatform:
-          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          # - StandaloneWindows # Build a Windows 32-bit standalone.
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          # - iOS # Build an iOS player.
-          # - Android # Build an Android player.
-          # - WebGL # WebGL.
     steps:
-      - name: Clone repo
+      - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -30,27 +34,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ matrix.targetPlatform }}
+          key: Library-${{ inputs.targetPlatform }}
           restore-keys: |
-            Library-${{ matrix.targetPlatform }}
             Library-
-      
-      # Run Play Mode and Edit Mode tests
-      - name: Run play mode and edit mode tests
-        uses: game-ci/unity-test-runner@v2
-        with:
-          unityVersion: ${{ matrix.unityVersion }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      
-      # Upload Test Results
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: Test results (all modes)
-          path: ${{ steps.testRunner.outputs.artifactsPath }}
       
       # Build the actual game
       - name: Build the actual game
@@ -64,12 +50,12 @@ jobs:
           versioning: None
           # To fix the Warning: Could not parse "none" to semver, defaulting android version code to 1 warning
           androidVersionCode: 1
-          unityVersion: ${{ matrix.unityVersion }}
-          targetPlatform: ${{ matrix.targetPlatform }}
+          unityVersion: ${{ inputs.unityVersion }}
+          targetPlatform: ${{ inputs.targetPlatform }}
       
       # Upload the generated build
       - name: Upload generated build
         uses: actions/upload-artifact@v2
         with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          name: Build-${{ inputs.targetPlatform }}
+          path: build/${{ inputs.targetPlatform }}
