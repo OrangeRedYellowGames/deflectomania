@@ -1,9 +1,7 @@
 name: CI
-
 on: [ push ]
-
 env:
-  unityVersion: 2021.3.1f1
+  UNITY_VERSION: 2021.3.1f1
 
 jobs:
   lint:
@@ -28,7 +26,7 @@ jobs:
       # - Android # Build an Android player.
       # - WebGL # WebGL.
       targetPlatform: StandaloneWindows64
-      unityVersion: ${{ env.unityVersion }}
+      unityVersion: ${{ env.UNITY_VERSION }}
     secrets: inherit
   
   
