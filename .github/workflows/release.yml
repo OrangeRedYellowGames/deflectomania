@@ -10,12 +10,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
+      
+      # Download Win64 artifacts
       - name: Download Windows x64 build
         uses: actions/download-artifact@v2
         with:
           name: Build-StandaloneWindows64
           path: build/StandaloneWindows64
+      
+      # Zip the Win 64 release
+      - name: Zip build for the release
+        run: zip release-win64.zip /build/StandaloneWindows64 -r
 
       - name: Semantic Release
         id: semantic
