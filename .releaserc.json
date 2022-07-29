@@ -54,9 +54,8 @@
       "@semantic-release/github",
       {
         "assets": [
-          "CHANGELOG.md",
           {
-            "path": "build/StandaloneWindows64",
+            "path": "build/StandaloneWindows64/*",
             "name": "LaserProject-${nextRelease.gitTag}-x64",
             "label": "Laser Project ${nextRelease.gitTag} Windows x64"
           }
