@@ -11,6 +11,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Download Windows x64 build
+        uses: actions/download-artifact@v2
+        with:
+          name: Build-StandaloneWindows64
+          path: build/StandaloneWindows64
+
       - name: Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v2.5.4
