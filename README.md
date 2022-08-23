@@ -61,6 +61,58 @@ time, only watch the first video):
 1. [Important] [Ryan Hipple's talk at Unity Austin 2017](https://www.youtube.com/watch?v=raQ3iHhE_Kk)
 2. [Richard Fine's talk at Unite 2016](https://www.youtube.com/watch?v=6vmRwLYWNRo)
 
+### Commit Convention
+
+Please use the [angular commit convention](https://www.conventionalcommits.org/en/v1.0.0-beta.4/#summary) when adding
+new commits.
+
+Not only does it make your commit more clear, but it also plays a key role in
+how [semantic-release](https://github.com/semantic-release/semantic-release) (see below) determines the next version
+number for a release.
+
+#### Commit Message Header
+
+```
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope: animations|bazel|benchpress|common|compiler|compiler-cli|core|
+  │                          elements|forms|http|language-service|localize|platform-browser|
+  │                          platform-browser-dynamic|platform-server|router|service-worker|
+  │                          upgrade|zone.js|packaging|changelog|dev-infra|docs-infra|migrations|
+  │                          ngcc|ve
+  │
+  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
+```
+
+The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
+
+#### Type
+
+Must be one of the following:
+
+- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- **ci**: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)
+- **docs**: Documentation only changes
+- **feat**: A new feature
+- **fix**: A bug fix
+- **perf**: A code change that improves performance
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **test**: Adding missing tests or correcting existing tests
+
+### Releases
+
+Releases are handled automatically using [semantic-release](https://github.com/semantic-release/semantic-release). Its
+configuration can be found in `.releaserc.json`.
+
+Here's how releases are currently made:
+
+- Pushing any commit to the `alpha` branch will create a new **alpha** release. These will be tagged as `v1.0.0-alpha.1`
+  , `v1.0.0-alpha.2`, `v1.0.0-alpha.3`, etc...
+- Pushing any commit to the `main` branch will create a new (ordinary) release. These will be tagged as `v1.0.0`
+  , `v1.0.1`, `v1.1.0`, `v2.1.0` etc...
+
 ## :toilet: (Useful) Links and Guides
 
 - [Gaming Deisgn Patterns](https://gameprogrammingpatterns.com/contents.html)
