@@ -7,16 +7,16 @@
 ![Unity](https://img.shields.io/badge/unity-2021.3.1f1-brightgreen?style=for-the-badge&logo=unity&logoColor=white)
 </div>
 
-# :book: Overview
+## :book: Overview
 
 This repository contains the code for **Laser Project**, a Unity game where a select few people
 at [ORY Games](https://github.com/KanabaGames) can collaborate and test out new game development ideas.
 
-# :closed_book: Things to know
+## :closed_book: Things to know
 
-## Settings up Git
+### Settings up Git
 
-### Git LFS
+#### Git LFS
 
 This repo makes use of [Git LFS](https://git-lfs.github.com/), which allows support for adding large files (audio,
 video, artwork, etc...) to a git repo.
@@ -26,7 +26,7 @@ To set it up, do the following:
 1. Install [Git LFS](https://git-lfs.github.com/) for your operating system
 2. Run `git lfs install` once to activate it (you only need to do this once per user account)
 
-### Force Git to use LF instead of CRLF (Windows)
+#### Force Git to use LF instead of CRLF (Windows)
 
 This repo uses `LF` as line breaks. If you're running on Windows, you might face an issue when opening PRs, or doing any
 commits in general, that any file you edit will use `CRLF` instead of `LF`.
@@ -44,13 +44,13 @@ You can read about the difference between using `LF` and `CRLF` as
 linebreaks [in this stackoverflow post](https://stackoverflow.com/questions/1552749/difference-between-cr-lf-lf-and-cr-line-break-types)
 .
 
-## CI / CD
+### CI / CD
 
 This repo makes heavy usage of the CI / CD workflows provide by [GameCI](https://game.ci/).
 
 All the available workflows can be found in the `.github/workflows` directory.
 
-## Unity Atoms
+### Unity Atoms
 
 This project makes heavy use of [Unity Atoms](https://unity-atoms.github.io/unity-atoms/), an event based system that
 encourages data-driven design.
@@ -61,7 +61,7 @@ time, only watch the first video):
 1. [Important] [Ryan Hipple's talk at Unity Austin 2017](https://www.youtube.com/watch?v=raQ3iHhE_Kk)
 2. [Richard Fine's talk at Unite 2016](https://www.youtube.com/watch?v=6vmRwLYWNRo)
 
-## Commit Convention
+### Commit Convention
 
 Please use the [angular commit convention](https://www.conventionalcommits.org/en/v1.0.0-beta.4/#summary) when adding
 new commits.
@@ -70,7 +70,7 @@ Not only does it make your commit more clear, but it also plays a key role in
 how [semantic-release](https://github.com/semantic-release/semantic-release) (see below) determines the next version
 number for a release.
 
-### Commit Message Header
+#### Commit Message Header
 
 ```
 <type>(<scope>): <short summary>
@@ -88,7 +88,7 @@ number for a release.
 
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
 
-### Type
+#### Type
 
 Must be one of the following:
 
@@ -101,7 +101,7 @@ Must be one of the following:
 - **refactor**: A code change that neither fixes a bug nor adds a feature
 - **test**: Adding missing tests or correcting existing tests
 
-## Releases
+### Releases
 
 Releases are handled automatically using [semantic-release](https://github.com/semantic-release/semantic-release). Its
 configuration can be found in `.releaserc.json`.
@@ -113,16 +113,16 @@ Here's how releases are currently made:
 - Pushing any commit to the `main` branch will create a new (ordinary) release. These will be tagged as `v1.0.0`
   , `v1.0.1`, `v1.1.0`, `v2.1.0` etc...
 
-# :toilet: (Useful) Links and Guides
+## :toilet: (Useful) Links and Guides
 
 - [Gaming Deisgn Patterns](https://gameprogrammingpatterns.com/contents.html)
 
-## Git Setup
+### Git Setup
 
 - [https://thoughtbot.com/blog/how-to-git-with-unity](https://thoughtbot.com/blog/how-to-git-with-unity)
 - [https://unityatscale.com/](https://unityatscale.com/)
 
-## 2D Controllers
+### 2D Controllers
 
 - [https://github.com/cjddmut/Unity-2D-Platformer-Controller](https://github.com/cjddmut/Unity-2D-Platformer-Controller)
 - [https://github.com/prime31/CharacterController2D/blob/master/Assets/CharacterController2D/CharacterController2D.cs](https://github.com/prime31/CharacterController2D/blob/master/Assets/CharacterController2D/CharacterController2D.cs)
