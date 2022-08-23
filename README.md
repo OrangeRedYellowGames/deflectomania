@@ -35,7 +35,7 @@ This is most likely an issue with Git on Windows.
 
 To fix it, run the following:
 
-``` bash
+```sh
  git config --global core.eol lf
  git config --global core.autocrlf input
 ```
