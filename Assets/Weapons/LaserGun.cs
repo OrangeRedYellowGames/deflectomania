@@ -1,10 +1,9 @@
-using Mirror;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Weapons {
-    public class LaserGun : NetworkBehaviour {
+    public class LaserGun : MonoBehaviour {
         [SerializeField] public VoidBaseEventReference shootEvent;
         public GameObject bullet;
         public Transform firePoint;
@@ -26,10 +25,8 @@ namespace Weapons {
         /// <summary>
         /// Function responsible for spawning a new bullet from with firepoint as it's starting point
         /// </summary>
-        [Command]
         private void Shoot() {
-            GameObject bulletClone = Instantiate(bullet, firePoint.position, firePoint.rotation);
-            NetworkServer.Spawn(bulletClone);
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
         }
     }
 }

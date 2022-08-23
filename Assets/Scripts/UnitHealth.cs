@@ -1,4 +1,3 @@
-using Mirror;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -8,7 +7,7 @@ using UnityEngine.Assertions;
 ///
 /// Should be used in tandem with the DamageDealer component in order to inflict damage.
 /// </summary>
-public class UnitHealth : NetworkBehaviour {
+public class UnitHealth : MonoBehaviour {
     /// <summary>
     /// Variable that holds the HP of the object.
     /// </summary>
@@ -29,22 +28,10 @@ public class UnitHealth : NetworkBehaviour {
     /// If HP reaches 0, deathEvent will be raised.
     /// </summary>
     /// <param name="damage">Amount of damage to take</param>
-    [ClientRpc]
     public void TakeDamage(float damage) {
         hp.Value -= damage;
         if (hp.Value <= 0 && deathEvent) {
             deathEvent.Raise();
         }
-    }
-}
-
-public static class CustomReadWriteFunctions {
-    // Adapted from here
-    public static void WriteFloatReference(this NetworkWriter writer, FloatReference floatReference) {
-        writer.WriteFloat(floatReference.Value);
-    }
-
-    public static FloatReference ReadFloatReference(this NetworkReader reader) {
-        return new FloatReference(reader.ReadFloat());
     }
 }
