@@ -61,6 +61,15 @@ time, only watch the first video):
 1. [Important] [Ryan Hipple's talk at Unity Austin 2017](https://www.youtube.com/watch?v=raQ3iHhE_Kk)
 2. [Richard Fine's talk at Unite 2016](https://www.youtube.com/watch?v=6vmRwLYWNRo)
 
+### Shadow Casting for Tilemaps
+
+Unity doesn't support adding shadow casting to tilemaps by default. A workaround implemented in this repo is the script
+described
+in [this forum post](https://forum.unity.com/threads/script-for-generating-shadowcaster2ds-for-tilemaps.906767/)
+
+_TLDR: If you want to generate shadow caster for a tilemap, click on `Tools` > `Generate Shadow Casters` and shadow
+caster objects will be created for the tilemaps in your current scene._
+
 ### Commit Convention
 
 Please use the [angular commit convention](https://www.conventionalcommits.org/en/v1.0.0-beta.4/#summary) when adding
