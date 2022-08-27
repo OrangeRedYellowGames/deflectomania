@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Lighting
   - Platforms
   - Bullets
   - 
@@ -42,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2995623045
+    locked: 0
+  - name: Entities
+    uniqueID: 735789883
+    locked: 0
+  - name: Platforms
+    uniqueID: 3108630763
+    locked: 0
+  - name: Player
+    uniqueID: 2555388727
     locked: 0
