@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
-namespace Player.Scripts {
+namespace Entities.Player.Scripts {
     /// <summary>
-    /// // Adapted from https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Components.html
+    /// Adapted from https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Components.html
+    /// Needed to map Unity's player input to unity atoms
     /// </summary>
     public class InputActionToUnityAtomMapper : MonoBehaviour {
         private PlayerInput _playerInput;
@@ -14,13 +15,12 @@ namespace Player.Scripts {
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
         public BoolReference fireInput;
+        public BoolReference blockInput;
 
         // Target control name used to infer if player is using mouse or not
         [Header("Controls")] public BoolReference isUsingMouse;
         public string targetControlName = "KeyboardAndMouse";
 
-        [Space] public GameObject bullet;
-        public Transform firePoint;
 
         private void Awake() {
             Assert.IsNotNull(horizontalInput);
@@ -57,6 +57,10 @@ namespace Player.Scripts {
 
         void OnFire(InputValue value) {
             fireInput.Value = value.isPressed;
+        }
+
+        void OnBlock(InputValue value) {
+            blockInput.Value = value.isPressed;
         }
     }
 }
