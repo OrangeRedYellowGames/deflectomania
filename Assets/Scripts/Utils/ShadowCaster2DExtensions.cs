@@ -13,10 +13,14 @@
 
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+
+// https://answers.unity.com/questions/1702206/why-using-unityeditorscenemanagement-is-gray-like.html
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.SceneManagement;
+#endif
 
 /// <summary>
 /// It extends the ShadowCaster2D class in order to be able to modify some private data members.
