@@ -14,6 +14,18 @@ at [ORY Games](https://github.com/KanabaGames) can collaborate and test out new 
 
 ## :closed_book: Things to know
 
+### Settings up DOTween
+
+When opening the project for the first time, you might encounter errors regarding DOTWeen. If this happens, do the
+following:
+
+1. Open the project (Ignore any errors)
+2. Open the DOTween Utility Panel from the Tools menu
+3. Select "Setup DOTween..." from the panel that appears.
+4. Press Apply
+
+DOTWeen should now be configured successfully and the project should work correctly now.
+
 ### Settings up Git
 
 #### Git LFS
