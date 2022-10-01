@@ -12,6 +12,7 @@ namespace Weapons.Bullet {
         private Rigidbody2D _rb;
         private float _reflectionForce = 5f;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private int _reflectionsLeft = 3;
 
         private void OnDrawGizmos() {
             // TODO: Figure out why this throws errors when LaserBullet is viewed in prefab mode.
@@ -24,8 +25,11 @@ namespace Weapons.Bullet {
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
         }
-
-        private void Start() {
+        
+        // Use onEnable to run the code whenever the object is enabled again.
+        private void OnEnable() {
+            // Reset the number of reflections everytime.
+            _reflectionsLeft = numOfReflections;
             _rb.velocity = transform.right * speed;
         }
 
@@ -44,8 +48,9 @@ namespace Weapons.Bullet {
 
         private void ReflectBullet(Collision2D collision) {
             // Destroy the bullet if the reflection count reached 0
-            if (numOfReflections == 0 || collision.gameObject.CompareTag("Player")) {
-                Destroy(gameObject);
+            if (_reflectionsLeft == 0 || collision.gameObject.CompareTag("Player")) {
+                // Set gameObject value to inActive to be added back to the pool.
+                gameObject.SetActive(false);
             }
 
             // TODO: Handle case where bullets hit the corner of the wall. Should reflect bullet back in the same direction
@@ -74,7 +79,7 @@ namespace Weapons.Bullet {
             _rb.velocity = transformRight * speed;
 
             // Decrement the number of reflections variable
-            numOfReflections--;
+            _reflectionsLeft--;
         }
     }
 }
