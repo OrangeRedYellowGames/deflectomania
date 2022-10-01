@@ -20,9 +20,9 @@ When opening the project for the first time, you might encounter errors regardin
 following:
 
 1. Open the project (Ignore any errors)
-2. Open the DOTween Utility Panel from the Tools menu
-3. Select "Setup DOTween..." from the panel that appears.
-4. Press Apply
+2. Open the **DOTween Utility Panel** from the **Tools menu**
+3. Select **Setup DOTween...** from the panel that appears.
+4. Press **Apply**
 
 DOTWeen should now be configured successfully and the project should work correctly now.
 
@@ -81,6 +81,14 @@ in [this forum post](https://forum.unity.com/threads/script-for-generating-shado
 
 _TLDR: If you want to generate shadow caster for a tilemap, click on `Tools` > `Generate Shadow Casters` and shadow
 caster objects will be created for the tilemaps in your current scene._
+
+### Asset Usage Detector
+
+This project has [Asser Usage Detector](https://github.com/yasirkula/UnityAssetUsageDetector) installed. To make use of
+it, you can do one of the following:
+
+- Open Window - Asset Usage Detector window, configure the settings and hit GO!
+- Right click an object and select Search For References
 
 ### Commit Convention
 
