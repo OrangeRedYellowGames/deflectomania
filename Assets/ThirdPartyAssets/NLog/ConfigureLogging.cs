@@ -3,7 +3,7 @@ using NLog.Config;
 using UnityEngine;
 
 // Adapted from https://github.com/NLog/NLog/issues/4112
-namespace Plugins.NLog {
+namespace ThirdPartyAssets.NLog {
     public static class Bootstrap {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void ConfigureLogging() {

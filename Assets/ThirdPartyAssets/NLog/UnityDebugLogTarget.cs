@@ -2,7 +2,7 @@ using NLog;
 using NLog.Targets;
 using UnityEngine;
 
-namespace Plugins.NLog {
+namespace ThirdPartyAssets.NLog {
     [Target("UnityDebugLog")]
     public class UnityDebugLogTarget : TargetWithLayout {
         protected override void Write(LogEventInfo logEvent) {
