@@ -14,18 +14,19 @@ namespace Entities.LaserGun {
         [SerializeField] public FloatReference remainingReloadTime;
 
 
-        public GameObject bullet;
+        
         public Transform firePoint;
 
         public bool resetReloadTimerAfterFiring = true;
 
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
+        
+        private GameObject bullet;
         // Start is called before the first frame update
         void Awake() {
             Assert.IsNotNull(shootEvent);
-            Assert.IsNotNull(bullet);
             Assert.IsNotNull(firePoint);
+            Assert.IsNotNull(ObjectPooler.ObjectPooler.SharedInstance);
 
             // Register shootEvent's callback
             shootEvent.Event.Register(Shoot);
@@ -55,7 +56,16 @@ namespace Entities.LaserGun {
         /// </summary>
         private void Shoot() {
             if (currentNumberOfBullets.Value > 0) {
-                Instantiate(bullet, firePoint.position, firePoint.rotation);
+                bullet = ObjectPooler.ObjectPooler.SharedInstance.GetPooledObject("Bullet"); 
+                if (bullet != null) {
+                    bullet.transform.position = firePoint.position;
+                    bullet.transform.rotation = firePoint.rotation;
+                    bullet.SetActive(true);
+                }
+                else {
+                    Logger.Error("Cannot get a bullet object instance!");
+                    return;
+                }
 
                 // Reduce number of bullets in the gun
                 currentNumberOfBullets.Value -= 1;
