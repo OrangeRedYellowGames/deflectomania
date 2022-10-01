@@ -36,7 +36,7 @@ namespace Entities.Player.UI.Scripts {
 
             // Assert unity atom variables are set
             Assert.IsNotNull(maxAmmo, "MaxAmmo Variable cannot be null in AmmoBar");
-            
+
             _ammoSliders = new List<Slider>(maxAmmo.Value);
         }
 
