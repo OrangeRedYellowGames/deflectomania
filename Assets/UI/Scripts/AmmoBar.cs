@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using NLog.Fluent;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -12,7 +10,7 @@ namespace UI.Scripts {
         public GameObject ammoPrefab;
 
         /// <summary>
-        /// Maximum HP value. Will be set as the initial value of the health bar.
+        /// Maximum Ammo value. Will be set as the initial value of the Ammo bar.
         /// </summary>
         public IntConstant maxAmmo;
 
@@ -28,11 +26,11 @@ namespace UI.Scripts {
         private int _currentNumberOfAmmo;
 
         void Awake() {
-            // Asserts HealthChangedEvent is set
+            // Asserts ammoChangedEvent is set
             Assert.IsNotNull(ammoChangedEvent, "ammoChangedEvent is missing in AmmoBar");
             ammoChangedEvent.Event.Register(ChangeAmmoValue);
 
-            // Asserts HealthChangedEvent is set
+            // Asserts ammoChangedEvent is set
             Assert.IsNotNull(remainingReloadTimeEvent, "remainingReloadTime is missing in AmmoBar");
             remainingReloadTimeEvent.Event.Register(ChangeRemainingReloadTime);
 
@@ -57,9 +55,9 @@ namespace UI.Scripts {
         }
 
         /// <summary>
-        /// Function that changes the value of the HP bar.
+        /// Function that changes the value of the Ammo bar.
         ///
-        /// Should be called whenever the healthChangedEvent is raised.
+        /// Should be called whenever the ammoChangedEvent is raised.
         /// </summary>
         /// <param name="amount">New value of the HP bar</param>
         public void ChangeAmmoValue(int amount) {
