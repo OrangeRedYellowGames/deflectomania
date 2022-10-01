@@ -29,13 +29,11 @@ namespace Entities.LaserGun {
 
             // Register shootEvent's callback
             shootEvent.Event.Register(Shoot);
-
-            currentNumberOfBullets.Value = maxNumberOfBullets.Value;
-            remainingReloadTime.Value = reloadTime.Value;
         }
 
         private void Start() {
             currentNumberOfBullets.Value = maxNumberOfBullets.Value;
+            remainingReloadTime.Value = reloadTime.Value;
         }
 
         private void FixedUpdate() {

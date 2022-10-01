@@ -36,8 +36,11 @@ namespace UI.Scripts {
 
             // Assert unity atom variables are set
             Assert.IsNotNull(maxAmmo, "MaxAmmo Variable cannot be null in AmmoBar");
-
+            
             _ammoSliders = new List<Slider>(maxAmmo.Value);
+        }
+
+        void Start() {
             for (int i = 0; i < maxAmmo.Value; i++) {
                 var ammo = Instantiate(ammoPrefab, this.transform, false);
                 _ammoSliders.Add(ammo.GetComponent<Slider>());
