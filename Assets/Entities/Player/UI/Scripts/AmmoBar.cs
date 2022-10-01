@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-namespace UI.Scripts {
+namespace Entities.Player.UI.Scripts {
     [RequireComponent(typeof(Slider))]
     public class AmmoBar : MonoBehaviour {
         public GameObject ammoPrefab;

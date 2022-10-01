@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-namespace UI.Scripts {
+namespace Entities.Player.UI.Scripts {
     [RequireComponent(typeof(Slider))]
     public class HealthBar : MonoBehaviour {
         /// <summary>
