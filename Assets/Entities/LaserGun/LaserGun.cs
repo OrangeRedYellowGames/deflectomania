@@ -14,14 +14,14 @@ namespace Entities.LaserGun {
         [SerializeField] public FloatReference remainingReloadTime;
 
 
-        
         public Transform firePoint;
 
         public bool resetReloadTimerAfterFiring = true;
 
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        
+
         private GameObject bullet;
+
         // Start is called before the first frame update
         void Awake() {
             Assert.IsNotNull(shootEvent);
@@ -32,7 +32,8 @@ namespace Entities.LaserGun {
         }
 
         private void Start() {
-            Assert.IsNotNull(ObjectPooler.ObjectPooler.SharedInstance, "ObjectPooler was not found. Did you forget to add it to the scene?");
+            Assert.IsNotNull(ObjectPooler.ObjectPooler.SharedInstance,
+                "ObjectPooler was not found. Did you forget to add it to the scene?");
             currentNumberOfBullets.Value = maxNumberOfBullets.Value;
             remainingReloadTime.Value = reloadTime.Value;
         }
@@ -56,7 +57,7 @@ namespace Entities.LaserGun {
         /// </summary>
         private void Shoot() {
             if (currentNumberOfBullets.Value > 0) {
-                bullet = ObjectPooler.ObjectPooler.SharedInstance.GetPooledObject("Bullet"); 
+                bullet = ObjectPooler.ObjectPooler.SharedInstance.GetPooledObject("Bullet");
                 if (bullet != null) {
                     bullet.transform.position = firePoint.position;
                     bullet.transform.rotation = firePoint.rotation;

@@ -25,9 +25,10 @@ namespace Entities.ObjectPooler {
                     pooledObjects.Add(obj);
                 }
             }
+
             Logger.Debug("Instantiated all pooled objects!");
         }
-    
+
         public GameObject GetPooledObject(string objectTag) {
             // Check if any object is available and return it.
             foreach (var pooledObject in pooledObjects) {
@@ -36,11 +37,12 @@ namespace Entities.ObjectPooler {
                     return pooledObject;
                 }
             }
+
             // If cannot find anything, expand.
             foreach (ObjectPoolItem item in itemsToPool) {
                 if (item.objectToPool.CompareTag(objectTag)) {
                     if (item.shouldExpand) {
-                        Logger.Debug("Expanding " + objectTag +" pool of objects!");
+                        Logger.Debug("Expanding " + objectTag + " pool of objects!");
                         GameObject obj = (GameObject)Instantiate(item.objectToPool);
                         obj.SetActive(false);
                         pooledObjects.Add(obj);
@@ -48,8 +50,8 @@ namespace Entities.ObjectPooler {
                     }
                 }
             }
+
             return null;
         }
-    
     }
 }
