@@ -26,13 +26,13 @@ namespace Entities.LaserGun {
         void Awake() {
             Assert.IsNotNull(shootEvent);
             Assert.IsNotNull(firePoint);
-            Assert.IsNotNull(ObjectPooler.ObjectPooler.SharedInstance);
 
             // Register shootEvent's callback
             shootEvent.Event.Register(Shoot);
         }
 
         private void Start() {
+            Assert.IsNotNull(ObjectPooler.ObjectPooler.SharedInstance, "ObjectPooler was not found. Did you forget to add it to the scene?");
             currentNumberOfBullets.Value = maxNumberOfBullets.Value;
             remainingReloadTime.Value = reloadTime.Value;
         }
