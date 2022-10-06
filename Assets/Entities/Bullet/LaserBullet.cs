@@ -25,7 +25,7 @@ namespace Weapons.Bullet {
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
         }
-        
+
         // Use onEnable to run the code whenever the object is enabled again.
         private void OnEnable() {
             // Reset the number of reflections everytime.

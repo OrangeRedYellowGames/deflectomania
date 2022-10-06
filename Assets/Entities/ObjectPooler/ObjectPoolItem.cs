@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class ObjectPoolItem {
     public int amountToPool;
     public GameObject objectToPool;
