@@ -15,7 +15,7 @@ namespace Entities.Player.Scripts {
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
         public BoolReference fireInput;
-        public BoolReference blockInput;
+        public BoolReference deflectInput;
 
         // Target control name used to infer if player is using mouse or not
         [Header("Controls")] public BoolReference isUsingMouse;
@@ -27,6 +27,7 @@ namespace Entities.Player.Scripts {
             Assert.IsNotNull(verticalInput);
             Assert.IsNotNull(lookDirection);
             Assert.IsNotNull(fireInput);
+            Assert.IsNotNull(deflectInput);
 
             Assert.IsNotNull(isUsingMouse, "IsUsingMouse cannot be null");
             Assert.IsTrue(targetControlName.Length > 0,
@@ -59,8 +60,8 @@ namespace Entities.Player.Scripts {
             fireInput.Value = value.isPressed;
         }
 
-        void OnBlock(InputValue value) {
-            blockInput.Value = value.isPressed;
+        void OnDeflect(InputValue value) {
+            deflectInput.Value = value.isPressed;
         }
     }
 }

@@ -8,14 +8,10 @@ using UnityEngine.Assertions;
 /// Should be used in tandem with the DamageDealer component in order to inflict damage.
 /// </summary>
 public class UnitHealth : MonoBehaviour {
-    /// <summary>
-    /// Variable that holds the HP of the object.
-    /// </summary>
+    [Tooltip("Variable that holds the HP of the object.")]
     public FloatReference hp;
-
-    /// <summary>
-    /// VoidEvent to be triggered when HP reaches 0.
-    /// </summary>
+    
+    [Tooltip("VoidEvent to be triggered when HP reaches 0.")]
     public VoidEvent deathEvent;
 
     void Awake() {

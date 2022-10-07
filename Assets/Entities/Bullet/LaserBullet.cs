@@ -2,17 +2,19 @@ using NLog;
 using UnityEngine;
 using Logger = NLog.Logger;
 
-namespace Weapons.Bullet {
+namespace Entities.Bullet {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class LaserBullet : MonoBehaviour {
-        public int speed = 20;
+        [Header("Configuration")] public int speed = 20;
         public int numOfReflections = 3;
 
-
-        private Rigidbody2D _rb;
-        private float _reflectionForce = 5f;
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private int _reflectionsLeft = 3;
+
+        // Increase this if bullets are getting stuck inside walls / deflection shield
+        private readonly float _reflectionForce = 20f;
+        private Rigidbody2D _rb;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
 
         private void OnDrawGizmos() {
             // TODO: Figure out why this throws errors when LaserBullet is viewed in prefab mode.
