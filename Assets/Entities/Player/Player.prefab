@@ -126,8 +126,8 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 1690909638}
-  deflectionDuration: 1
-  cooldownSeconds: 1
+  deflectionDuration: 0.3
+  cooldownSeconds: 0.8
 --- !u!1 &1814688170
 GameObject:
   m_ObjectHideFlags: 0
