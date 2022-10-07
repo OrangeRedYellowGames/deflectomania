@@ -22,7 +22,7 @@ public class DamageDealer : MonoBehaviour {
     /// </summary>
     /// <param name="other">Collider of the "other" game object</param>
     private void OnCollisionEnter2D(Collision2D other) {
-        var health = other.gameObject.GetComponent<UnitHealth>();
+        var health = other.gameObject.GetComponentInChildren<UnitHealth>();
         if (health) {
             health.TakeDamage(damageAmount);
         }
