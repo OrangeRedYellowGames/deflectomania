@@ -10,7 +10,7 @@ using UnityEngine.Assertions;
 public class UnitHealth : MonoBehaviour {
     [Tooltip("Variable that holds the HP of the object.")]
     public FloatReference hp;
-    
+
     [Tooltip("VoidEvent to be triggered when HP reaches 0.")]
     public VoidEvent deathEvent;
 
