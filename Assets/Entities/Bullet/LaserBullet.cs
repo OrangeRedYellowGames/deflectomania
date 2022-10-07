@@ -1,11 +1,19 @@
 using NLog;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Logger = NLog.Logger;
 
 namespace Entities.Bullet {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class LaserBullet : MonoBehaviour {
-        [Header("Configuration")] public int speed = 20;
+        [Header("Atoms")]
+        [Tooltip("The speed of the bullet.")]
+        public FloatVariableInstancer speed;
+
+        [Tooltip("Event triggered whenever the speed variable changes.")]
+        public FloatEventReference speedChangedEvent;
+
         public int numOfReflections = 3;
 
         private int _reflectionsLeft = 3;
@@ -25,14 +33,32 @@ namespace Entities.Bullet {
         }
 
         private void Awake() {
+            Assert.IsNotNull(speed);
             _rb = GetComponent<Rigidbody2D>();
+
+            speedChangedEvent.Event.Register(ChangeBulletSpeed);
         }
 
-        // Use onEnable to run the code whenever the object is enabled again.
+        /// <summary>
+        /// Use onEnable to run the code whenever the object is enabled again.
+        /// </summary>
         private void OnEnable() {
             // Reset the number of reflections everytime.
             _reflectionsLeft = numOfReflections;
-            _rb.velocity = transform.right * speed;
+
+            // Reset speed OnEnable
+            speed.Value = speed.Base.Value;
+            _rb.velocity = transform.right * speed.Value;
+        }
+
+        /// <summary>
+        /// Callback function that should be called whenever the speed variable changes.
+        ///
+        /// This is needed because if another entity changes this object's speed, it won't have any effect until the bullet reflects off a surface.
+        /// </summary>
+        /// <param name="value"></param>
+        private void ChangeBulletSpeed(float value) {
+            _rb.velocity = transform.right * value;
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
@@ -78,7 +104,7 @@ namespace Entities.Bullet {
             transform.Translate(transformRight * Time.deltaTime * _reflectionForce, Space.World);
 
             // Set velocity on the RB.
-            _rb.velocity = transformRight * speed;
+            _rb.velocity = transformRight * speed.Value;
 
             // Decrement the number of reflections variable
             _reflectionsLeft--;

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6453903157118534475}
   - component: {fileID: 6453903157118534474}
   - component: {fileID: 6453903157118534471}
-  - component: {fileID: 6453903157118534472}
+  - component: {fileID: 129152812534880483}
+  - component: {fileID: -9178910046579021342}
   m_Layer: 6
   m_Name: Deflection Shield
   m_TagString: Untagged
@@ -107,8 +108,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6453903157118534472
-CircleCollider2D:
+--- !u!61 &129152812534880483
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,5 +122,28 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 32, y: 32}
+    newSize: {x: 32, y: 32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 15
+  m_Size: {x: 28, y: 28}
+  m_EdgeRadius: 0
+--- !u!114 &-9178910046579021342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6453903157118534476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 905ca347e4e9474a8a8e882056cd6527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modificationAmount: 1.2

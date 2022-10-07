@@ -316,6 +316,8 @@ GameObject:
   - component: {fileID: 2504410146903112107}
   - component: {fileID: 4793437598107430258}
   - component: {fileID: 6021769260506702732}
+  - component: {fileID: 6592697867844049886}
+  - component: {fileID: 3384238090645941817}
   m_Layer: 9
   m_Name: Laser Bullet
   m_TagString: Bullet
@@ -389,7 +391,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c843127bcff419e47a28758e6729d259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: {fileID: 3384238090645941817}
+  speedChangedEvent:
+    _usage: 3
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 3384238090645941817}
   numOfReflections: 5
 --- !u!114 &6021769260506702732
 MonoBehaviour:
@@ -404,3 +412,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+--- !u!114 &6592697867844049886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504410146903112106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed35a33c47a42ae9f5dc77a9d1f266d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed:
+    _usage: 3
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 3384238090645941817}
+--- !u!114 &3384238090645941817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504410146903112106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347cb615da422499abfc2dd8d5239e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 024b29f961ab6fc439889acc4204c0e6, type: 2}
