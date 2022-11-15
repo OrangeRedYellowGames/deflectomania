@@ -691,6 +691,8 @@ GameObject:
   - component: {fileID: 1483926395}
   - component: {fileID: 108965408}
   - component: {fileID: 1449641517}
+  - component: {fileID: 1663990553}
+  - component: {fileID: 357392991}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1106,6 +1108,40 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 1499210766}
+--- !u!114 &1663990553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347282608371549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb47a3d6929f6241b8febdba49a0f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEvent:
+    _usage: 1
+    _event: {fileID: 11400000, guid: 2913414544ddac740bad6bc39137251d, type: 2}
+    _eventInstancer: {fileID: 357392991}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
+--- !u!114 &357392991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347282608371549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ddf86bc0bd24f30868f3a6a765342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 2913414544ddac740bad6bc39137251d, type: 2}
 --- !u!1 &5609050212277933654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6291747005592409731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.6811401, y: -2.07837, z: -0.09218032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1233,7 +1269,14 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 4742249754212747010}
-  deathEvent: {fileID: 0}
+  deathEvent:
+    _usage: 1
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 357392991}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
 --- !u!114 &4742249754212747010
 MonoBehaviour:
   m_ObjectHideFlags: 0

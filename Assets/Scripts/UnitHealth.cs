@@ -16,7 +16,7 @@ public class UnitHealth : MonoBehaviour {
     /// <summary>
     /// VoidEvent to be triggered when HP reaches 0.
     /// </summary>
-    public VoidEvent deathEvent;
+    public VoidBaseEventReference deathEvent;
 
     void Awake() {
         Assert.IsNotNull(hp, "HP Variable can't be missing in UnitHealth");
@@ -30,8 +30,8 @@ public class UnitHealth : MonoBehaviour {
     /// <param name="damage">Amount of damage to take</param>
     public void TakeDamage(float damage) {
         hp.Value -= damage;
-        if (hp.Value <= 0 && deathEvent) {
-            deathEvent.Raise();
+        if (hp.Value <= 0 && deathEvent.Event) {
+            deathEvent.Event.Raise();
         }
     }
 }
