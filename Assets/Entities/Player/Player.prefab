@@ -1554,10 +1554,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1690909635}
     m_Modifications:
-    - target: {fileID: -9178910046579021342, guid: 0df88464b378a4a49ba067e56f45aa6a, type: 3}
-      propertyPath: modificationAmount
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6453903157118534475, guid: 0df88464b378a4a49ba067e56f45aa6a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1606,8 +1602,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deflection Shield
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6453903157118534472, guid: 0df88464b378a4a49ba067e56f45aa6a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0df88464b378a4a49ba067e56f45aa6a, type: 3}
 --- !u!1 &1215082755 stripped
 GameObject:

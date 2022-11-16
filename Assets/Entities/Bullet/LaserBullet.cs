@@ -14,9 +14,7 @@ namespace Entities.Bullet {
         [Tooltip("Event triggered whenever the speed variable changes.")]
         public FloatEventReference speedChangedEvent;
 
-        public int numOfReflections = 3;
-
-        private int _reflectionsLeft = 3;
+        public IntVariableInstancer numOfReflections;
 
         // Increase this if bullets are getting stuck inside walls / deflection shield
         private readonly float _reflectionForce = 20f;
@@ -35,8 +33,6 @@ namespace Entities.Bullet {
         private void Awake() {
             Assert.IsNotNull(speed);
             _rb = GetComponent<Rigidbody2D>();
-
-            speedChangedEvent.Event.Register(ChangeBulletSpeed);
         }
 
         /// <summary>
@@ -44,11 +40,19 @@ namespace Entities.Bullet {
         /// </summary>
         private void OnEnable() {
             // Reset the number of reflections everytime.
-            _reflectionsLeft = numOfReflections;
+            numOfReflections.Value = numOfReflections.Base.InitialValue;
 
             // Reset speed OnEnable
             speed.Value = speed.Base.Value;
             _rb.velocity = transform.right * speed.Value;
+
+            // Registering of event needs to in OnEnable instead of Awake() or Start() because this is a pooled object.
+            // Event won't be triggered correctly otherwise.
+            speedChangedEvent.Event.Register(ChangeBulletSpeed);
+        }
+
+        private void OnDisable() {
+            speedChangedEvent.Event.Unregister(ChangeBulletSpeed);
         }
 
         /// <summary>
@@ -57,7 +61,7 @@ namespace Entities.Bullet {
         /// This is needed because if another entity changes this object's speed, it won't have any effect until the bullet reflects off a surface.
         /// </summary>
         /// <param name="value"></param>
-        private void ChangeBulletSpeed(float value) {
+        public void ChangeBulletSpeed(float value) {
             _rb.velocity = transform.right * value;
         }
 
@@ -76,7 +80,7 @@ namespace Entities.Bullet {
 
         private void ReflectBullet(Collision2D collision) {
             // Destroy the bullet if the reflection count reached 0
-            if (_reflectionsLeft == 0 || collision.gameObject.CompareTag("Player")) {
+            if (numOfReflections.Value == 0 || collision.gameObject.CompareTag("Player")) {
                 // Set gameObject value to inActive to be added back to the pool.
                 gameObject.SetActive(false);
             }
@@ -107,7 +111,7 @@ namespace Entities.Bullet {
             _rb.velocity = transformRight * speed.Value;
 
             // Decrement the number of reflections variable
-            _reflectionsLeft--;
+            numOfReflections.Value--;
         }
     }
 }

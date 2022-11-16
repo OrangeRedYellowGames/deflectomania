@@ -314,10 +314,12 @@ GameObject:
   - component: {fileID: 2504410146903112110}
   - component: {fileID: 2504410146903112108}
   - component: {fileID: 2504410146903112107}
+  - component: {fileID: 3384238090645941817}
+  - component: {fileID: 29035665715443411}
   - component: {fileID: 4793437598107430258}
   - component: {fileID: 6021769260506702732}
   - component: {fileID: 6592697867844049886}
-  - component: {fileID: 3384238090645941817}
+  - component: {fileID: 6520022974829175173}
   m_Layer: 9
   m_Name: Laser Bullet
   m_TagString: Bullet
@@ -379,6 +381,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!114 &3384238090645941817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504410146903112106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347cb615da422499abfc2dd8d5239e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 024b29f961ab6fc439889acc4204c0e6, type: 2}
+--- !u!114 &29035665715443411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504410146903112106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adacd19b642ba4bd9866612e37971b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 9beca8f1b5aea514488109897e8f2257, type: 2}
 --- !u!114 &4793437598107430258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +428,7 @@ MonoBehaviour:
     _eventInstancer: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 3384238090645941817}
-  numOfReflections: 5
+  numOfReflections: {fileID: 29035665715443411}
 --- !u!114 &6021769260506702732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +460,7 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 3384238090645941817}
---- !u!114 &3384238090645941817
+--- !u!114 &6520022974829175173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,8 +469,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2504410146903112106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347cb615da422499abfc2dd8d5239e9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bb635f4d1e3f9a4cbc11df09d61f8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inMemoryCopy: {fileID: 0}
-  _base: {fileID: 11400000, guid: 024b29f961ab6fc439889acc4204c0e6, type: 2}
+  atomVariable: {fileID: 0}
+  atomVariableInstancer: {fileID: 29035665715443411}
