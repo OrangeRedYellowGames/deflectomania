@@ -21,6 +21,8 @@ namespace Entities.Player.Scripts {
         [Header("Controls")] public BoolReference isUsingMouse;
         public string targetControlName = "KeyboardAndMouse";
 
+        [Header("Player")] public IntReference playerId;
+
 
         private void Awake() {
             Assert.IsNotNull(horizontalInput);
@@ -29,11 +31,18 @@ namespace Entities.Player.Scripts {
             Assert.IsNotNull(fireInput);
             Assert.IsNotNull(deflectInput);
 
+
             Assert.IsNotNull(isUsingMouse, "IsUsingMouse cannot be null");
             Assert.IsTrue(targetControlName.Length > 0,
                 $"Control Name cannot be empty. Has to be set a string from one of the control schemes of PlayerInput");
 
+            Assert.IsNotNull(playerId);
+
             _playerInput = GetComponent<PlayerInput>();
+        }
+
+        private void Start() {
+            playerId.Value = _playerInput.playerIndex;
         }
 
         private void Update() {
