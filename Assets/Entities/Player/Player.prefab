@@ -329,8 +329,9 @@ GameObject:
   - component: {fileID: 1082751332}
   - component: {fileID: 1082751333}
   - component: {fileID: 1499210766}
+  - component: {fileID: 599376179770037601}
   m_Layer: 6
-  m_Name: Movement Variables
+  m_Name: Input Variables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,6 +422,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inMemoryCopy: {fileID: 0}
   _base: {fileID: 11400000, guid: 5dfebbdccc87e8d408a5933a7982e800, type: 2}
+--- !u!114 &599376179770037601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395200322740746899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adacd19b642ba4bd9866612e37971b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 16e9ba3b44775cb459f2897d4db73439, type: 2}
 --- !u!1 &4302338042484883001
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +707,6 @@ GameObject:
   - component: {fileID: 108965408}
   - component: {fileID: 1449641517}
   - component: {fileID: 1663990553}
-  - component: {fileID: 357392991}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -971,6 +985,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 48d69ab4-f455-4196-9916-452a64a6a22d
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e3cc7a3-200d-40f2-82bb-8d367f5d1c7e
+    m_ActionName: Player/Block[/Mouse/rightButton,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyboardAndMouse
   m_DefaultActionMap: Player
@@ -1025,6 +1043,12 @@ MonoBehaviour:
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 1499210766}
   targetControlName: KeyboardAndMouse
+  playerId:
+    _usage: 3
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 599376179770037601}
 --- !u!114 &1483926395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,28 +1144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb47a3d6929f6241b8febdba49a0f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathEvent:
-    _usage: 1
-    _event: {fileID: 11400000, guid: 2913414544ddac740bad6bc39137251d, type: 2}
-    _eventInstancer: {fileID: 357392991}
-    _collection: {fileID: 0}
-    _list: {fileID: 0}
-    _collectionInstancer: {fileID: 0}
-    _listInstancer: {fileID: 0}
---- !u!114 &357392991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5347282608371549164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ddf86bc0bd24f30868f3a6a765342e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inMemoryCopy: {fileID: 0}
-  _base: {fileID: 11400000, guid: 2913414544ddac740bad6bc39137251d, type: 2}
+  deathEvent: {fileID: 11400000, guid: 2913414544ddac740bad6bc39137251d, type: 2}
+  playerId:
+    _usage: 3
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 599376179770037601}
 --- !u!1 &5609050212277933654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,8 +1236,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7396201594850731496}
-  - component: {fileID: 3515762440428455818}
   - component: {fileID: 4742249754212747010}
+  - component: {fileID: 3515762440428455818}
   m_Layer: 6
   m_Name: HP
   m_TagString: Untagged
@@ -1251,6 +1260,20 @@ Transform:
   m_Father: {fileID: 5347282608371549160}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4742249754212747010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291747005592409731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347cb615da422499abfc2dd8d5239e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inMemoryCopy: {fileID: 0}
+  _base: {fileID: 11400000, guid: 60e6a02105c176b4e87343fd9dc27824, type: 2}
 --- !u!114 &3515762440428455818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,28 +1292,13 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 4742249754212747010}
-  deathEvent:
-    _usage: 1
-    _event: {fileID: 0}
-    _eventInstancer: {fileID: 357392991}
-    _collection: {fileID: 0}
-    _list: {fileID: 0}
-    _collectionInstancer: {fileID: 0}
-    _listInstancer: {fileID: 0}
---- !u!114 &4742249754212747010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6291747005592409731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347cb615da422499abfc2dd8d5239e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inMemoryCopy: {fileID: 0}
-  _base: {fileID: 11400000, guid: 60e6a02105c176b4e87343fd9dc27824, type: 2}
+  deathEvent: {fileID: 11400000, guid: 2913414544ddac740bad6bc39137251d, type: 2}
+  playerId:
+    _usage: 3
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 599376179770037601}
 --- !u!1 &6900317263474956440
 GameObject:
   m_ObjectHideFlags: 0
