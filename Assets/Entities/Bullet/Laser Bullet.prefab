@@ -403,4 +403,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04cb88dbac3810469abd68cf32df5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 100
