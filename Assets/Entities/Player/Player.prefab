@@ -1150,8 +1150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb12840c1d4329903aac637ab455b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousStates: []
-  currentStateName: 
   horizontalInput:
     _usage: 3
     _value: 0
@@ -1176,6 +1174,7 @@ MonoBehaviour:
   gravity: {fileID: 11400000, guid: 2ca0418523eff5d479e7573df8954f65, type: 2}
   maxAirSpeed: {fileID: 11400000, guid: 6ac336fbe11757c44ae10c7359342fb7, type: 2}
   airFriction: {fileID: 11400000, guid: 5076010a4eb1ed543b3a8a9ba40c4cc1, type: 2}
+  forgivenessFrames: 7
   minJumpHeight: {fileID: 11400000, guid: 800677f210d2d1640bfdeb78b22a632b, type: 2}
   maxJumpHeight: 4.5
 --- !u!114 &1449641517

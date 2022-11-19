@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /**
  * Hierarchichal finite state machine for Unity
@@ -87,18 +89,19 @@ namespace FSM
 		public TStateId ActiveStateName => ActiveState.name;
 
 		private bool IsRootFsm => fsm == null;
+        
+        public Action<TStateId> onStateChange;
 
-		/// <summary>
+        /// <summary>
 		/// Initialises a new instance of the StateMachine class
 		/// </summary>
 		/// <param name="needsExitTime">(Only for hierarchical states):
 		/// 	Determins whether the state machine as a state of a parent state machine is allowed to instantly
 		/// 	exit on a transition (false), or if it should wait until the active state is ready for a
 		/// 	state change (true).</param>
-		public StateMachine(bool needsExitTime = true) : base(needsExitTime)
-		{
-
-		}
+		public StateMachine(bool needsExitTime = true, bool isGhostState = false)
+			: base(needsExitTime: needsExitTime, isGhostState: isGhostState) {
+        }
 
 		/// <summary>
 		/// Throws an exception if the state machine is not initialised yet.
@@ -119,8 +122,13 @@ namespace FSM
 		{
 			if (pendingState.isPending)
 			{
-				ChangeState(pendingState.state);
+				TStateId state = pendingState.state;
+				// When the pending state is a ghost state, ChangeState() will have
+				// to try all outgoing transitions, which may overwrite the pendingState.
+				// That's why it is first cleared, and not afterwards, as that would overwrite
+				// a new, valid pending state.
 				pendingState = (default, false);
+				ChangeState(state);
 			}
 
 			fsm?.StateCanExit();
@@ -143,7 +151,9 @@ namespace FSM
 		/// <param name="name">The name / identifier of the active state</param>
 		private void ChangeState(TStateId name)
 		{
-			activeState?.OnExit();
+            onStateChange?.Invoke(name);
+            
+            activeState?.OnExit();
 
 			StateBundle bundle;
 
@@ -169,6 +179,10 @@ namespace FSM
 				{
 					transitions[i].OnEnter();
 				}
+			}
+
+			if (activeState.isGhostState) {
+				TryAllDirectTransitions();
 			}
 		}
 
@@ -249,6 +263,7 @@ namespace FSM
 					)
 				);
 			}
+
 			ChangeState(startState.state);
 
 			for (int i = 0; i < transitionsFromAny.Count; i ++)
@@ -266,15 +281,11 @@ namespace FSM
 		}
 
 		/// <summary>
-		/// Runs one logic step. It does at most one transition itself and
-		/// calls the active state's logic function (after the state transition, if
-		/// one occurred).
+		/// Tries the "global" transitions that can transition from any state
 		/// </summary>
-		public override void OnLogic()
+		/// <returns>Returns true if a transition occurred.</returns>
+		private bool TryAllGlobalTransitions()
 		{
-			EnsureIsInitializedFor("Running OnLogic");
-
-			// Try the "global" transitions that can transition from any state
 			for (int i = 0; i < transitionsFromAny.Count; i++)
 			{
 				TransitionBase<TStateId> transition = transitionsFromAny[i];
@@ -284,16 +295,42 @@ namespace FSM
 					continue;
 
 				if (TryTransition(transition))
-					break;
+					return true;
 			}
 
-			// Try the "normal" transitions that transition from one specific state to another
+			return false;
+		}
+
+		/// <summary>
+		/// Tries the "normal" transitions that transition from one specific state to another.
+		/// </summary>
+		/// <returns>Returns true if a transition occurred.</returns>
+		private bool TryAllDirectTransitions()
+		{
 			for (int i = 0; i < activeTransitions.Count; i++)
 			{
 				TransitionBase<TStateId> transition = activeTransitions[i];
 
 				if (TryTransition(transition))
-					break;
+					return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Runs one logic step. It does at most one transition itself and
+		/// calls the active state's logic function (after the state transition, if
+		/// one occurred).
+		/// </summary>
+		public override void OnLogic()
+		{
+			EnsureIsInitializedFor("Running OnLogic");
+
+			bool hasChangedState = TryAllGlobalTransitions();
+
+			if (!hasChangedState) {
+				TryAllDirectTransitions();
 			}
 
 			activeState.OnLogic();
@@ -584,21 +621,24 @@ namespace FSM
 
 	public class StateMachine<TStateId, TEvent> : StateMachine<TStateId, TStateId, TEvent>
 	{
-		public StateMachine(bool needsExitTime = true) : base(needsExitTime)
+		public StateMachine(bool needsExitTime = true, bool isGhostState = false)
+			: base(needsExitTime: needsExitTime, isGhostState: isGhostState)
 		{
 		}
 	}
 
 	public class StateMachine<TStateId> : StateMachine<TStateId, TStateId, string>
 	{
-		public StateMachine(bool needsExitTime = true) : base(needsExitTime)
+		public StateMachine(bool needsExitTime = true, bool isGhostState = false)
+			: base(needsExitTime: needsExitTime, isGhostState: isGhostState)
 		{
 		}
 	}
 
 	public class StateMachine : StateMachine<string, string, string>
 	{
-		public StateMachine(bool needsExitTime = true) : base(needsExitTime)
+		public StateMachine(bool needsExitTime = true, bool isGhostState = false)
+			: base(needsExitTime: needsExitTime, isGhostState: isGhostState)
 		{
 		}
 	}
