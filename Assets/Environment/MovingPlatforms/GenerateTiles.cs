@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
@@ -20,7 +21,7 @@ namespace Environment.MovingPlatforms {
         private void Start() {
             ChangePlatformSize();
         }
-        
+
         /// <summary>
         /// This Function is called to Change platform size to the given width and length provided in the class.
         /// </summary>
@@ -33,21 +34,21 @@ namespace Environment.MovingPlatforms {
                 }
             }
         }
-// Reference to suppress warning for "SendMessage cannot be called during Awake, CheckConsistency, or OnValidate"
-// https://forum.unity.com/threads/sendmessage-cannot-be-called-during-awake-checkconsistency-or-onvalidate-can-we-suppress.537265/#post-5560519
+        // Reference to suppress warning for "SendMessage cannot be called during Awake, CheckConsistency, or OnValidate"
+        // https://forum.unity.com/threads/sendmessage-cannot-be-called-during-awake-checkconsistency-or-onvalidate-can-we-suppress.537265/#post-5560519
 #if UNITY_EDITOR
         /// <summary>
         /// Editor-only function that Unity calls when the script is loaded or a value changes in the Inspector. 
         /// </summary>
         private void OnValidate() {
-            UnityEditor.EditorApplication.delayCall += _OnValidate;
+            EditorApplication.delayCall += _OnValidate;
         }
 #endif
         /// <summary>
         /// This function is called by the OnValidate to apply actions to respond to changes in the editor.
         /// </summary>
         private void _OnValidate() {
-            if(width < 0 || length < 0 )
+            if (width < 0 || length < 0)
                 return;
             ChangePlatformSize();
         }

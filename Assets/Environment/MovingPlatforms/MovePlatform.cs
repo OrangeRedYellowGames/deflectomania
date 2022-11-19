@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -6,8 +5,7 @@ using UnityEngine.Assertions;
 // References: https://www.monkeykidgc.com/2021/03/unity-moving-platform.html
 // Moving Platform needs to be placed inside the grid!
 namespace Environment.MovingPlatforms {
-    public class MovePlatform : MonoBehaviour
-    {
+    public class MovePlatform : MonoBehaviour {
         public GameObject platformPathEnd;
         public int speed = 5;
         private Vector2 _endPosition;
@@ -24,10 +22,9 @@ namespace Environment.MovingPlatforms {
         /// looping between the start and end point. The start of the loop is the current position of the
         /// object and the end is the platformPathEnd object position.
         /// </summary>
-        private void Start()
-        {
+        private void Start() {
             _endPosition = platformPathEnd.transform.position;
-            Vector2[] paths = {_rBody.transform.position, _endPosition};
+            Vector2[] paths = { _rBody.transform.position, _endPosition };
             _rBody.DOPath(paths, speed).SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1, LoopType.Yoyo);
         }
 
@@ -37,21 +34,18 @@ namespace Environment.MovingPlatforms {
         /// and sets its RigidbodyType to Kinematic, to allow it to move with the platfrom.
         /// </summary>
         /// <param name="col"></param>
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            if(col.gameObject.CompareTag("Player"))
-            {
+        private void OnCollisionEnter2D(Collision2D col) {
+            if (col.gameObject.CompareTag("Player")) {
                 Vector3 contactPoint = col.contacts[0].point;
                 Vector3 center = col.collider.bounds.max;
-                
+
                 // Check if player position is above the platform.
                 if (contactPoint.y < center.y) {
                     // Parent and set RigidbodyType to Kinematic to move player with platform.
-                    col.gameObject.transform.SetParent(gameObject.transform,true);
+                    col.gameObject.transform.SetParent(gameObject.transform, true);
                     col.rigidbody.bodyType = RigidbodyType2D.Kinematic;
                 }
             }
-            
         }
 
         /// <summary>
@@ -59,8 +53,7 @@ namespace Environment.MovingPlatforms {
         /// with a player. It returns the player type back to static and un-parent the player from the platform.
         /// </summary>
         /// <param name="col"></param>
-        private void OnCollisionExit2D(Collision2D col)
-        {
+        private void OnCollisionExit2D(Collision2D col) {
             if (col.gameObject.CompareTag("Player")) {
                 col.rigidbody.bodyType = RigidbodyType2D.Static;
                 col.gameObject.transform.parent = null;
