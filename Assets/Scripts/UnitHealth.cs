@@ -13,7 +13,7 @@ public class UnitHealth : MonoBehaviour {
 
     [Tooltip("IntEvent to be triggered when HP reaches 0.")]
     public IntEvent deathEvent;
-    
+
     /// <summary>
     /// Optional. Player ID that will be raised with the death event.
     /// </summary>
