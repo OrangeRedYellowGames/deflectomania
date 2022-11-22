@@ -5,20 +5,15 @@
 #
 # Latest version at https://gist.github.com/webbertakken/ff250a0d5e59a8aae961c2e509c07fbc
 #
-
 # Ensure that text files that any contributor introduces to the repository have their line endings normalized
 * text=auto
-
 # Increase probability of success for merging files with specific extensions
 *.cs diff=csharp
-
 # Macro attribute: Files with Unity's yaml format
 # linguist-generated means the file is ignored for the repository's language statistics and diffs are hidden by default.
 [attr]unity-yaml-file -text -merge=unityyamlmerge linguist-generated
-
 # Macro attribute: Files intended for LFS
 [attr]lfs-file filter=lfs diff=lfs merge=lfs -text
-
 # Unity files
 *.asmdef unity-yaml-file -linguist-generated
 *.anim unity-yaml-file
@@ -44,26 +39,21 @@
 *.spriteatlas unity-yaml-file
 *.terrainlayer unity-yaml-file
 *.unity unity-yaml-file
-
 # Unity binary files
 *.bundle lfs-file
 *.cubemap lfs-file
 *.unitypackage lfs-file
-
 # Unity specific assets
 *-[Nn]av[Mm]esh.asset lfs-file
 *-[Tt]errain.asset lfs-file
 *OcclusionCullingData.asset
-
 # Creative software
 *.rns lfs-file
 *.reason lfs-file
 *.lxo lfs-file
 *.exr lfs-file
-
 # Documents
 *.pdf lfs-file
-
 # Image formats
 *.afdesign lfs-file
 *.afphoto lfs-file
@@ -80,7 +70,6 @@
 *.tga lfs-file
 *.tiff lfs-file
 *.webp lfs-file
-
 # Audio formats
 *.aif lfs-file
 *.aiff lfs-file
@@ -91,7 +80,6 @@
 *.s3m lfs-file
 *.wav lfs-file
 *.xm lfs-file
-
 # Video formats
 *.mov lfs-file
 *.avi lfs-file
@@ -99,7 +87,6 @@
 *.mpg lfs-file
 *.mpeg lfs-file
 *.mp4 lfs-file
-
 # 3D formats
 *.3ds lfs-file
 *.3dm lfs-file
@@ -117,25 +104,21 @@
 *.ma lfs-file
 *.max lfs-file
 *.mb lfs-file
-
 # Font formats
 *.ttf lfs-file
 *.otf lfs-file
-
 # Bundles and binaries
 *.dll lfs-file
 *.exe lfs-file
 *.mdb lfs-file
 *.pdb lfs-file
 *.so lfs-file
-
 # Packaging
 *.zip lfs-file
 *.7z lfs-file
 *.gz lfs-file
 *.rar lfs-file
 *.tar lfs-file
-
 # Collapse Unity-generated files on GitHub
 *.asset linguist-generated
 *.mat linguist-generated
