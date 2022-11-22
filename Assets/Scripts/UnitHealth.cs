@@ -8,15 +8,16 @@ using UnityEngine.Assertions;
 /// Should be used in tandem with the DamageDealer component in order to inflict damage.
 /// </summary>
 public class UnitHealth : MonoBehaviour {
-    /// <summary>
-    /// Variable that holds the HP of the object.
-    /// </summary>
+    [Tooltip("Variable that holds the HP of the object.")]
     public FloatReference hp;
 
+    [Tooltip("IntEvent to be triggered when HP reaches 0.")]
+    public IntEvent deathEvent;
+
     /// <summary>
-    /// VoidEvent to be triggered when HP reaches 0.
+    /// Optional. Player ID that will be raised with the death event.
     /// </summary>
-    public VoidEvent deathEvent;
+    public IntReference playerId;
 
     void Awake() {
         Assert.IsNotNull(hp, "HP Variable can't be missing in UnitHealth");
@@ -31,7 +32,7 @@ public class UnitHealth : MonoBehaviour {
     public void TakeDamage(float damage) {
         hp.Value -= damage;
         if (hp.Value <= 0 && deathEvent) {
-            deathEvent.Raise();
+            deathEvent.Raise(playerId);
         }
     }
 }

@@ -15,11 +15,13 @@ namespace Entities.Player.Scripts {
         public BoolReference verticalInput;
         public Vector2Reference lookDirection;
         public BoolReference fireInput;
-        public BoolReference blockInput;
+        public BoolReference deflectInput;
 
         // Target control name used to infer if player is using mouse or not
         [Header("Controls")] public BoolReference isUsingMouse;
         public string targetControlName = "KeyboardAndMouse";
+
+        [Header("Player")] public IntReference playerId;
 
 
         private void Awake() {
@@ -27,12 +29,20 @@ namespace Entities.Player.Scripts {
             Assert.IsNotNull(verticalInput);
             Assert.IsNotNull(lookDirection);
             Assert.IsNotNull(fireInput);
+            Assert.IsNotNull(deflectInput);
+
 
             Assert.IsNotNull(isUsingMouse, "IsUsingMouse cannot be null");
             Assert.IsTrue(targetControlName.Length > 0,
                 $"Control Name cannot be empty. Has to be set a string from one of the control schemes of PlayerInput");
 
+            Assert.IsNotNull(playerId);
+
             _playerInput = GetComponent<PlayerInput>();
+        }
+
+        private void Start() {
+            playerId.Value = _playerInput.playerIndex;
         }
 
         private void Update() {
@@ -59,8 +69,8 @@ namespace Entities.Player.Scripts {
             fireInput.Value = value.isPressed;
         }
 
-        void OnBlock(InputValue value) {
-            blockInput.Value = value.isPressed;
+        void OnDeflect(InputValue value) {
+            deflectInput.Value = value.isPressed;
         }
     }
 }

@@ -1,18 +1,26 @@
 using NLog;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Logger = NLog.Logger;
 
-namespace Weapons.Bullet {
+namespace Entities.Bullet {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class LaserBullet : MonoBehaviour {
-        public int speed = 20;
-        public int numOfReflections = 3;
+        [Header("Atoms")]
+        [Tooltip("The speed of the bullet.")]
+        public FloatVariableInstancer speed;
 
+        [Tooltip("Event triggered whenever the speed variable changes.")]
+        public FloatEventReference speedChangedEvent;
 
+        public IntVariableInstancer numOfReflections;
+
+        // Increase this if bullets are getting stuck inside walls / deflection shield
+        private readonly float _reflectionForce = 20f;
         private Rigidbody2D _rb;
-        private float _reflectionForce = 5f;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private int _reflectionsLeft = 3;
+
 
         private void OnDrawGizmos() {
             // TODO: Figure out why this throws errors when LaserBullet is viewed in prefab mode.
@@ -23,14 +31,38 @@ namespace Weapons.Bullet {
         }
 
         private void Awake() {
+            Assert.IsNotNull(speed);
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        // Use onEnable to run the code whenever the object is enabled again.
+        /// <summary>
+        /// Use onEnable to run the code whenever the object is enabled again.
+        /// </summary>
         private void OnEnable() {
             // Reset the number of reflections everytime.
-            _reflectionsLeft = numOfReflections;
-            _rb.velocity = transform.right * speed;
+            numOfReflections.Value = numOfReflections.Base.InitialValue;
+
+            // Reset speed OnEnable
+            speed.Value = speed.Base.Value;
+            _rb.velocity = transform.right * speed.Value;
+
+            // Registering of event needs to in OnEnable instead of Awake() or Start() because this is a pooled object.
+            // Event won't be triggered correctly otherwise.
+            speedChangedEvent.Event.Register(ChangeBulletSpeed);
+        }
+
+        private void OnDisable() {
+            speedChangedEvent.Event.Unregister(ChangeBulletSpeed);
+        }
+
+        /// <summary>
+        /// Callback function that should be called whenever the speed variable changes.
+        ///
+        /// This is needed because if another entity changes this object's speed, it won't have any effect until the bullet reflects off a surface.
+        /// </summary>
+        /// <param name="value"></param>
+        public void ChangeBulletSpeed(float value) {
+            _rb.velocity = transform.right * value;
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
@@ -48,7 +80,7 @@ namespace Weapons.Bullet {
 
         private void ReflectBullet(Collision2D collision) {
             // Destroy the bullet if the reflection count reached 0
-            if (_reflectionsLeft == 0 || collision.gameObject.CompareTag("Player")) {
+            if (numOfReflections.Value == 0 || collision.gameObject.CompareTag("Player")) {
                 // Set gameObject value to inActive to be added back to the pool.
                 gameObject.SetActive(false);
             }
@@ -76,10 +108,10 @@ namespace Weapons.Bullet {
             transform.Translate(transformRight * Time.deltaTime * _reflectionForce, Space.World);
 
             // Set velocity on the RB.
-            _rb.velocity = transformRight * speed;
+            _rb.velocity = transformRight * speed.Value;
 
             // Decrement the number of reflections variable
-            _reflectionsLeft--;
+            numOfReflections.Value--;
         }
     }
 }

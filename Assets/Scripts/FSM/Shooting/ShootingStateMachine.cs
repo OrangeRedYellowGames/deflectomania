@@ -1,39 +1,74 @@
-using System.Collections.Generic;
-using FSM.Abstract;
-using FSM.Shooting.States;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using Utils;
 
 namespace FSM.Shooting {
-    public class ShootingStateMachine : AbstractFiniteStateMachine {
-        [SerializeField] public BoolReference fireInput;
+    internal enum ShootingStates {
+        Idle,
+        Cooldown,
+        Shoot
+    }
+
+    public class ShootingStateMachine : MonoBehaviour {
+        [Header("Atoms")] [SerializeField] public BoolReference fireInput;
         [SerializeField] public VoidBaseEventReference shootingEvent;
 
-        public float remainingCooldownSeconds;
+
+        [Header("Cooldown")] [ReadOnly] public float remainingCooldownSeconds;
         public float cooldownSeconds;
 
-        // Shooting states
-        public ShootingState ShootingState;
-        public CooldownState CooldownState;
+        private StateMachine<ShootingStates> _fsm;
 
-        public void Awake() {
-            ShootingState = new ShootingState();
-            CooldownState = new CooldownState();
+        void Start() {
+            _fsm = new StateMachine<ShootingStates>();
 
-            // Loop over each state and set the FSM, needed so that states are able to do transitions
-            var stateList = new List<AbstractShootingState> {
-                ShootingState, CooldownState
-            };
+            // Idle State
+            _fsm.AddState(ShootingStates.Idle);
 
-            // Set the FSM and Motor variables for each movement state
-            foreach (var state in stateList) {
-                state.SetFSM(this);
-            }
+            // Cooldown State
+            _fsm.AddState(ShootingStates.Cooldown, new State<ShootingStates>(
+                (_) => remainingCooldownSeconds = cooldownSeconds
+            ).AddAction("OnFixedUpdate", () => remainingCooldownSeconds -= Time.deltaTime));
 
-            // Set starting state to idle
-            CurrentState = ShootingState;
+            // Shooting State
+            _fsm.AddState(ShootingStates.Shoot,
+                onLogic: (state) => shootingEvent.Event.Raise()
+            );
 
-            CurrentState.Enter();
+            // Transitions
+            // Idle -> Shoot
+            _fsm.AddTransition(
+                ShootingStates.Idle,
+                ShootingStates.Shoot,
+                (_) => fireInput.Value
+            );
+
+            // Shot -> Cooldown
+            _fsm.AddTransition(
+                ShootingStates.Shoot,
+                ShootingStates.Cooldown
+            );
+
+            // Cooldown -> Idle
+            _fsm.AddTransition(
+                ShootingStates.Cooldown
+                , ShootingStates.Idle,
+                (_) => remainingCooldownSeconds <= 0);
+
+
+            // This configures the entry point of the state machine
+            _fsm.SetStartState(ShootingStates.Idle);
+
+            // Initialises the state machine and must be called before OnLogic() is called
+            _fsm.Init();
+        }
+
+        void Update() {
+            _fsm.OnLogic();
+        }
+
+        void FixedUpdate() {
+            _fsm.OnAction("OnFixedUpdate");
         }
     }
 }

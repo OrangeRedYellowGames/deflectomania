@@ -62,6 +62,11 @@ This repo makes heavy usage of the CI / CD workflows provide by [GameCI](https:/
 
 All the available workflows can be found in the `.github/workflows` directory.
 
+### Unity HFSM
+FSM in this project are implemented with the help of [UnityHFSM](https://github.com/Inspiaaa/UnityHFSM)
+
+**Documentation:** https://github.com/Inspiaaa/UnityHFSM/wiki
+
 ### Unity Atoms
 
 This project makes heavy use of [Unity Atoms](https://unity-atoms.github.io/unity-atoms/), an event based system that
