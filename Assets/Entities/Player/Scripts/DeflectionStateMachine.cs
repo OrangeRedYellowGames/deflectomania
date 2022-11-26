@@ -22,7 +22,9 @@ namespace Entities.Player.Scripts {
         [Header("Configuration")] public float deflectionDuration = 1f;
         public float cooldownSeconds;
 
-        // FSM from Unity HFSM
+        // FSM from Unity HFSM. Replace with VerboseStateMachine if you want to debug the states.
+        [Header("Internal State Machine")]
+        [SerializeField]
         private StateMachine<DeflectionStates> _fsm;
 
         private void Awake() {
