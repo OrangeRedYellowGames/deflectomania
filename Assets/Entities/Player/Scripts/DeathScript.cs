@@ -3,6 +3,7 @@ using NLog;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using Logger = NLog.Logger;
 
 namespace Entities.Player.Scripts {
@@ -48,7 +49,7 @@ namespace Entities.Player.Scripts {
         /// </summary>
         private void Die(int deadPlayerId) {
             if (playerId.Value == deadPlayerId) {
-                Destroy(_player);
+                _player.SetActive(false);
             }
         }
     }
