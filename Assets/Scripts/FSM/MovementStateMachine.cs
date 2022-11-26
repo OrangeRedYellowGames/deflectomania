@@ -49,6 +49,8 @@ namespace FSM {
 
         public float maxJumpHeight = 4.5f;
 
+        [Header("Animation Controller")]
+        public Animator animator;
         // Replace these with VerboseStateMachine if you want to debug the states
         [Header("Internal State Machines")]
         [SerializeField]
@@ -90,7 +92,10 @@ namespace FSM {
 
             var runningState = new State<GroundStates>(onEnter: (_) => {
                 // TODO: Add running animation here
+                animator.SetBool("Walking", true);
                 newVelocity.Value = new Vector2(newVelocity.Value.x, -0.01f);
+            }, onExit: (_) => {
+                animator.SetBool("Walking", false);
             }).AddAction("OnFixedUpdate", () => {
                 var factor = horizontalInput.Value == 0
                     ? frictionFactor.Value
@@ -131,6 +136,7 @@ namespace FSM {
             // Jumping State
             var jumpState = new State<MovementStates>(onEnter: (_) => {
                 // TODO: Add jumping animation here
+                animator.SetTrigger("Jump");
                 newVelocity.Value = new Vector2(newVelocity.Value.x,
                     Mathf.Sqrt(2f * minJumpHeight.Value * -gravity.Value));
             }).AddAction("OnFixedUpdate", CalculateAirSpeed);
@@ -143,8 +149,11 @@ namespace FSM {
             // Falling State
             var fallingState = new State<MovementStates>(onEnter: (_) => {
                 // TODO: Add falling animation here
+                animator.SetBool("grounded", false);
                 // To handle cases where the player hits a platform above him
                 newVelocity.Value = new Vector2(newVelocity.Value.x, 0);
+            }, onExit: (_) => {
+                animator.SetBool("grounded", true);
             }).AddAction("OnFixedUpdate", CalculateAirSpeed);
 
             _movementHfsm.AddState(MovementStates.Falling, fallingState);
