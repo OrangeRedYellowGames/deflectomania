@@ -24,7 +24,7 @@ public class WinSystem : MonoBehaviour {
     /// </summary>
     private void Start() {
         _recentlyDeceasedPlayer = false;
-        InvokeRepeating(nameof(CheckWinCondition), 0, 0.5f);
+        // InvokeRepeating(nameof(CheckWinCondition), 0, 0.5f);
     }
 
     /// <summary>
@@ -63,5 +63,6 @@ public class WinSystem : MonoBehaviour {
     /// <param name="playerIndex"></param>
     private void OnPlayerDeath(int playerIndex) {
         _recentlyDeceasedPlayer = true;
+        Invoke(nameof(CheckWinCondition), 0.5f);
     }
 }
