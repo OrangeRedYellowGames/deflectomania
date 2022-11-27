@@ -24,7 +24,6 @@ public class WinSystem : MonoBehaviour {
     /// </summary>
     private void Start() {
         _recentlyDeceasedPlayer = false;
-        InvokeRepeating(nameof(CheckWinCondition), 0, 0.5f);
     }
 
     /// <summary>
@@ -41,7 +40,9 @@ public class WinSystem : MonoBehaviour {
     private void CheckWinCondition() {
         if (!_recentlyDeceasedPlayer)
             return;
-
+        
+        _recentlyDeceasedPlayer = false;
+        
         if (alivePlayers.Count == 1) {
             Debug.Log("Winner! is Player " + alivePlayers[0]);
             playerWinEvent.Raise(alivePlayers[0]);
@@ -53,8 +54,6 @@ public class WinSystem : MonoBehaviour {
                 playerWinEvent.Raise(-1);
             }
         }
-
-        _recentlyDeceasedPlayer = false;
     }
 
     /// <summary>
@@ -63,5 +62,6 @@ public class WinSystem : MonoBehaviour {
     /// <param name="playerIndex"></param>
     private void OnPlayerDeath(int playerIndex) {
         _recentlyDeceasedPlayer = true;
+        Invoke(nameof(CheckWinCondition), 0.5f);
     }
 }
