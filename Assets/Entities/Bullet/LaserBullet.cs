@@ -19,6 +19,7 @@ namespace Entities.Bullet {
         // Increase this if bullets are getting stuck inside walls / deflection shield
         private readonly float _reflectionForce = 20f;
         private Rigidbody2D _rb;
+        private AudioSource _hitWallSound;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
 
@@ -31,6 +32,8 @@ namespace Entities.Bullet {
         }
 
         private void Awake() {
+            _hitWallSound = GetComponent<AudioSource>();
+            Assert.IsNotNull(_hitWallSound);
             Assert.IsNotNull(speed);
             _rb = GetComponent<Rigidbody2D>();
         }
@@ -83,6 +86,9 @@ namespace Entities.Bullet {
             if (numOfReflections.Value == 0 || collision.gameObject.CompareTag("Player")) {
                 // Set gameObject value to inActive to be added back to the pool.
                 gameObject.SetActive(false);
+            }
+            else {
+                _hitWallSound.Play();
             }
 
             // TODO: Handle case where bullets hit the corner of the wall. Should reflect bullet back in the same direction

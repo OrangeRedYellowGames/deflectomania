@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputManagerToUnityAtom : MonoBehaviour {
     public IntValueList currentPlayers;
     public IntValueList alivePlayers;
+    private AudioSource _deathSound;
 
     private PlayerInputManager _playerInputManager;
 
@@ -15,10 +16,12 @@ public class PlayerInputManagerToUnityAtom : MonoBehaviour {
     /// </summary>
     private void Awake() {
         _playerInputManager = GetComponent<PlayerInputManager>();
+        _deathSound = GetComponent<AudioSource>();
 
         Assert.IsNotNull(_playerInputManager);
         Assert.IsNotNull(currentPlayers);
         Assert.IsNotNull(alivePlayers);
+        Assert.IsNotNull(_deathSound);
 
         currentPlayers.Clear();
         alivePlayers.Clear();
@@ -45,6 +48,9 @@ public class PlayerInputManagerToUnityAtom : MonoBehaviour {
     /// </summary>
     /// <param name="pi"></param>
     public void OnPlayerLeft(PlayerInput pi) {
-        if (alivePlayers.Contains(pi.playerIndex)) alivePlayers.Remove(pi.playerIndex);
+        if (alivePlayers.Contains(pi.playerIndex)) {
+            alivePlayers.Remove(pi.playerIndex);
+            _deathSound.Play();
+        }
     }
 }

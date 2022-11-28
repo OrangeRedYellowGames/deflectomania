@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Player.Scripts;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace FSM {
     internal enum MovementStates {
@@ -65,6 +66,8 @@ namespace FSM {
         /// Used to determine the state of the player (whether he was grounded or not) in the last X frames (X refers to the forgivenessFrames variable)
         /// </summary>
         private Queue<bool> _wasGroundedForLastXFrames;
+
+        private AudioSource _jumpSound;
 
         private void CalculateAirSpeed() {
             // Add gravity to new velocity
@@ -131,6 +134,7 @@ namespace FSM {
             // Jumping State
             var jumpState = new State<MovementStates>(onEnter: (_) => {
                 // TODO: Add jumping animation here
+                _jumpSound.Play();
                 newVelocity.Value = new Vector2(newVelocity.Value.x,
                     Mathf.Sqrt(2f * minJumpHeight.Value * -gravity.Value));
             }).AddAction("OnFixedUpdate", CalculateAirSpeed);
@@ -161,6 +165,8 @@ namespace FSM {
 
         public void Awake() {
             _motor = GetComponent<MovementMotor2D>();
+            _jumpSound = GetComponent<AudioSource>();
+            Assert.IsNotNull(_jumpSound);
 
             _wasGroundedForLastXFrames = new Queue<bool>(forgivenessFrames);
             var isGrounded = _motor.IsGrounded;

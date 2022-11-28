@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 5947995173737975165}
   - component: {fileID: 5947995173737975166}
   - component: {fileID: 5947995173737975167}
-  - component: {fileID: 5947995173737975160}
   - component: {fileID: 1918941015}
   - component: {fileID: 1951943178}
   m_Layer: 8
@@ -335,21 +334,6 @@ CompositeCollider2D:
       - {x: 0.000029300001, y: 0}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &5947995173737975160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5947995173737975140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d51ce915f024f9e438662c26d068fadc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 4f6d40359a88e4cfa8077e3b91c81240, type: 2}
-  width: 3
-  length: 1
 --- !u!114 &1918941015
 MonoBehaviour:
   m_ObjectHideFlags: 0
