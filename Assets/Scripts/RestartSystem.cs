@@ -1,26 +1,28 @@
+using System;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 public class RestartSystem : MonoBehaviour {
     public IntEvent playerWinEvent;
-    public IntValueList alivePlayers;
-    public IntValueList currentPlayers;
+    public float restartDelay = 1f;
 
-    // Start is called before the first frame update
     private void Awake() {
         Assert.IsNotNull(playerWinEvent);
-        Assert.IsNotNull(alivePlayers);
-        Assert.IsNotNull(currentPlayers);
 
-        playerWinEvent.Register(Restart);
+        playerWinEvent.Register(OnWinEvent);
     }
 
-    // Update is called once per frame
-    private void Restart(int playerIdx) {
-        Debug.Log("Restart");
-        alivePlayers.Clear();
-        currentPlayers.Clear();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    private void OnDestroy() {
+        playerWinEvent.Unregister(OnWinEvent);
+    }
+
+    private void OnWinEvent(int playerIdx) {
+        Invoke(nameof(RestartLevel), restartDelay);
+    }
+
+    private void RestartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

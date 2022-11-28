@@ -34,7 +34,6 @@ public class PlayerInputManagerToUnityAtom : MonoBehaviour {
     /// </summary>
     /// <param name="pi"></param>
     public void OnPlayerJoined(PlayerInput pi) {
-        Debug.Log(pi.playerIndex);
         if (!currentPlayers.Contains(pi.playerIndex)) {
             pi.transform.position = spawnPoints[pi.playerIndex].position;
             currentPlayers.Add(pi.playerIndex);
