@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class RestartSystem : MonoBehaviour {
     public IntEvent playerWinEvent;
     public float restartDelay = 1f;
+    public Animator transition;
 
     private void Awake() {
         Assert.IsNotNull(playerWinEvent);
@@ -19,10 +20,18 @@ public class RestartSystem : MonoBehaviour {
     }
 
     private void OnWinEvent(int playerIdx) {
-        Invoke(nameof(RestartLevel), restartDelay);
+        StartCoroutine(LoadLevel(restartDelay));
     }
 
     private void RestartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private IEnumerator LoadLevel(float delay) {
+        yield return new WaitForSeconds(delay);
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(0.5f);
+
+        RestartLevel();
     }
 }
