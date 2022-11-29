@@ -7,7 +7,7 @@
 ![Unity](https://img.shields.io/badge/unity-2021.3.1f1-brightgreen?style=for-the-badge&logo=unity&logoColor=white)
 </div>
 
-> :info: If you just want to try out the game, read both the **Overview** and **Play Instructions** sections. The rest of this README contains more technical stuff relating to running and building the source code.
+> :warning: If you just want to try out the game, read both the **Overview** and **Play Instructions** sections. The rest of this README contains more technical stuff relating to running and building the source code.
 
 ## :book: Overview
 
