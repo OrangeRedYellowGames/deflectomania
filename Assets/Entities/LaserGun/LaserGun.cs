@@ -6,6 +6,7 @@ using Logger = NLog.Logger;
 
 namespace Entities.LaserGun {
     public class LaserGun : MonoBehaviour {
+        protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         [SerializeField] public VoidBaseEventReference shootEvent;
         [SerializeField] public IntConstant maxNumberOfBullets;
         [SerializeField] public FloatConstant reloadTime;
@@ -17,15 +18,17 @@ namespace Entities.LaserGun {
         public Transform firePoint;
 
         public bool resetReloadTimerAfterFiring = true;
-
-        protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private AudioSource _shootSound;
 
         private GameObject bullet;
 
         // Start is called before the first frame update
-        void Awake() {
+        private void Awake() {
+            _shootSound = GetComponent<AudioSource>();
+
             Assert.IsNotNull(shootEvent);
             Assert.IsNotNull(firePoint);
+            Assert.IsNotNull(_shootSound);
 
             // Register shootEvent's callback
             shootEvent.Event.Register(Shoot);
@@ -48,15 +51,16 @@ namespace Entities.LaserGun {
             }
         }
 
-        void OnDestroy() {
+        private void OnDestroy() {
             shootEvent.Event.Unregister(Shoot);
         }
 
         /// <summary>
-        /// Function responsible for spawning a new bullet from with firepoint as it's starting point
+        ///     Function responsible for spawning a new bullet from with firepoint as it's starting point
         /// </summary>
         private void Shoot() {
             if (currentNumberOfBullets.Value > 0) {
+                _shootSound.Play();
                 bullet = ObjectPooler.ObjectPooler.SharedInstance.GetPooledObject("Bullet");
                 if (bullet != null) {
                     bullet.transform.position = firePoint.position;
@@ -71,13 +75,9 @@ namespace Entities.LaserGun {
                 // Reduce number of bullets in the gun
                 currentNumberOfBullets.Value -= 1;
 
-                if (resetReloadTimerAfterFiring) {
-                    remainingReloadTime.Value = reloadTime.Value;
-                }
+                if (resetReloadTimerAfterFiring) remainingReloadTime.Value = reloadTime.Value;
             }
-            else {
-                // Send an event that player is trying to shoot an empty gun
-            }
+            // Send an event that player is trying to shoot an empty gun
         }
     }
 }

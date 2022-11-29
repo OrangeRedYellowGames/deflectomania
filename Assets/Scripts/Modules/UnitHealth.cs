@@ -18,8 +18,12 @@ public class UnitHealth : MonoBehaviour {
     /// </summary>
     public IntReference playerId;
 
+    private AudioSource _damageSound;
+
     private void Awake() {
+        _damageSound = GetComponent<AudioSource>();
         Assert.IsNotNull(hp, "HP Variable can't be missing in UnitHealth");
+        Assert.IsNotNull(_damageSound);
     }
 
     /// <summary>
@@ -28,6 +32,7 @@ public class UnitHealth : MonoBehaviour {
     /// </summary>
     /// <param name="damage">Amount of damage to take</param>
     public void TakeDamage(float damage) {
+        _damageSound.Play();
         hp.Value -= damage;
         if (hp.Value <= 0 && deathEvent) deathEvent.Raise(playerId);
     }
