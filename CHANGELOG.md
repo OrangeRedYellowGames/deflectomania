@@ -1,3 +1,37 @@
+# [1.0.0-alpha.2](https://github.com/OrangeRedYellowGames/deflectomania/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-11-29)
+
+
+### Bug Fixes
+
+* **AmmoBar:** fix ammobar not working in multiplayer ([7112a4b](https://github.com/OrangeRedYellowGames/deflectomania/commit/7112a4bef3c4759a3b745c9b7e5443a224ebfac3))
+* **ci:** change build artifact from LaserProject to Deflectomania ([26ace34](https://github.com/OrangeRedYellowGames/deflectomania/commit/26ace34456426330d12166bc86c2f0ad9ae6f0a9))
+* **deflection shield:** fix Deflection shield and player unalignment when on moving platform: ([#46](https://github.com/OrangeRedYellowGames/deflectomania/issues/46)) ([c1e6a10](https://github.com/OrangeRedYellowGames/deflectomania/commit/c1e6a1068f68df455ad5e5669c1d63246abea6e6))
+* fix objectpooler assertion in LaserGun.cs always failing ([5291f76](https://github.com/OrangeRedYellowGames/deflectomania/commit/5291f76a48b32f8ae68a0cca274154dc4787637e))
+* fix players not taking damage from bullets ([5bfbbad](https://github.com/OrangeRedYellowGames/deflectomania/commit/5bfbbad6fbf00cef684e47f11e71fcf5c1766a1e))
+* **player:** fix player not being affected by gravity ([aca8963](https://github.com/OrangeRedYellowGames/deflectomania/commit/aca8963df3e660f19e17a8278bdc0df654e37e00))
+* **player:** fix player not switching directions correctly ([5f85f0c](https://github.com/OrangeRedYellowGames/deflectomania/commit/5f85f0cee2c58085952bbb7ae6cb18e60843f978))
+* remove orbs_hud.mat ([dff2daa](https://github.com/OrangeRedYellowGames/deflectomania/commit/dff2daaa91e26e4d1c8cbb67d35cec7cb15f7675))
+
+
+### Features
+
+* add AssetUsageDetector ([57a6e87](https://github.com/OrangeRedYellowGames/deflectomania/commit/57a6e87ce4bd3b0c8995a3f1118d42cab9470155))
+* add bullet spawner prefab ([db8a7f3](https://github.com/OrangeRedYellowGames/deflectomania/commit/db8a7f3d4f9ec13961cfb96c2f69a80ef38c5d27))
+* Add Death System: ([#39](https://github.com/OrangeRedYellowGames/deflectomania/issues/39)) ([ae87f70](https://github.com/OrangeRedYellowGames/deflectomania/commit/ae87f70daef6e4c459cfdabe9629ee3617ec1c83))
+* add deflection shield ([a491cd6](https://github.com/OrangeRedYellowGames/deflectomania/commit/a491cd6ce2fee06c40c0efc546daae51aa4de645))
+* add MIT license ([221b5ae](https://github.com/OrangeRedYellowGames/deflectomania/commit/221b5aec07c4ad1bed00aa5b203cd5d7a5601fa5))
+* Add moving platform ([21ff8d4](https://github.com/OrangeRedYellowGames/deflectomania/commit/21ff8d45ced1606955dd0da472bf8b5076f6b4f2))
+* add sound effects: ([#50](https://github.com/OrangeRedYellowGames/deflectomania/issues/50)) ([4dd832d](https://github.com/OrangeRedYellowGames/deflectomania/commit/4dd832db60a13fc504d36490ca5ff8eb1c675b03))
+* added Light2D to laser bullet ([9c9b8bb](https://github.com/OrangeRedYellowGames/deflectomania/commit/9c9b8bbec1460c9ba7717a5bda7abdbdbdf02fc0))
+* **controls:** add block action to controls (not implemented yet) ([4c2edd2](https://github.com/OrangeRedYellowGames/deflectomania/commit/4c2edd2ab5723fc67d88d559a2dd17d0f7c70e1a))
+* lots of changes ([0680f24](https://github.com/OrangeRedYellowGames/deflectomania/commit/0680f24447274cf8933b1fa57f3e3cc8bc888047))
+* make deflection increase bullet speed ([6de957d](https://github.com/OrangeRedYellowGames/deflectomania/commit/6de957d168baa294b69338de9dfa695f91be5153))
+* remove Mirror from project (will work on local multiplayer for now) ([a45e712](https://github.com/OrangeRedYellowGames/deflectomania/commit/a45e7124869bc22793193a95f1dc36c162cf30c7))
+* update all materials to URP ([5b9fcb5](https://github.com/OrangeRedYellowGames/deflectomania/commit/5b9fcb5a50f218e4acfa8fb7f38bc604380a643e))
+* Use object pooling to instantiate bullets ([ccdd4e4](https://github.com/OrangeRedYellowGames/deflectomania/commit/ccdd4e4ab990e68c71b2aca8fd0fd51e6fd7e76e))
+* use URP instead of built-in renderer ([a17d3b5](https://github.com/OrangeRedYellowGames/deflectomania/commit/a17d3b53ab290cd1b4b000d3359b61b1c8b8f61e))
+* Win System ([#49](https://github.com/OrangeRedYellowGames/deflectomania/issues/49)) ([32a75f7](https://github.com/OrangeRedYellowGames/deflectomania/commit/32a75f7f67dc4419381ea2d522fcda999d412d5d))
+
 # 1.0.0-alpha.1 (2022-07-29)
 
 
