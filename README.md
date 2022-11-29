@@ -2,15 +2,42 @@
 <br/>
 <img src="https://user-images.githubusercontent.com/6564442/186253927-9662c3e6-b395-49f0-9a56-42eaab54e109.png" width="144px" height="144px"/>
 
-### Laser Project
+### Deflectomania!
 
 ![Unity](https://img.shields.io/badge/unity-2021.3.1f1-brightgreen?style=for-the-badge&logo=unity&logoColor=white)
 </div>
 
+> :info: If you just want to try out the game, read both the **Overview** and **Play Instructions** sections. The rest of this README contains more technical stuff relating to running and building the source code.
+
 ## :book: Overview
 
-This repository contains the code for **Laser Project**, a Unity game where a select few people
-at [ORY Games](https://github.com/KanabaGames) can collaborate and test out new game development ideas.
+**Deflectomania!**, an **Orange Red Yellow** Game, is our first game prototype to be submitted as part of **GameOff 2022**.
+
+**Deflectomania!** is a **couch multiplayer** game (up to four players) where you compete to become the last Space Ranger standing.
+
+You have two items in your arsenal, a **blazing gun** and a **force field**.
+
+### :gun: Blazing Gun 
+
+The blazing gun shoots a limited amount of bullets at a time. Your bullets need to recharge to be able to shoot them again, so make sure you’re strategic about it… OR you just rain hell on your enemies what do we know.
+
+### :shield: Force Field
+
+As a Space Ranger you’re given a force field that’ll help you deflect incoming bullets. Time them correctly and you’ll be able to deflect them back at your enemies. Like the bullets, force field need time to recharge so use them wisely.
+
+That’s all you need to know to start playing so gear up and show-’em who’s boss!
+
+## Latest builds
+Latest builds can be found in this repos [releases page](https://github.com/OrangeRedYellowGames/deflectomania/releases)
+
+## Play Instructions
+Using either a mouse / keyboard or controllers, you can play against up to 3 of your friends.
+
+- Press any key to join
+- Shoot, deflect, or be killed
+- Winner is the last player alive. If the last two players die at the same time, it's a draw!
+- Round to automatically restarted after
+
 
 ## :closed_book: Things to know
 
@@ -160,3 +187,16 @@ Here's how releases are currently made:
 
 - [https://github.com/cjddmut/Unity-2D-Platformer-Controller](https://github.com/cjddmut/Unity-2D-Platformer-Controller)
 - [https://github.com/prime31/CharacterController2D/blob/master/Assets/CharacterController2D/CharacterController2D.cs](https://github.com/prime31/CharacterController2D/blob/master/Assets/CharacterController2D/CharacterController2D.cs)
+
+## Third Party Assets
+- [Unity Atoms](https://unity-atoms.github.io/unity-atoms/)
+- [Asset Usage Detector](https://assetstore.unity.com/packages/tools/utilities/asset-usage-detector-112837)
+- [DOTween](https://dotween.demigiant.com/)
+- [Unity HFSM](https://github.com/Inspiaaa/UnityHFSM)
+
+## Credits
+**Deflectomania!** was proudly developed by:
+- [Amr Hesham](https://github.com/amrmorsey)
+- [Mohamed Abaza](https://github.com/TheAbaza)
+- [Shady Fanous](https://github.com/ShadyF)
+- [Youssef Chamel](https://github.com/ychamel)
