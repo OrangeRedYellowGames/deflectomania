@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,6 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputManagerToUnityAtom : MonoBehaviour {
     public IntValueList currentPlayers;
     public IntValueList alivePlayers;
+    public List<Transform> spawnPoints;
     private AudioSource _deathSound;
 
     private PlayerInputManager _playerInputManager;
@@ -21,6 +23,8 @@ public class PlayerInputManagerToUnityAtom : MonoBehaviour {
         Assert.IsNotNull(_playerInputManager);
         Assert.IsNotNull(currentPlayers);
         Assert.IsNotNull(alivePlayers);
+        Assert.IsNotNull(spawnPoints);
+        Assert.AreEqual(spawnPoints.Count, 4);
         Assert.IsNotNull(_deathSound);
 
         currentPlayers.Clear();
@@ -33,8 +37,8 @@ public class PlayerInputManagerToUnityAtom : MonoBehaviour {
     /// </summary>
     /// <param name="pi"></param>
     public void OnPlayerJoined(PlayerInput pi) {
-        Debug.Log(pi.playerIndex);
         if (!currentPlayers.Contains(pi.playerIndex)) {
+            pi.transform.position = spawnPoints[pi.playerIndex].position;
             currentPlayers.Add(pi.playerIndex);
             alivePlayers.Add(pi.playerIndex);
         }

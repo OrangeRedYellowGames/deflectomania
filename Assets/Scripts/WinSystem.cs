@@ -1,12 +1,22 @@
+using NLog;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Logger = NLog.Logger;
 
 public class WinSystem : MonoBehaviour {
     public IntValueList alivePlayers;
     public IntEvent playerDeathEvent;
     public IntEvent playerWinEvent;
-    private bool _recentlyDeceasedPlayer;
+
+    /// <summary>
+    /// Amount of time after a player has died to start checking for a win condition.
+    /// Useful in case two players kill each other but with a small time difference.
+    /// </summary>
+    public float winDelay = 0.5f;
+
+    private bool _gameOver = false;
+    protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     /// <summary>
     ///     On awake it asserts that all the required events are there.
@@ -19,13 +29,6 @@ public class WinSystem : MonoBehaviour {
         playerDeathEvent.Register(OnPlayerDeath);
     }
 
-    /// <summary>
-    ///     On start it invokes a repeating function every 0.5f seconds to check win condition.
-    /// </summary>
-    private void Start() {
-        _recentlyDeceasedPlayer = false;
-        InvokeRepeating(nameof(CheckWinCondition), 0, 0.5f);
-    }
 
     /// <summary>
     ///     This function is unregisters the playerDeathEvent when this object is destroyed.
@@ -39,22 +42,17 @@ public class WinSystem : MonoBehaviour {
     ///     has died recently and if yes goes a head and computes the winner if any.
     /// </summary>
     private void CheckWinCondition() {
-        if (!_recentlyDeceasedPlayer)
-            return;
-
-        if (alivePlayers.Count == 1) {
-            Debug.Log("Winner! is Player " + alivePlayers[0]);
-            playerWinEvent.Raise(alivePlayers[0]);
-        }
-        else {
-            if (alivePlayers.Count == 0) {
-                Debug.Log("Draw!");
+        switch (alivePlayers.Count) {
+            case 0:
                 // -1 denotes a draw!
                 playerWinEvent.Raise(-1);
-            }
+                _gameOver = true;
+                break;
+            case 1:
+                playerWinEvent.Raise(alivePlayers[0]);
+                _gameOver = true;
+                break;
         }
-
-        _recentlyDeceasedPlayer = false;
     }
 
     /// <summary>
@@ -62,6 +60,11 @@ public class WinSystem : MonoBehaviour {
     /// </summary>
     /// <param name="playerIndex"></param>
     private void OnPlayerDeath(int playerIndex) {
-        _recentlyDeceasedPlayer = true;
+        // If there's already a winner, don't check for the win condition again.
+        // Useful for cases where the player might kill himself after killing everyone.
+        if (_gameOver) return;
+
+        // Check the win condition after a certain amount of time. Useful for cases where two people killed each other, causing a draw.
+        Invoke(nameof(CheckWinCondition), winDelay);
     }
 }
