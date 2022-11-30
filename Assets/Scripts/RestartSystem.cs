@@ -24,7 +24,8 @@ public class RestartSystem : MonoBehaviour {
     }
 
     private void RestartLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        var nextSceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private IEnumerator LoadLevel(float delay) {
