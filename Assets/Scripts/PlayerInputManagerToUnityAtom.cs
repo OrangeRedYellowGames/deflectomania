@@ -42,9 +42,9 @@ public class PlayerInputManagerToUnityAtom : MonoBehaviour {
             currentPlayers.Add(pi.playerIndex);
             alivePlayers.Add(pi.playerIndex);
         }
-        // else {
-        //     pi.gameObject.SetActive(false);
-        // }
+        else {
+            pi.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
