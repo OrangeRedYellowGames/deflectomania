@@ -163,7 +163,7 @@ namespace Player.Scripts {
             };
 
             if (enableAngleSnapping) {
-                _angle = array8.OrderBy(x => Math.Abs((long)x - _angle)).First();
+                _angle = array16.OrderBy(x => Math.Abs((long)x - _angle)).First();
             }
 
             // If the player is facing right
