@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _developerDescription: The maximum number of bulelts in a gun
   _id: 
-  _value: 4
+  _value: 2
