@@ -57,6 +57,7 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 1499210766}
+  enableAngleSnapping: 1
 --- !u!1 &1690909634
 GameObject:
   m_ObjectHideFlags: 0
