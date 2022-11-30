@@ -197,6 +197,17 @@
                 },
                 {
                     "name": "",
+                    "id": "49c2e669-4540-453f-9004-a2867bb56165",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "707b9665-b659-4278-9e6d-b3eeaf81f04f",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -219,6 +230,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9eaa50f3-9909-448d-90a6-c7b70ebf9c5e",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5cd6f242-2a41-48c1-82fc-da2e95f166e2",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -231,10 +253,32 @@
                 {
                     "name": "",
                     "id": "4098bca6-b66f-422d-9a83-39f23f7eb587",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Deflect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b8bb46e-359b-4407-8b12-035315dacb3c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deflect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29b32186-31ac-4f07-b9a5-54bdcdb3d947",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Deflect",
                     "isComposite": false,
                     "isPartOfComposite": false

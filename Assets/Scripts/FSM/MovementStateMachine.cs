@@ -134,7 +134,9 @@ namespace FSM {
             // Jumping State
             var jumpState = new State<MovementStates>(onEnter: (_) => {
                 // TODO: Add jumping animation here
-                _jumpSound.Play();
+                if (!_jumpSound.isPlaying) {
+                    _jumpSound.Play();
+                }
                 newVelocity.Value = new Vector2(newVelocity.Value.x,
                     Mathf.Sqrt(2f * minJumpHeight.Value * -gravity.Value));
             }).AddAction("OnFixedUpdate", CalculateAirSpeed);
