@@ -1,3 +1,22 @@
+# [1.0.0-alpha.3](https://github.com/OrangeRedYellowGames/deflectomania/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-11-30)
+
+
+### Bug Fixes
+
+* fix control instructions not showing correctly in main menu ([5b9771c](https://github.com/OrangeRedYellowGames/deflectomania/commit/5b9771c6252106a6a7cfb4998daa466a668bd6d3))
+
+
+### Features
+
+* Add canvas to all scenes: ([9bd87f9](https://github.com/OrangeRedYellowGames/deflectomania/commit/9bd87f93c2b859f23000e074d946934c67151bde))
+* add music to main menu ([9254086](https://github.com/OrangeRedYellowGames/deflectomania/commit/9254086130bb76fe69ca879ea980627d5909b316))
+* Add new maps ([#66](https://github.com/OrangeRedYellowGames/deflectomania/issues/66)) ([f8f8ec5](https://github.com/OrangeRedYellowGames/deflectomania/commit/f8f8ec5cf881283dfe720992c370df99e51f0015))
+* Level 5 tweaks ([ba4f55c](https://github.com/OrangeRedYellowGames/deflectomania/commit/ba4f55cb02afe1f226849c760f45fcb2c9494f52))
+* **player:** add aim snapping ([b4ed79b](https://github.com/OrangeRedYellowGames/deflectomania/commit/b4ed79bc6c7f72b6c3ac0244e62654f52f9d6d81))
+* randomly select scenes on start or restart ([46214f2](https://github.com/OrangeRedYellowGames/deflectomania/commit/46214f2914b11fdb7c76b1bb30e229639e348646))
+* **UI:** Add control instructions to main menu ([3bb4ecd](https://github.com/OrangeRedYellowGames/deflectomania/commit/3bb4ecd344d3ec7023f6c0c334332c3bd9cab0b2))
+* **UI:** add join indicator ([d894f1e](https://github.com/OrangeRedYellowGames/deflectomania/commit/d894f1e3df14579d4c310cea9a12cb6284b81c95))
+
 # [1.0.0-alpha.2](https://github.com/OrangeRedYellowGames/deflectomania/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-11-29)
 
 
