@@ -55,9 +55,9 @@
       {
         "assets": [
           {
-            "path": "LaserProject-Win64.zip",
-            "name": "LaserProject-${nextRelease.gitTag}-Win64.zip",
-            "label": "LaserProject-${nextRelease.gitTag}-Win64.zip"
+            "path": "Deflectomania-Win64.zip",
+            "name": "Deflectomania-${nextRelease.gitTag}-Win64.zip",
+            "label": "Deflectomania-${nextRelease.gitTag}-Win64.zip"
           }
         ]
       }
