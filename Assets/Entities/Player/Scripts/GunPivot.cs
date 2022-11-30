@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using NLog;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
@@ -26,6 +28,11 @@ namespace Player.Scripts {
         /// </summary>
         [SerializeField]
         public BoolReference isUsingMouse;
+
+        /// <summary>
+        /// Whether to snap the look direction to 8 direction angles
+        /// </summary>
+        public bool enableAngleSnapping = false;
 
         /// <summary>
         /// Contains the player gameobject. Used to figure out which direction the player is facing
@@ -128,8 +135,8 @@ namespace Player.Scripts {
                 // If the mouse is located INSIDE of this circle, we IGNORE the vector between the mouse and the firerpoint.
                 _distanceFromPivotToMouse = Vector3.Distance(gameObject.transform.position, mousePosition);
 
-                // If mouse is located outside the circle
-                if (_distanceFromPivotToMouse > _distanceFromPivotToFirepoint) {
+                // // If mouse is located outside the circle
+                if (!enableAngleSnapping && _distanceFromPivotToMouse > _distanceFromPivotToFirepoint) {
                     _target += mousePosition - _firePoint.position;
                 }
 
@@ -149,6 +156,16 @@ namespace Player.Scripts {
             }
 
             _angle = Mathf.Atan2(_target.y, _target.x) * Mathf.Rad2Deg;
+            float[] array8 = { 0, 45, 90, 135, 180, -180, -135, -90, -45 };
+            float[] array16 = {
+                0, 22.5f, 45, 67.5f, 90, 112.5f, 135, 157.5f, 180, -180, -157.5f, -135, -112.5f, -90, -67.5f, -45,
+                -22.5f
+            };
+
+            if (enableAngleSnapping) {
+                _angle = array8.OrderBy(x => Math.Abs((long)x - _angle)).First();
+            }
+
             // If the player is facing right
             if (_player.transform.eulerAngles.y == 0f) {
                 _clamped = Helpers.ClampAngle(_angle, -90, 90);
