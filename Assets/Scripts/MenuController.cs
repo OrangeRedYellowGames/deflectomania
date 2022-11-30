@@ -43,7 +43,8 @@ public class MenuController : MonoBehaviour {
     private IEnumerator StartGame() {
         _clickSound.Play();
         yield return new WaitWhile(() => _clickSound.isPlaying);
-        SceneManager.LoadScene("Scenes/Level 1");
+        var nextSceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     public void OnPlayOnlinePressed() {
