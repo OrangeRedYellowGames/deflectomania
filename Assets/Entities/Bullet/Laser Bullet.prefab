@@ -430,8 +430,6 @@ MonoBehaviour:
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 3384238090645941817}
   numOfReflections: {fileID: 29035665715443411}
-  hitWallSound: {fileID: 1167179860712870608}
-  hitPlayerSound: {fileID: 0}
 --- !u!114 &6021769260506702732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,7 +461,6 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 3384238090645941817}
-  maxSpeed: 50
 --- !u!114 &6520022974829175173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +487,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b6578eeab936f1e488f7110efdfe8e60, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
